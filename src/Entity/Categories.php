@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\CategoriesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
+#[UniqueEntity(fields: 'name', message: 'Cette catégorie existe déjà')]
 class Categories
 {
     #[ORM\Id]

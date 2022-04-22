@@ -12,19 +12,32 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
+        $userActif = $this->getUser();
+        if($userActif == null){
+            $connect = 0;
+        }else{
+            $connect = 1;
+        };
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+            $user->setCreateDate(new \DateTime('now'));
+            $img = $form->get('imgProfil')->getData();
+            $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.md5(uniqid()).'.'.$img->guessExtension();
+            $img->move($this->getParameter('uploadDirectory'), $newFilename);
+            $user->setImgProfil($newFilename);
             $user->setPassword(
             $userPasswordHasher->hashPassword(
                     $user,
@@ -45,6 +58,8 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'user' => $userActif,
+            'connect' => $connect
         ]);
     }
 }

@@ -1,0 +1,31 @@
+<header>
+    <nav>
+        <a href="{{ path('homePage') }}">accueil</a>
+        <a href="{{ path('showTranscriptions') }}">Transcriptions</a>
+        <a href="{{ path('showTrainings') }}">Cours</a>
+        <a href="{{ path('showNews') }}">News</a>
+        {% if connect == 0 %}
+            <a href="{{ path('app_login') }}">se connecter</a>
+        {% else%}
+            <a href="{{ path('app_logout') }}">se deconnecter</a>
+        {% endif %}
+        {% if connect != 0 %}
+            <div>
+                <img src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
+                <a href="">Mon profil</a>
+            </div>
+        {% else%}
+            <div>
+                <img src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                <a href="{{ path('app_register') }}">S'inscrire</a>
+            </div>
+        {% endif %}
+    </nav>
+
+    <nav>
+        <a href="{{ path('addNews') }}"> Ajouter une news</a>
+        <a href="{{ path('addTraining') }}"> Ajouter un cours</a>
+        <a href="{{ path('addCategory') }}">Ajouter une catégorie</a>
+        <a href="{{ path('addTranscription') }}">Ajouter une transcription</a>
+    </nav>
+</header>

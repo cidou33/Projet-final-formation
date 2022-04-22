@@ -73,4 +73,18 @@ class TrainingsRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findMyTrainings()
+    {
+        $qb = $this->createQueryBuilder('trainings');
+        $qb
+            ->select('trainings')
+            ->leftJoin('trainings.category', 'category')
+            ->addSelect('category');
+        $query = $qb
+            ->orderBy('trainings.createDate', 'ASC')
+            ->getQuery();
+        $trainings = $query->getArrayResult();
+        return $trainings;
+    }
 }
