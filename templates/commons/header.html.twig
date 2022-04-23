@@ -1,20 +1,33 @@
 <header>
     <nav>
         <a href="{{ path('homePage') }}">accueil</a>
-        <a href="{{ path('showTranscriptions') }}">Transcriptions</a>
+        <a href="{% if connect == false %}
+                      {{ path('showTranscriptions', {'id':user.id}) }}
+                  {% else %}
+                      {{ path('showTranscriptions', {'id':"r"}) }}
+                  {% endif %}
+        ">Transcriptions</a>
         <a href="{{ path('showTrainings') }}">Cours</a>
         <a href="{{ path('showNews') }}">News</a>
-        {% if connect == 0 %}
+        {% if connect == true %}
             <a href="{{ path('app_login') }}">se connecter</a>
         {% else%}
             <a href="{{ path('app_logout') }}">se deconnecter</a>
         {% endif %}
-        {% if connect != 0 %}
+        <a href="{{ path('updateUser') }}">modifier son compte</a>
+        {% if connect == false %}
+            {%  if user.imgProfil != null %}
             <div>
                 <img src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
                 <a href="">Mon profil</a>
             </div>
-        {% else%}
+            {% else %}
+            <div>
+                <img src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                <a href="">Mon profil</a>
+            </div>
+            {% endif %}
+        {% else %}
             <div>
                 <img src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
                 <a href="{{ path('app_register') }}">S'inscrire</a>

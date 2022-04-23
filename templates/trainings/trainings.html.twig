@@ -25,6 +25,11 @@
                             <img src="{{ asset('assets/data/img/uploadCategories/' ~ training.category.img_category) }}" alt="logo de catégorie">
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                        <div>
+                            <a href="{{ path('deleteTraining', {'id':training.id}) }}">supprimer</a>
+                            <a href="{{ path('modifyStatusTraining', {'id':training.id}) }}">désactiver</a>
+                            <a href="{{ path('updateTraining', {'id':training.id}) }}">modifier</a>
+                        </div>
                     </article>
                 {% endif %}
             {% endfor %}

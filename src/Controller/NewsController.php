@@ -18,11 +18,12 @@ class NewsController extends AbstractController
     #[Route('/nouvel-article', name: 'addNews', methods: ['GET', 'POST'])]
     public function addNews(NewsRepository $newsRepository, Request $request, SluggerInterface $slugger, imgHelper $imgHelper){
         $user = $this->getUser();
-        if($user == null){
-            $connect = 0;
-        }else{
-            $connect = 1;
-        };
+        //if($user == null){
+            //$connect = 0;
+        //}else{
+          //  $connect = 1;
+        //};
+        $connect = $this->getUser() == null;
         $article = new News();
         $articleForm = $this->createForm(NewsType::class, $article);
         $articleForm->handleRequest($request);
@@ -33,7 +34,6 @@ class NewsController extends AbstractController
             //$imgBrut = $articleForm->get('imgNews')->getData();
             //$img = $imgHelper->img($imgBrut);
             $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
-            dd($originalFilename);
             $safeFilename = $slugger->slug($originalFilename);
             $newFilename = $safeFilename.'-'.md5(uniqid()).'.'.$img->guessExtension();
             $img->move($this->getParameter('uploadNews'), $newFilename);
@@ -55,17 +55,12 @@ class NewsController extends AbstractController
     public function showNews(NewsRepository $newsRepository){
         $news = $newsRepository->findAll();
         $user = $this->getUser();
-        if($user == null){
-            $connect = 0;
-        }else{
-            $connect = 1;
-        };
+        $connect = $this->getUser() == null;
         return $this->render('news/news.html.twig', [
             'news' => $news,
             'user' => $user,
             'connect' => $connect
         ]);
-
     }
 
     #[Route('supprimer-article/{id}', name: 'deleteNews', methods: ['GET', 'POST'])]
@@ -74,5 +69,58 @@ class NewsController extends AbstractController
         $newsRepository->remove($article);
         return $this->redirectToRoute('showNews');
     }
+
+    #[Route('activer-desactiver-news/{id}', name: 'modifyStatusNews', methods: ['GET', 'POST'])]
+    public function modifyStatusNews(NewsRepository $newsRepository, $id){
+        $article = $newsRepository->findOneBy(['id'=>$id]);
+        if($article->getActive()==true) {
+            $article->setActive(false);
+        }else{
+            $article->setActive(true);
+        }
+        $newsRepository->add($article);
+        return $this->redirectToRoute('showNews');
+    }
+
+    #[Route('/modifier-article/{id}', name: 'updateNews', methods: ['GET', 'POST'])]
+    public function updateNews(NewsRepository $newsRepository, Request $request, SluggerInterface $slugger, imgHelper $imgHelper, $id){
+        $user = $this->getUser();
+        $connect = $this->getUser() == null;
+        $article = $newsRepository->findOneBy(['id'=>$id]);
+        $oldImg = $article->getImgNews();
+        $articleForm = $this->createForm(NewsType::class, $article);
+        $articleForm->handleRequest($request);
+        if($articleForm->isSubmitted() && $articleForm->isValid()){
+            $article->setUpdateDate(new \DateTime('now'));
+            $img = $articleForm->get('imgNews')->getData();
+            if($img==null) {
+                $img = $oldImg;
+                $article->setImgNews($img);
+                $newsRepository->add($article);
+                return $this->redirectToRoute('showNews', [
+                    'user' => $user,
+                    'connect' => $connect
+                ]);
+            }
+            //$imgBrut = $articleForm->get('imgNews')->getData();
+            //$img = $imgHelper->img($imgBrut);
+            $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename . '-' . md5(uniqid()) . '.' . $img->guessExtension();
+            $img->move($this->getParameter('uploadNews'), $newFilename);
+            $article->setImgNews($newFilename);
+            $newsRepository->add($article);
+            return $this->redirectToRoute('showNews', [
+                'user' => $user,
+                'connect' => $connect
+            ]);
+        }
+        return $this->render('news/addNews.html.twig', [
+            'newsForm' => $articleForm->createView(),
+            'user' => $user,
+            'connect' => $connect
+        ]);
+    }
+
 }
 

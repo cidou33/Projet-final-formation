@@ -16,9 +16,14 @@
         <h2>Liste des catégories existantes</h2>
         <tbody>
         {% for category in categories %}
-            {% if category.name %}<tr><td>{{ category.name }}</td></tr><a href="{{ path('deleteCategory', {'id':category.id}) }}">supprimer</a>{% endif %}
+            {% if category.name %}<tr><td>{{ category.name }}</td></tr>
+                <a href="{{ path('deleteCategory', {'id':category.id}) }}">supprimer</a>
+                <a href="{{ path('updateCategory', {'id':category.id}) }}">modifier</a>
+            {% endif %}
         {% endfor %}
         </tbody>
+
+        <a href="{{ path('deleteUser') }}">effacer user</a>
     {% endblock %}
 </main>
 </body>

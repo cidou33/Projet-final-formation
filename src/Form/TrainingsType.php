@@ -38,7 +38,8 @@ class TrainingsType extends AbstractType
             //->add('active')
             ->add('pdfFile', FileType::class, [
                 'label' => 'Choisissez un fichier pdf : ',
-                'data_class' => null
+                'data_class' => null,
+                'required' => false
             ])
             //->add('numbDownload')
             ->add('category', EntityType::class, [

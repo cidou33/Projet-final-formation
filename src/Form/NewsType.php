@@ -33,7 +33,8 @@ class NewsType extends AbstractType
             //->add('active')
             ->add('imgNews', FileType::class, [
                 'label' => 'Choisissez une image',
-                'data_class' => null
+                'data_class' => null,
+                'required' => false
             ])
             ->add('imgAlt', TextType::class, [
                 'label' => 'Description',

@@ -17,12 +17,13 @@
                 <span>{{ transcription.bandName }}</span>
                 <span>{{ transcription.songName }}</span>
                 <div class="{{ transcription.difficultyLevel.color }}"></div>
-                <checkbox>favori</checkbox>
+                {% if connect == false %}
+                    <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">Ajouter</a>
+                {% endif %}
                 <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" target="_blank">telecharger</a>
                 <a href="{{ path('toto', {'id':transcription.id}) }}">les deux</a>
                 <a href="{{ path('tutu') }}">les deux V2</a>
 
-                <a href="https://www.youtube.com/watch?v=NMNgbISmF4I" target="_blank">video</a>
             </article>
         {% endfor %}
 

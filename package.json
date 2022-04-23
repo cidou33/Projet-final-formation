@@ -1,10 +1,26 @@
 {
     "devDependencies": {
+        "@babel/core": "^7.17.5",
+        "@babel/preset-env": "^7.16.11",
         "@hotwired/stimulus": "^3.0.0",
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/webpack-encore": "^1.7.0",
+        "autoprefixer": "^10.4.2",
+        "copy-html": "^1.0.3",
         "core-js": "^3.0.0",
+        "cssnano": "^5.1.0",
+        "gulp": "^4.0.2",
+        "gulp-babel": "^8.0.0",
+        "gulp-clean": "^0.4.0",
+        "gulp-imagemin": "^7.1.0",
+        "gulp-postcss": "^9.0.1",
+        "gulp-sass": "^5.1.0",
+        "gulp-sourcemaps": "^3.0.0",
+        "imagemin-mozjpeg": "^10.0.0",
+        "node-sass": "^7.0.1",
+        "postcss": "^8.4.8",
         "regenerator-runtime": "^0.13.2",
+        "sass": "^1.49.9",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -17,5 +33,16 @@
     },
     "dependencies": {
         "gulp-cli": "^2.3.0"
-    }
+    },
+    "browserslist": [
+        "ie >= 8",
+        "edge >= 15",
+        "ie_mob >= 10",
+        "ff >= 45",
+        "chrome >= 45",
+        "safari >= 7",
+        "opera >= 23",
+        "ios >= 7",
+        "android >= 4"
+    ]
 }

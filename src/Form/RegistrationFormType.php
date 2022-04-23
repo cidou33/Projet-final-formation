@@ -34,7 +34,8 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('imgProfil', FileType::class, [
                 'label' => 'Choisissez une image de profil : ',
-                'data_class' => null
+                'data_class' => null,
+                'required' => false
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

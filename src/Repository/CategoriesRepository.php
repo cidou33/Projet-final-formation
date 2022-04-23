@@ -73,4 +73,15 @@ class CategoriesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    //public function removeMedia(Media $media): self
+    //{
+        //if ($this->medias->removeElement($media)) {
+            // set the owning side to null (unless already changed)
+            //if ($media->getTags() === $this) {
+                //$media->setTags(null);
+            //}
+        //}
+       // return $this;
+    //}
 }

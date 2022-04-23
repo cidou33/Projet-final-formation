@@ -30,7 +30,7 @@ class Trainings
     #[ORM\Column(type: 'boolean')]
     private $active;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $pdfFile;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -118,7 +118,7 @@ class Trainings
         return $this->pdfFile;
     }
 
-    public function setPdfFile(string $pdfFile): self
+    public function setPdfFile(?string $pdfFile): self
     {
         $this->pdfFile = $pdfFile;
 

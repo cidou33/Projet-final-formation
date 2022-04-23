@@ -16,11 +16,7 @@ class CategoriesController extends AbstractController
     #[Route('/nouvelle-categorie', name: 'addCategory', methods: ['GET', 'POST'])]
     public function addCategory(CategoriesRepository $categoriesRepository, Request $request, SluggerInterface $slugger){
         $user = $this->getUser();
-        if($user == null){
-            $connect = 0;
-        }else{
-            $connect = 1;
-        };
+        $connect = $this->getUser() == null;
         $categories = $categoriesRepository->findAll();
         $category =new Categories();
         $categoryForm = $this->createForm(CategoriesType::class, $category);
@@ -53,6 +49,48 @@ class CategoriesController extends AbstractController
         $category = $categoriesRepository->findOneBy(['id'=>$id]);
         $categoriesRepository->remove($category);
         return $this->redirectToRoute('addCategory');
+    }
+
+    #[Route('/modifier-categorie/{id}', name: 'updateCategory', methods: ['GET', 'POST'])]
+    public function updateCategory(CategoriesRepository $categoriesRepository, Request $request, SluggerInterface $slugger, $id){
+        $user = $this->getUser();
+        $connect = $this->getUser() == null;
+        $categories = $categoriesRepository->findAll();
+        $category = $categoriesRepository->findOneBy(['id'=>$id]);
+        $oldImg = $category->getImgCategory();
+        $categoryForm = $this->createForm(CategoriesType::class, $category);
+        $categoryForm->handleRequest($request);
+        if($categoryForm->isSubmitted() && $categoryForm->isValid()){
+            $img = $categoryForm->get('img_category')->getData();
+            if($img==null) {
+                $img = $oldImg;
+                $category->setImgCategory($img);
+                $categoriesRepository->add($category);
+                return $this->redirectToRoute('addCategory', [
+                    'user' => $user,
+                    'connect' => $connect
+                ]);
+            }
+            $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename= $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.md5(uniqid()).'.'.$img->guessExtension();
+            $img->move($this->getParameter('uploadCategories'), $newFilename);
+            $category->setImgCategory($newFilename);
+            $categoriesRepository->add($category);
+            return $this->redirectToRoute('addCategory', [
+                'user' => $user,
+                'connect' => $connect,
+
+
+            ]);
+        }
+        return $this->render('categories/addCategory.html.twig', [
+            'categoryForm' => $categoryForm->createView(),
+            'user' => $user,
+            'connect' => $connect,
+            'categories' => $categories,
+            'category' => $category
+        ]);
     }
 
 }

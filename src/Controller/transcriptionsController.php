@@ -6,6 +6,7 @@ use App\Entity\Transcriptions;
 use App\Form\TranscriptionsType;
 use App\Repository\TrainingsRepository;
 use App\Repository\TranscriptionsRepository;
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,11 +17,7 @@ class transcriptionsController extends AbstractController
     #[Route('/nouvelle-transcription', name: 'addTranscription', methods: ['GET', 'POST'])]
     public function addTranscription(TranscriptionsRepository $transcriptionsRepository, Request $request, SluggerInterface $slugger){
         $user = $this->getUser();
-        if($user == null){
-            $connect = 0;
-        }else{
-            $connect = 1;
-        };
+        $connect = $this->getUser() == null;
         $transcription = new Transcriptions();
         $transcriptionForm = $this->createForm(TranscriptionsType::class, $transcription);
         $transcriptionForm->handleRequest($request);
@@ -40,6 +37,7 @@ class transcriptionsController extends AbstractController
             return $this->redirectToRoute('showTranscriptions', [
                 'user' => $user,
                 'connect' => $connect,
+                'favori' => $user->getFavoris()->contains($transcription) == true
             ]);
         }
         return $this->render('transcriptions/addTranscription.html.twig', [
@@ -49,19 +47,23 @@ class transcriptionsController extends AbstractController
         ]);
     }
 
-    #[Route('les-transcriptions', name: 'showTranscriptions', methods: ['GET', 'POST'])]
-    public function showTranscriptions(TranscriptionsRepository $transcriptionsRepository){
+    #[Route('les-transcriptions/{id}', name: 'showTranscriptions', methods: ['GET', 'POST'])]
+    public function showTranscriptions(TranscriptionsRepository $transcriptionsRepository, UsersRepository $usersRepository, $id){
         $transcriptions = $transcriptionsRepository->findAll();
+        $connect = $this->getUser() == null;
         $user = $this->getUser();
-        if($user == null){
-            $connect = 0;
-        }else{
-            $connect = 1;
-        };
+        if ($user != null) {
+            $favoris = $user->getFavoris();
+            return $this->render('transcriptions/transcriptions.html.twig', [
+                'user' => $user,
+                'connect' => $connect,
+                'transcriptions' => $transcriptions,
+                'favori' => $favoris
+            ]);
+        }
         return $this->render('transcriptions/transcriptions.html.twig', [
             'user' => $user,
             'connect' => $connect,
-            'transcriptions' => $transcriptions
-        ]);
+            'transcriptions' => $transcriptions]);
     }
 }

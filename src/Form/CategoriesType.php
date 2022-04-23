@@ -23,7 +23,8 @@ class CategoriesType extends AbstractType
             ])
             ->add('img_category', FileType::class, [
                 'label' => 'Choisissez une image',
-                'data_class' => null
+                'data_class' => null,
+                'required' => false
             ])
             ->add('Valider', SubmitType::class)
         ;
