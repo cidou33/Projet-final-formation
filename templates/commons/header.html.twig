@@ -14,17 +14,16 @@
         {% else%}
             <a href="{{ path('app_logout') }}">se deconnecter</a>
         {% endif %}
-        <a href="{{ path('updateUser') }}">modifier son compte</a>
         {% if connect == false %}
             {%  if user.imgProfil != null %}
             <div>
                 <img src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
-                <a href="">Mon profil</a>
+                <a href="{{ path('updateUser') }}">mon profil</a>
             </div>
             {% else %}
             <div>
                 <img src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
-                <a href="">Mon profil</a>
+                <a href="{{ path('updateUser') }}">mon profil</a>
             </div>
             {% endif %}
         {% else %}
