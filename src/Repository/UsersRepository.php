@@ -90,4 +90,35 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
         ;
     }
     */
+
+    public function findMyFavoris($id){
+        $qb = $this->createQueryBuilder('transcriptions');
+        $qb
+            ->select('transcriptions')
+            ->where('users.favori = :transcriptionsUser')
+            ->setParameter('transcriptionUser', $id)
+            ->leftJoin('users.favori', 'transcriptions')
+            ->addSelect('transcriptions');
+        $query = $qb
+            ->orderBy('transcriptions.bandName', 'ASC')
+            ->getQuery();
+        $transcriptions = $query->getArrayResult();
+        return $transcriptions;
+
+
+        //$qb = $this->createQueryBuilder('article');
+        //qb
+        //->select('article')
+        //->where('article.user = :user')
+        //->leftJoin('article.category', 'category')
+        //->addSelect('category')
+        //->leftJoin('article.user', 'user')
+        //->addSelect('user');
+        //$query = $qb
+        //->orderBy('article.title', 'DESC')
+        //->getQuery();
+        //$articles = $query->getArrayResult();
+        //return $articles;
+        // }
+    }
 }

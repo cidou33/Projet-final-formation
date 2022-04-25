@@ -19,6 +19,18 @@
             <label for="avatar">nouvel avatar</label>
             <input type="file" name="avatar[]">
             <input type="submit" class="btn" name="btn"></input>
+            {% for favori in user.favoris %}
+                <article>
+                    <span>{{ favori.bandName }}</span>
+                    <span>{{ favori.songName }}</span>
+                    <div class="{{ favori.difficultyLevel.color }}"></div>
+                    {% if connect == false %}
+                        <a href="{{ path('modifyFavori',{'id':favori.id}) }}">Ajouter</a>
+                    {% endif %}
+                    <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ favori.pdfFile) }}" target="_blank">telecharger</a>
+                    <a href="{{ path('toto', {'id':favori.id}) }}">les deux</a>
+                </article>
+            {% endfor %}
         </form>
     </main>
 {% endblock %}

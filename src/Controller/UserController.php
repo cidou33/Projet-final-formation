@@ -6,6 +6,7 @@ use App\Repository\TranscriptionsRepository;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -40,11 +41,16 @@ class UserController extends AbstractController
     }
 
     #[Route('/mon-profil', name: 'updateUser', methods: ['GET', 'POST'])]
-    public function modifyUser(UsersRepository $usersRepository, Request $request, SluggerInterface $slugger){
+    public function updateUser(
+            UsersRepository $usersRepository,
+            Request $request,
+            SluggerInterface $slugger,
+            TranscriptionsRepository $transcriptionsRepository
+    ): Response {
         $user = $this->getUser();
+        $userId = $user->getId();
+        $connect = $user == null;
         if($user != null) {
-            $userId = $user->getId();
-            $connect = $this->getUser() == null;
             $userUpdate = $usersRepository->findOneBy(['id' => $userId]);
             $oldImg = $userUpdate->getImgProfil();
             if (!empty($request->request->all())) {
@@ -69,8 +75,6 @@ class UserController extends AbstractController
                 return $this->redirectToRoute('homePage', [
                     'user' => $user,
                     'connect' => $connect,
-
-
                 ]);
             }
             return $this->render('user/profil.html.twig', [
