@@ -2,9 +2,9 @@
     <nav>
         <a href="{{ path('homePage') }}">accueil</a>
         <a href="{% if connect == false %}
-                      {{ path('showTranscriptions', {'id':user.id}) }}
+                      {{ path('showTranscriptions', {'infos':user.id}) }}
                   {% else %}
-                      {{ path('showTranscriptions', {'id':"r"}) }}
+                      {{ path('showTranscriptions', {'infos':'camesoul'}) }}
                   {% endif %}
         ">Transcriptions</a>
         <a href="{{ path('showTrainings') }}">Cours</a>
@@ -33,11 +33,13 @@
             </div>
         {% endif %}
     </nav>
-
+    {% if is_granted('ROLE_ADMIN') %}
     <nav>
         <a href="{{ path('addNews') }}"> Ajouter une news</a>
         <a href="{{ path('addTraining') }}"> Ajouter un cours</a>
         <a href="{{ path('addCategory') }}">Ajouter une catégorie</a>
         <a href="{{ path('addTranscription') }}">Ajouter une transcription</a>
+        <a href="{{ path('showUsers') }}">Modifier un utilisateur</a>
     </nav>
+    {% endif %}
 </header>

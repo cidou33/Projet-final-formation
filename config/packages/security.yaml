@@ -1,4 +1,6 @@
 security:
+    access_denied_url: /Projet_site_batterie/public/acceuil
+
     role_hierarchy:
         ROLE_USER:: [ ROLE_USER ]
         ROLE_ADMIN:: [ ROLE_ADMIN ]

@@ -74,5 +74,59 @@ class TranscriptionsRepository extends ServiceEntityRepository
     }
     */
 
+    public function findMySelectionByLetter($infos){
+        $qb = $this->createQueryBuilder('transcriptions');
+        $qb
+            ->select('transcriptions')
+            ->where('transcriptions.bandName LIKE :letter')
+            ->setParameter('letter', $infos.'%')
+            ->leftJoin('transcriptions.difficultyLevel', 'difficulty')
+            ->addSelect('difficulty');
+        $query = $qb
+            ->orderBy('transcriptions.bandName', 'ASC')
+            ->getQuery();
+        $res = $query->getArrayResult();
+        return $res;
+    }
 
+    public function findMySelectionByDifficulty($infos){
+        $qb = $this->createQueryBuilder('transcriptions');
+        $qb
+            ->select('transcriptions')
+            ->leftJoin('transcriptions.difficultyLevel', 'difficulty')
+            ->addSelect('difficulty')
+            ->where('difficulty.name LIKE :difficulty')
+            ->setParameter('difficulty', $infos);
+        $query = $qb
+            ->orderBy('transcriptions.bandName', 'ASC')
+            ->getQuery();
+        $res = $query->getArrayResult();
+        return $res;
+    }
+
+    public function bandNameSearch($bandNameSearch){
+        // alias est égal au nom de notre entité
+        $qb = $this->createQueryBuilder('transcriptions');
+        $qb
+            //selcetionne la table (entité)
+            ->select('transcriptions')
+            //Je lui joins la table type, je donne l'entité de ma table
+            //->leftJoin('task.type', 'type')
+            //selectionne la table (entité)
+            //->addSelect('type')
+            ->leftJoin('transcriptions.difficultyLevel', 'difficulty')
+            ->addSelect('difficulty')
+            ->where('transcriptions.bandName LIKE :bandName')
+                // mettre en clé le nom donné au-dessus
+                //entourer le $title de '%' permet de dire qu'on cherche tous les mots qui possèdent le mot de $title
+                ->setParameter('bandName', $bandNameSearch . '%');
+        $query = $qb
+            //ranger par ordre de date décroissant
+            ->orderBy('transcriptions.bandName', 'ASC')
+            ->getQuery();
+        //je récupère le résultat dans ma variable $tasks
+        $res = $query->getArrayResult();
+        //je retourne ma variable
+        return $res;
+    }
 }

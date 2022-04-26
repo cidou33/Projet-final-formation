@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <title>Mon profil</title>
+</head>
+<body>
+{% block body %}
+    {% include 'commons/header.html.twig' %}
+    <main>
+        <h1>Mon profil</h1>
+        <form action="{{ path('updateUser') }}" method="POST" name="categoryBtn" enctype="multipart/form-data">
+            <label for="username">Nouveau pseudo</label>
+            <input type="text" name="username" value="{{ user.username }}">
+            <label for="avatar">nouvel avatar</label>
+            <input type="file" name="avatar[]">
+            <input type="submit" class="btn" name="btn"></input>
+            {% for favori in user.favoris %}
+                <article>
+                    <span>{{ favori.bandName }}</span>
+                    <span>{{ favori.songName }}</span>
+                    <div class="{{ favori.difficultyLevel.color }}"></div>
+                    {% if connect == false %}
+                        <a href="{{ path('modifyFavori',{'id':favori.id}) }}">Ajouter</a>
+                    {% endif %}
+                    <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ favori.pdfFile) }}" target="_blank">telecharger</a>
+                    <a href="{{ path('toto', {'id':favori.id}) }}">les deux</a>
+                </article>
+            {% endfor %}
+        </form>
+    </main>
+{% endblock %}
+</body>
+</html>

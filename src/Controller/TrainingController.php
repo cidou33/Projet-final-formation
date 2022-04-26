@@ -15,6 +15,7 @@ class TrainingController extends AbstractController
 {
     #[Route('/nouveau-cours', name: 'addTraining', methods: ['GET', 'POST'])]
     public function addTraining(TrainingsRepository $trainingsRepository, Request $request, SluggerInterface $slugger){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $this->getUser();
         $connect = $this->getUser() == null;
         $training =new Trainings();
@@ -56,6 +57,7 @@ class TrainingController extends AbstractController
 
     #[Route('supprimer-cours/{id}', name: 'deleteTraining', methods: ['GET', 'POST'])]
     public function deleteTraining(TrainingsRepository $trainingsRepository, Request $request, $id){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $training = $trainingsRepository->findOneBy(['id'=>$id]);
         $trainingsRepository->remove($training);
         return $this->redirectToRoute('showTrainings');
@@ -63,6 +65,7 @@ class TrainingController extends AbstractController
 
     #[Route('activer-desactiver-cours/{id}', name: 'modifyStatusTraining', methods: ['GET', 'POST'])]
     public function modifyStatusTraining(TrainingsRepository $trainingsRepository, $id){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $training = $trainingsRepository->findOneBy(['id'=>$id]);
         if($training->getActive()==true) {
             $training->setActive(false);
@@ -74,7 +77,12 @@ class TrainingController extends AbstractController
     }
 
     #[Route('modifier-cours/{id}', name: 'updateTraining', methods: ['GET', 'POST'])]
-    public function updateTraining(TrainingsRepository $trainingsRepository, Request $request, SluggerInterface $slugger, $id){
+    public function updateTraining(TrainingsRepository $trainingsRepository,
+                                   Request $request,
+                                   SluggerInterface $slugger,
+                                   $id)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $this->getUser();
         $connect = $this->getUser() == null;
         $training = $trainingsRepository->findOneBy(['id' => $id]);

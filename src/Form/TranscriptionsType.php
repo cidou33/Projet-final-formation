@@ -31,7 +31,8 @@ class TranscriptionsType extends AbstractType
                 ])
             ->add('pdfFile', FileType::class, [
                 'label' => 'Choisissez un fichier pdf',
-                'data_class' => null
+                'data_class' => null,
+                'required' => false
             ])
             ->add('mediaLink', TextType::class, [
                 'label' => 'Lien youtube',

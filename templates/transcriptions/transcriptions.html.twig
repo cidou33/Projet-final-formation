@@ -12,19 +12,34 @@
 {% include 'commons/header.html.twig' %}
 <main>
     {% block body %}
+
+    <form action="{{ path('bandNameSearch') }}" method="post">
+        <input type="search" placeholder="search" name="bandNameSearch">
+        <input type="submit" value="chercher">
+    </form>>
+        {% for letter in alphabet %}
+            <a href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>
+        {% endfor %}
+        <a href="{{ path('showTranscriptions', {'infos': 'facile'}) }}">facile</a>
+        <a href="{{ path('showTranscriptions', {'infos': 'moyen'}) }}">moyen</a>
+        <a href="{{ path('showTranscriptions', {'infos': 'difficile'}) }}">difficile</a>
         {% for transcription in transcriptions %}
             <article>
                 <span>{{ transcription.bandName }}</span>
                 <span>{{ transcription.songName }}</span>
-                <div class="{{ transcription.difficultyLevel.color }}"></div>
+                <div class="{{ transcription.difficultyLevel.color }}">toto</div>
                 {% if connect == false %}
                     <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">Ajouter</a>
                 {% endif %}
                 <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" target="_blank">telecharger</a>
                 <a href="{{ path('toto', {'id':transcription.id}) }}">les deux</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
+                <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                {% endif %}
             </article>
         {% endfor %}
-
+        {{ knp_pagination_render(transcriptions) }}
     {% endblock %}
 </main>
 </body>

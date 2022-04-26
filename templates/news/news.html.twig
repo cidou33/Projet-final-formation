@@ -25,11 +25,13 @@
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
                 </article>
-                <div>
-                    <a href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
-                    <a href="{{ path('modifyStatusNews', {'id':new.id}) }}">désactiver</a>
-                    <a href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
-                </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div>
+                            <a href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
+                            <a href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
+                            <a href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
+                        </div>
+                    {% endif%}
                 {% endif %}
             {% endfor %}
                 <h2>Les news inactives</h2>
@@ -43,11 +45,14 @@
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
                     </article>
-                    <div>
-                        <a href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
-                        <a href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
-                        <a href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
-                    </div>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div>
+                            <a href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
+                            <a href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
+                            <a href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
+                        </div>
+                    {% endif%}
                 {% endif %}
             {% endfor %}
         </section>

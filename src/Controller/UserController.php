@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\TranscriptionsRepository;
 use App\Repository\UsersRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,9 +24,14 @@ class UserController extends AbstractController
     }
 
     #[Route('/modifier-favori/{id}',name: 'modifyFavori', methods: ['GET', 'POST'])]
-    public function modifyFavori($id, TranscriptionsRepository $transcriptionsRepository, Request $request, UsersRepository $usersRepository){
+    public function modifyFavori($id,
+                                 TranscriptionsRepository $transcriptionsRepository,
+                                 Request $request,
+                                 UsersRepository $usersRepository)
+    {
         if($this->getUser()) {
             $user = $usersRepository->findOneBy(['id' => $this->getUser()->getId()]);
+
             $transcription = $transcriptionsRepository->findOneBy(['id' => $id]);
             if ($user->getFavoris()->contains($transcription) == true) {
                 $user->removeFavori($transcription);
@@ -35,18 +41,26 @@ class UserController extends AbstractController
                 $usersRepository->add($user);
             }
             return $this->redirectToRoute('showTranscriptions', [
-                'id' => $this->getUser()->getId()
+                'id' => $this->getUser()->getId(),
+                'infos' => 'camesoul'
             ]);
         }
     }
 
     #[Route('/mon-profil', name: 'updateUser', methods: ['GET', 'POST'])]
     public function updateUser(
+            PaginatorInterface $paginator,
             UsersRepository $usersRepository,
             Request $request,
             SluggerInterface $slugger,
             TranscriptionsRepository $transcriptionsRepository
     ): Response {
+        $donnees = $transcriptionsRepository->findAll();
+        $transcriptions = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            20
+        );
         $user = $this->getUser();
         $userId = $user->getId();
         $connect = $user == null;
@@ -79,7 +93,8 @@ class UserController extends AbstractController
             }
             return $this->render('user/profil.html.twig', [
                 'user' => $user,
-                'connect' => $connect
+                'connect' => $connect,
+                'transcriptions' => $transcriptions
             ]);
         }
         return $this->redirectToRoute('homePage');

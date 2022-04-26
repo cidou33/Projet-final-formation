@@ -14,7 +14,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class CategoriesController extends AbstractController
 {
     #[Route('/nouvelle-categorie', name: 'addCategory', methods: ['GET', 'POST'])]
-    public function addCategory(CategoriesRepository $categoriesRepository, Request $request, SluggerInterface $slugger){
+    public function addCategory(CategoriesRepository $categoriesRepository,
+                                Request $request,
+                                SluggerInterface $slugger)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $this->getUser();
         $connect = $this->getUser() == null;
         $categories = $categoriesRepository->findAll();
@@ -46,13 +50,18 @@ class CategoriesController extends AbstractController
 
     #[Route('supprimer-categorie/{id}', name: 'deleteCategory', methods: ['GET', 'POST'])]
     public function deleteCategory(CategoriesRepository $categoriesRepository, Request $request, $id){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $category = $categoriesRepository->findOneBy(['id'=>$id]);
         $categoriesRepository->remove($category);
         return $this->redirectToRoute('addCategory');
     }
 
     #[Route('/modifier-categorie/{id}', name: 'updateCategory', methods: ['GET', 'POST'])]
-    public function updateCategory(CategoriesRepository $categoriesRepository, Request $request, SluggerInterface $slugger, $id){
+    public function updateCategory(CategoriesRepository $categoriesRepository,
+                                   Request $request,
+                                   SluggerInterface $slugger,
+                                   $id){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $this->getUser();
         $connect = $this->getUser() == null;
         $categories = $categoriesRepository->findAll();

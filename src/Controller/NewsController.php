@@ -16,13 +16,13 @@ class NewsController extends AbstractController
 
 
     #[Route('/nouvel-article', name: 'addNews', methods: ['GET', 'POST'])]
-    public function addNews(NewsRepository $newsRepository, Request $request, SluggerInterface $slugger, imgHelper $imgHelper){
+    public function addNews(NewsRepository $newsRepository,
+                            Request $request,
+                            SluggerInterface $slugger,
+                            imgHelper $imgHelper)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $this->getUser();
-        //if($user == null){
-            //$connect = 0;
-        //}else{
-          //  $connect = 1;
-        //};
         $connect = $this->getUser() == null;
         $article = new News();
         $articleForm = $this->createForm(NewsType::class, $article);
@@ -65,6 +65,7 @@ class NewsController extends AbstractController
 
     #[Route('supprimer-article/{id}', name: 'deleteNews', methods: ['GET', 'POST'])]
     public function deleteNews(NewsRepository $newsRepository, Request $request, $id){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $article = $newsRepository->findOneBy(['id'=>$id]);
         $newsRepository->remove($article);
         return $this->redirectToRoute('showNews');
@@ -72,6 +73,7 @@ class NewsController extends AbstractController
 
     #[Route('activer-desactiver-news/{id}', name: 'modifyStatusNews', methods: ['GET', 'POST'])]
     public function modifyStatusNews(NewsRepository $newsRepository, $id){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $article = $newsRepository->findOneBy(['id'=>$id]);
         if($article->getActive()==true) {
             $article->setActive(false);
@@ -83,7 +85,12 @@ class NewsController extends AbstractController
     }
 
     #[Route('/modifier-article/{id}', name: 'updateNews', methods: ['GET', 'POST'])]
-    public function updateNews(NewsRepository $newsRepository, Request $request, SluggerInterface $slugger, imgHelper $imgHelper, $id){
+    public function updateNews(NewsRepository $newsRepository,
+                               Request $request,
+                               SluggerInterface $slugger,
+                               imgHelper $imgHelper,
+                               $id){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $this->getUser();
         $connect = $this->getUser() == null;
         $article = $newsRepository->findOneBy(['id'=>$id]);

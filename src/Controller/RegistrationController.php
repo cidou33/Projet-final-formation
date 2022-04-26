@@ -19,7 +19,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function register(Request $request,
+                             UserPasswordHasherInterface $userPasswordHasher,
+                             UserAuthenticatorInterface $userAuthenticator,
+                             AppCustomAuthenticator $authenticator,
+                             EntityManagerInterface $entityManager,
+                             SluggerInterface $slugger): Response
     {
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -27,7 +32,7 @@ class RegistrationController extends AbstractController
         $userActif = $this->getUser();
         $connect = $this->getUser() == null;
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            $user->setRoles(['ROLE_USER']);
             $user->setCreateDate(new \DateTime('now'));
             $img = $form->get('imgProfil')->getData();
             if($img != null) {

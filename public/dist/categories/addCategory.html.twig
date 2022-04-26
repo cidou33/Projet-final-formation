@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.scss') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <title>Nouveau cours</title>
 </head>
 <body>
@@ -16,9 +16,14 @@
         <h2>Liste des catégories existantes</h2>
         <tbody>
         {% for category in categories %}
-            {% if category.name %}<tr><td>{{ category.name }}</td></tr><a href="{{ path('deleteCategory', {'id':category.id}) }}">supprimer</a>{% endif %}
+            {% if category.name %}<tr><td>{{ category.name }}</td></tr>
+                <a href="{{ path('deleteCategory', {'id':category.id}) }}">supprimer</a>
+                <a href="{{ path('updateCategory', {'id':category.id}) }}">modifier</a>
+            {% endif %}
         {% endfor %}
         </tbody>
+
+        <a href="{{ path('deleteUser') }}">effacer user</a>
     {% endblock %}
 </main>
 </body>

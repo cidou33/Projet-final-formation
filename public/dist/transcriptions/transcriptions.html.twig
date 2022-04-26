@@ -5,27 +5,32 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.scss') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <title>Les transcriptions</title>
 </head>
 <body>
 {% include 'commons/header.html.twig' %}
 <main>
     {% block body %}
+        {% for letter in alphabet %}
+            <a href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>
+        {% endfor %}
+        <a href="{{ path('showTranscriptions', {'infos': 'facile'}) }}">facile</a>
+        <a href="{{ path('showTranscriptions', {'infos': 'moyen'}) }}">moyen</a>
+        <a href="{{ path('showTranscriptions', {'infos': 'difficile'}) }}">difficile</a>
         {% for transcription in transcriptions %}
             <article>
                 <span>{{ transcription.bandName }}</span>
                 <span>{{ transcription.songName }}</span>
-                <div class="{{ transcription.difficultyLevel.color }}"></div>
-                <checkbox>favori</checkbox>
+                <div class="{{ transcription.difficultyLevel.color }}">toto</div>
+                {% if connect == false %}
+                    <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">Ajouter</a>
+                {% endif %}
                 <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" target="_blank">telecharger</a>
                 <a href="{{ path('toto', {'id':transcription.id}) }}">les deux</a>
-                <a href="{{ path('tutu') }}">les deux V2</a>
-
-                <a href="https://www.youtube.com/watch?v=NMNgbISmF4I" target="_blank">video</a>
             </article>
         {% endfor %}
-
+        {{ knp_pagination_render(transcriptions) }}
     {% endblock %}
 </main>
 </body>

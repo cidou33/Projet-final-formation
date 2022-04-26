@@ -19,7 +19,7 @@ class Transcriptions
     #[ORM\Column(type: 'string', length: 255)]
     private $songName;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $pdfFile;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -75,7 +75,7 @@ class Transcriptions
         return $this->pdfFile;
     }
 
-    public function setPdfFile(string $pdfFile): self
+    public function setPdfFile(?string $pdfFile): self
     {
         $this->pdfFile = $pdfFile;
 
