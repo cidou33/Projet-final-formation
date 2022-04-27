@@ -1,0 +1,59 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+.flex{
+  display: flex;
+}
+.statut-hide{
+  display: none;
+}
+.justCenter{
+  justify-content: center;
+}
+.justBetween{
+  justify-content:space-between;
+}
+.justAround{
+  justify-content:space-around;
+}
+.justEvenly{
+  justify-content:space-evenly;
+}
+.alignCenter{
+  align-items: center;
+}
+.flexColumn{
+  flex-direction: column;
+}
+.alignEnd{
+  align-items: flex-end;
+}
+.justEnd{
+  justify-content: flex-end;
+}
+.textBlack{
+  color: black;
+}
+.backBlack{
+  background-color:black;
+}
+.textWhite{
+  color:white;
+}
+.backWhite{
+  background-color:white;
+}
+.wrap{
+  flex-wrap: wrap;
+}
+.textCenter{
+  text-align: center;
+}

@@ -10,7 +10,7 @@ const babel=require('gulp-babel');
 
 
 gulp.task("sass", ()=>{
-    return gulp.src('./public/assets/scss/style.scss',{allowEmpty:true})
+    return gulp.src('./public/assets/scss/*.scss',{allowEmpty:true})
         .pipe(sourcemaps.init())
         .pipe(sass().on('error',sass.logError))
         .pipe(sourcemaps.write())
@@ -22,13 +22,13 @@ gulp.task("sass:Watch", ()=>{
 });
 
 gulp.task("postcss:prefix", ()=>{
-    return gulp.src('./public/assets/css/style.css')
+    return gulp.src('./public/assets/css/*.css')
         .pipe(postcss([autoprefixer]))
         .pipe(gulp.dest('./public/assets/css'))
 });
 
 gulp.task("postcss:min", ()=>{
-    return gulp.src('./public/assets/css/style.css')
+    return gulp.src('./public/assets/css/*.css')
         .pipe(postcss([cssnano]))
         .pipe(gulp.dest('./public/dist/assets/css'));
 })

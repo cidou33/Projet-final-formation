@@ -13,3 +13,152 @@ img{
 .red{
     background-color: red;
 }
+
+
+/*-----header---------*/
+.headerSection{
+    margin: 0 5%;
+}
+.crossUser{
+    .stick{
+        width: 40px;
+        height: 6px;
+        border-radius: 2px;
+        margin: 6px 0;
+    }
+}
+
+.header{
+    background-color: #3D4C7D;
+    position: fixed;
+    width: 100%;
+/*-------NAV USER-------*/
+    .headerSection{
+        position: relative;
+
+        .navUser{
+            position: absolute;
+            background-color: #3D4C7D;
+            bottom: -270px;
+            right: -19px;
+            a{
+                color: white;
+                border: 1px solid white;
+                padding: 8px 17px;
+                background: linear-gradient(0deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
+
+            }
+        }
+
+        .closeUserBurger{
+            padding: 2px 6px;
+            margin-top: 1px;
+            margin-bottom: 5px;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            border-radius: 28px;
+        }
+    }
+        .navUser{
+            position: absolute;
+            background-color: #3D4C7D;
+            bottom: -270px;
+            right: -19px;
+            a{
+                color: white;
+                border: 1px solid white;
+                padding: 8px 17px;
+                background: linear-gradient(0deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
+
+            }
+        }
+    /*---------NAV ADMIN---------*/
+        .navAdmin{
+            display: flex;
+            flex-direction: column;
+            background-color: #8692d3;
+            padding-top: 5px;
+            position: relative;
+                .burgerAdmin{
+                    position: relative;
+                }
+                span{
+                    font-weight: bold;
+                }
+                .closeAdminBurger{
+                    padding: 2px 6px;
+                    margin-top: 1px;
+                    margin-bottom: 5px;
+                    background-color: transparent;
+                    border: 2px solid white;
+                    color: white;
+                    border-radius: 28px;
+                }
+                a{
+                    width: 100%;
+                    padding-bottom: 5px;
+                    color: #eeeded;
+                    text-align: center;
+                }
+                .stick{
+                    width: 30px;
+                    height: 4px;
+                    border-radius: 2px;
+                    margin: 4px 0;
+                }
+                .listNavAdmin{
+                    position: absolute;
+                    top: 52px;
+                    width: 100%;
+                        li{
+                            width: 100%;
+                            border-top: 1px solid white;
+                            border-bottom: 1px solid white;
+                            padding: 5px 0;
+                            text-align: center;
+                            background: linear-gradient(0deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
+                            &:hover{
+                                background-color: yellow;
+                            }
+                                a{
+                                    &:hover{
+                                        color: black;
+                                        font-weight: bold;
+                                    }
+                                }
+                        }
+                }
+        }
+
+    }
+
+/*-------footer-----*/
+
+.footer{
+    background: linear-gradient(0deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        a {
+            background: linear-gradient(0deg, rgba(164, 176, 218, 1) 0%, rgba(61, 76, 125, 1) 91%);
+            border: 1px solid white;
+            width: 100%;
+            text-align: center;
+            color: white;
+            padding: 8px;
+        }
+
+        span {
+            background: linear-gradient(0deg, rgba(164, 176, 218, 1) 0%, rgba(61, 76, 125, 1) 91%);
+            border: 1px solid white;
+            text-align: center;
+            color: white;
+            padding: 8px;
+        }
+    }
+}

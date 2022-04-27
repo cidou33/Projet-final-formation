@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="descrption" content="">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
     <title>Page d'acceuil</title>
 </head>
 <body>
@@ -16,5 +17,7 @@
         <h1>bibi</h1>
         {% endblock %}
     </main>
+    {% include 'commons/footer.html.twig' %}
+    <script async src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 </html>

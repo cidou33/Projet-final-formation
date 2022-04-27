@@ -47,7 +47,7 @@ class imgHelper extends AbstractController
         $tn = imagecreatetruecolor($modwidth, $modheight);
         $img = $image_create_func($imgBrut);
         imagecopyresampled($tn, $img, 0, 0, 0, 0, $modwidth, $modheight, $width, $height);
-        $image_save_func($tn, '');
+        $image_save_func($tn, 'public/');
 
         //traitement de l'img
         $imgBrut = $img;

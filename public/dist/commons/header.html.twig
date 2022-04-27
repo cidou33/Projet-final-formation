@@ -1,6 +1,9 @@
-<header>
-    <nav>
-        <a href="{{ path('homePage') }}">accueil</a>
+<header class="header">
+    <section class="flex justBetween headerSection alignCenter">
+    <a href="{{ path('homePage') }}"><img src="{{ asset('assets/data/img/uploadDirectory/logo-batteur-7b9c466d8ccd5108ab59603c1e3915de.png') }}" alt="logo de batteur en ombre chinoise"></a>
+    <nav class="navUser flex flexColumn statut-hide">
+        <a class="" href="{{ path('homePage') }}">Acceuil</a>
+
         <a href="{% if connect == false %}
                       {{ path('showTranscriptions', {'infos':user.id}) }}
                   {% else %}
@@ -16,28 +19,48 @@
         {% endif %}
         {% if connect == false %}
             {%  if user.imgProfil != null %}
-            <div>
-                <img src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
+            <div class="flex flexColumn">
+                <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
                 <a href="{{ path('updateUser') }}">mon profil</a>
             </div>
             {% else %}
-            <div>
-                <img src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+            <div class="flex flexColumn">
+                <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
                 <a href="{{ path('updateUser') }}">mon profil</a>
             </div>
             {% endif %}
         {% else %}
-            <div>
-                <img src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+            <div class="flex flexColumn">
+                <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
                 <a href="{{ path('app_register') }}">S'inscrire</a>
             </div>
         {% endif %}
     </nav>
-
-    <nav>
-        <a href="{{ path('addNews') }}"> Ajouter une news</a>
-        <a href="{{ path('addTraining') }}"> Ajouter un cours</a>
-        <a href="{{ path('addCategory') }}">Ajouter une catégorie</a>
-        <a href="{{ path('addTranscription') }}">Ajouter une transcription</a>
+    <div class="crossUser">
+        <button class="closeUserBurger statut-hide">Fermer</button>
+        <div class="backWhite stick stickTopUser"></div>
+        <div class="backWhite stick stickMiddleUser"></div>
+        <div class="backWhite stick stickBottomUser"></div>
+    </div>
+    </section>
+    {% if is_granted('ROLE_ADMIN') %}
+    <nav class="navAdmin">
+        <div class="flex flexColumn alignCenter burgerAdmin">
+            <span>ADMINISTRATEUR</span>
+            <div class="crossAdmin">
+                <button class="closeAdminBurger statut-hide">Fermer</button>
+                <div class="backWhite stick stickTop"></div>
+                <div class="backWhite stick stickMiddle"></div>
+                <div class="backWhite stick stickBottom"></div>
+            </div>
+        </div>
+        <ul class="listNavAdmin">
+            <li class="statut-hide"><a href="{{ path('addNews') }}"> Ajouter une news</a></li>
+            <li class="statut-hide"><a href="{{ path('addTraining') }}"> Ajouter un cours</a></li>
+            <li class="statut-hide"><a href="{{ path('addCategory') }}">Ajouter une catégorie</a></li>
+            <li class="statut-hide"><a href="{{ path('addTranscription') }}">Ajouter une transcription</a></li>
+            <li class="statut-hide"><a href="{{ path('showUsers') }}">Modifier un utilisateur</a></li>
+        </ul>
     </nav>
+    {% endif %}
 </header>

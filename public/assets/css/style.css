@@ -13,3 +13,161 @@ img {
 .red {
   background-color: red;
 }
+
+/*-----header---------*/
+.headerSection {
+  margin: 0 5%;
+}
+
+.crossUser .stick {
+  width: 40px;
+  height: 6px;
+  border-radius: 2px;
+  margin: 6px 0;
+}
+
+.header {
+  background-color: #3D4C7D;
+  position: fixed;
+  width: 100%;
+  /*-------NAV USER-------*/
+  /*---------NAV ADMIN---------*/
+}
+.header .headerSection {
+  position: relative;
+}
+.header .headerSection .navUser {
+  position: absolute;
+  background-color: #3D4C7D;
+  bottom: -270px;
+  right: -19px;
+}
+.header .headerSection .navUser a {
+  color: white;
+  border: 1px solid white;
+  padding: 8px 17px;
+  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+}
+.header .headerSection .closeUserBurger {
+  padding: 2px 6px;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 28px;
+}
+.header .navUser {
+  position: absolute;
+  background-color: #3D4C7D;
+  bottom: -270px;
+  right: -19px;
+}
+.header .navUser a {
+  color: white;
+  border: 1px solid white;
+  padding: 8px 17px;
+  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+}
+.header .navAdmin {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #8692d3;
+  padding-top: 5px;
+  position: relative;
+}
+.header .navAdmin .burgerAdmin {
+  position: relative;
+}
+.header .navAdmin span {
+  font-weight: bold;
+}
+.header .navAdmin .closeAdminBurger {
+  padding: 2px 6px;
+  margin-top: 1px;
+  margin-bottom: 5px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 28px;
+}
+.header .navAdmin a {
+  width: 100%;
+  padding-bottom: 5px;
+  color: #eeeded;
+  text-align: center;
+}
+.header .navAdmin .stick {
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  margin: 4px 0;
+}
+.header .navAdmin .listNavAdmin {
+  position: absolute;
+  top: 52px;
+  width: 100%;
+}
+.header .navAdmin .listNavAdmin li {
+  width: 100%;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 5px 0;
+  text-align: center;
+  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+}
+.header .navAdmin .listNavAdmin li:hover {
+  background-color: yellow;
+}
+.header .navAdmin .listNavAdmin li a:hover {
+  color: black;
+  font-weight: bold;
+}
+
+/*-------footer-----*/
+.footer {
+  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+.footer nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+.footer nav a {
+  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  border: 1px solid white;
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 8px;
+}
+.footer nav span {
+  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  border: 1px solid white;
+  text-align: center;
+  color: white;
+  padding: 8px;
+}
