@@ -59,7 +59,7 @@ class UserController extends AbstractController
         $transcriptions = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            20
+            10
         );
         $user = $this->getUser();
         $userId = $user->getId();
@@ -108,21 +108,6 @@ class UserController extends AbstractController
         return $this->redirectToRoute('homePage');
     }
 
-    #[Route('/toto/{id}', name: 'toto', methods: ['GET', 'POST'])]
-    public function toto(TranscriptionsRepository $transcriptionsRepository, $id){
-        $transcription = $transcriptionsRepository->findOneBy(['id' => $id]);
-        return $this->render('toto.html.twig', [
-            'transcription' => $transcription
-        ]);
-    }
-
-    #[Route('/tutu', name: 'tutu', methods: ['GET', 'POST'])]
-    public function tutu(TranscriptionsRepository $transcriptionsRepository){
-        $transcriptions = $transcriptionsRepository->findBy([],['songName'=>'DESC']);
-        return $this->render('toto.html.twig', [
-            'transcriptions' => $transcriptions
-        ]);
-    }
 
 
 }

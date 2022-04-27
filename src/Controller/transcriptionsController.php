@@ -112,7 +112,7 @@ class transcriptionsController extends AbstractController
         $transcriptions = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            20
+            10
         );
         if ($user != null) {
             $favoris = $user->getFavoris();
@@ -204,6 +204,33 @@ class transcriptionsController extends AbstractController
         $transcriptionsRepository->remove($transcription);
         return $this->redirectToRoute('showTranscriptions', [
 
+            'infos' => 'camesoul'
+        ]);
+    }
+
+    #[Route('/showTranscriptionAndVideo/{id}', name: 'showTranscriptionAndVideo', methods: ['GET', 'POST'])]
+    public function showTranscriptionAndVideo(TranscriptionsRepository $transcriptionsRepository, $id){
+        $transcription = $transcriptionsRepository->findOneBy(['id' => $id]);
+        $user = $this->getUser();
+        $connect = $user == null;
+        return $this->render('transcriptions/transcriptionAndVideo.html.twig', [
+            'transcription' => $transcription,
+            'user' => $user,
+            'connect' => $connect
+        ]);
+    }
+
+    #[Route('/modifier-statut-transcription/{id}', name: 'modifyStatusTranscription', methods: ['GET', 'POST'])]
+    public function modifyStatusTranscription(TranscriptionsRepository $transcriptionsRepository, $id){
+        $donnees = $transcriptionsRepository->findAll();
+        $transcription = $transcriptionsRepository->findOneBy(['id' => $id]);
+        if($transcription->getActive()==true) {
+            $transcription->setActive(false);
+        }else{
+            $transcription->setActive(true);
+        }
+        $transcriptionsRepository->add($transcription);
+        return $this->redirectToRoute('showTranscriptions', [
             'infos' => 'camesoul'
         ]);
     }

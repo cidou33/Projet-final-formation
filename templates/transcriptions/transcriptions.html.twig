@@ -23,24 +23,58 @@
         <a href="{{ path('showTranscriptions', {'infos': 'facile'}) }}">facile</a>
         <a href="{{ path('showTranscriptions', {'infos': 'moyen'}) }}">moyen</a>
         <a href="{{ path('showTranscriptions', {'infos': 'difficile'}) }}">difficile</a>
+        <section>
         {% for transcription in transcriptions %}
+            {% if transcription.active == true %}
             <article>
                 <span>{{ transcription.bandName }}</span>
                 <span>{{ transcription.songName }}</span>
                 <div class="{{ transcription.difficultyLevel.color }}">toto</div>
                 {% if connect == false %}
-                    <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">Ajouter</a>
+                        {% for fav in favori %}
+                            {% if fav.id == transcription.id %}favori{% endif %}
+                        {% endfor %}
+                    <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
                 {% endif %}
-                <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" target="_blank">telecharger</a>
-                <a href="{{ path('toto', {'id':transcription.id}) }}">les deux</a>
+                <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
+                <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
                 {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
-                <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                    <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
+                    <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                    <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">désactiver</a>
                 {% endif %}
             </article>
+            {% endif %}
         {% endfor %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <h1>transcriptions inactives</h1>
+                {% for transcription in transcriptions %}
+                {% if transcription.active == false %}
+                    <article>
+                        <span>{{ transcription.bandName }}</span>
+                        <span>{{ transcription.songName }}</span>
+                        <div class="{{ transcription.difficultyLevel.color }}">toto</div>
+                        {% if connect == false %}
+                            {% for fav in favori %}
+                                {% if fav.id == transcription.id %}favori{% endif %}
+                            {% endfor %}
+                            <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
+                        {% endif %}
+                        <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
+                        <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
+                            <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                            <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">activer</a>
+                        {% endif %}
+                    </article>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+        </section>
         {{ knp_pagination_render(transcriptions) }}
     {% endblock %}
 </main>
+{% include 'commons/footer.html.twig' %}
 </body>
 </html>
