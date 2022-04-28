@@ -17,11 +17,30 @@
     color: white;
     padding: 8px;
 }
+
+@mixin bgTitle{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    text-align: center;
+}
+@mixin infoTitle{
+    color: white;
+    font-weight: bold;
+    font-size: 23px;
+    font-style: italic;
+    width: 282px;
+    margin: 0 auto;
+    -webkit-text-stroke: 1px rgba(1, 1, 16, 0.52);
+    padding: 25px;
+    line-height: 30px;
+}
 body{
     background-color: #3e508ad4;
 }
 .green{
-    background-color: green;
+    background-color: #1dd41d;
 }
 
 .orange{
@@ -51,7 +70,7 @@ body{
 
 .header{
     background: var(--gradientBg);
-    /*position: fixed;*/
+    position: fixed;
     z-index: 3;
     width: 100%;
 /*-------NAV USER-------*/
@@ -159,22 +178,10 @@ body{
 
 .bgTitleHomePage{
     background-image: url("../data/img/media/cymbales.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    text-align: center;
+    @include bgTitle;
 }
 .titleHomePage{
-    color: white;
-    font-weight: bold;
-    font-size: 23px;
-    font-style: italic;
-    width: 282px;
-    margin: 0 auto;
-    -webkit-text-stroke: 1px rgba(1, 1, 16, 0.52);
-    padding: 25px;
-    line-height: 30px;
+    @include infoTitle;
 }
 .sectionHomePage{
 }
@@ -220,6 +227,180 @@ body{
             padding: 2px 5px;
             border-radius: 15px;
             background-color: #1204048a;
+        }
+    }
+}
+
+/*-----main transcriptions-----*/
+.bodytranscriptions{
+    h2{
+        text-align: center;
+    }
+    .mainTranscriptions{
+        width: 90%;
+        margin-left: 10%;
+        .sectionSearch{
+            text-align: center;
+            .searchForm{
+                margin-top: 15px;
+                input{
+                    border-radius: 10px;
+                }
+                .cellForm{
+                    text-indent: 5px;
+                }
+                .searchButton{
+                    padding: 0 10px;
+                }
+            }
+            .bgTitleTranscriptions{
+                background-image: url("../data/img/media/drum_red_back.jpg");
+                @include bgTitle;
+                .titleTranscriptions{
+                    @include infoTitle;
+                }
+            }
+            .letterSearch{
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                background: linear-gradient(270deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+                text-align: center;
+                padding: 11px 11px;
+                gap: 3px;
+                left: 0%;
+                top: 10%;
+                a:nth-child(2n){
+                    background-color: #32327c;
+                }
+                a{
+                    text-transform: uppercase;
+                    width: 100%;
+                }
+            }
+
+            .difficultyLinkContainer{
+                display: flex;
+                justify-content: space-evenly;
+                .difficultyLink{
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    .difficultyToken{
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                    }
+                    span{
+                        border: 2px solid white;
+                        padding: 1px 6px;
+                        border-radius: 12px;
+                        background-color: #32327c;;
+                    }
+                }
+            }
+        }
+        .listTranscriptions{
+            padding: 30px 10px;
+            .menuTranscription{
+                display: flex;
+                justify-content: space-around;
+                background-color: #696666;
+                padding: 6px 0;
+                border: 2px solid white;
+            }
+            article{
+                border: 2px solid white;
+            }
+            article:nth-child(2n){
+                background-color: #8692d3;
+            }
+            article:nth-child(2n-1){
+                background-color: #696666;
+            }
+            .transcriptionContainer{
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 5px;
+                align-items: center;
+                .infoTranscription{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 80px;
+                    gap: 5px;
+                    span{
+                        text-transform: capitalize;
+                        font-size: 12px;
+                    }
+                    .difficultyToken{
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                    }
+                }
+                .favoriContainer{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+                    a{
+                        font-size: 12px;
+                        border-radius: 9px;
+                        background-color: #32327c;
+                        border: 2px solid white;
+                        padding: 3px 4px;
+                        text-align: center;
+                    }
+                    .logoFavori{
+                        width: 15px;
+                    }
+                }
+                .buttonTranscription{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+                    width: 80px;
+                    .logoYoutube{
+                        width: 20px;
+                    }
+                    a{
+                        font-size: 12px;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                }
+            }
+        }
+        .pagination{
+            margin: 0 auto;
+            width: fit-content;
+            padding-bottom: 15px;
+            span{
+                color: orangered;
+            }
+            a{
+                color: white;
+            }
+            .last{
+                display: none;
+            }
+            .first{
+                display: none;
+            }
+        }
+        .adminLinkTranscription{
+            background-color: #DDDDDD;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            a{
+                border: 2px solid black;
+                border-radius: 14px;
+                padding: 2px 6px;
+            }
         }
     }
 }
