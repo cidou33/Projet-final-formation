@@ -11,31 +11,35 @@
     <title>supprimer ou modifier un utilisateur</title>
 </head>
 <body>
-<main>
     {% include 'commons/header.html.twig' %}
-    <table>
-        <th>supprimer ou modifier un utilisateur</th>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.username }}</td>
-                <td>
-                    <form action="{{ path('adminModifyRoleUser') }}" method="post">
-                        <input type="text" value="{{ user.id }}" hidden name="userId">
-                        <input type="submit" value="{% if user.roles == ['ROLE_ADMIN'] %}Passer utilistateur{% else %}Passer admin{% endif %}">
-                    </form>
-                </td>
-                <td>
-                    <form action="{{ path('adminDeleteUser') }}" method="post">
-                        <input type="text" value="{{ user.id }}" hidden name="userId">
-                        <input type="submit" value="supprimer">
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</main>
+    <main>
+        <table>
+            <th>supprimer ou modifier un utilisateur</th>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        <form action="{{ path('adminModifyRoleUser') }}" method="post">
+                            <input type="text" value="{{ user.id }}" hidden name="userId">
+                            <input type="submit" value="{% if user.roles == ['ROLE_ADMIN'] %}Passer utilistateur{% else %}Passer admin{% endif %}">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ path('adminDeleteUser') }}" method="post">
+                            <input type="text" value="{{ user.id }}" hidden name="userId">
+                            <input type="submit" value="supprimer">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
 {% include 'commons/footer.html.twig' %}
+{% if is_granted('ROLE_ADMIN') %}
+<script async src="{{ asset('assets/js/scriptAdmin.js') }}"></script>
+{% endif %}
+<script async src="{{ asset('assets/js/scriptUser.js') }}"></script>
 </body>
 </html>

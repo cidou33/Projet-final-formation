@@ -10,72 +10,76 @@
     <title>Les transcriptions</title>
 </head>
 <body>
-{% include 'commons/header.html.twig' %}
-<main>
-    {% block body %}
+    {% include 'commons/header.html.twig' %}
+    <main>
+        {% block body %}
 
-    <form action="{{ path('bandNameSearch') }}" method="post">
-        <input type="search" placeholder="search" name="bandNameSearch">
-        <input type="submit" value="chercher">
-    </form>>
-        {% for letter in alphabet %}
-            <a href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>
-        {% endfor %}
-        <a href="{{ path('showTranscriptions', {'infos': 'facile'}) }}">facile</a>
-        <a href="{{ path('showTranscriptions', {'infos': 'moyen'}) }}">moyen</a>
-        <a href="{{ path('showTranscriptions', {'infos': 'difficile'}) }}">difficile</a>
-        <section>
-        {% for transcription in transcriptions %}
-            {% if transcription.active == true %}
-            <article>
-                <span>{{ transcription.bandName }}</span>
-                <span>{{ transcription.songName }}</span>
-                <div class="{{ transcription.difficultyLevel.color }}">toto</div>
-                {% if connect == false %}
-                        {% for fav in favori %}
-                            {% if fav.id == transcription.id %}favori{% endif %}
-                        {% endfor %}
-                    <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
-                {% endif %}
-                <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
-                <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
-                    <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
-                    <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">désactiver</a>
-                {% endif %}
-            </article>
-            {% endif %}
-        {% endfor %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <h1>transcriptions inactives</h1>
-                {% for transcription in transcriptions %}
-                {% if transcription.active == false %}
-                    <article>
-                        <span>{{ transcription.bandName }}</span>
-                        <span>{{ transcription.songName }}</span>
-                        <div class="{{ transcription.difficultyLevel.color }}">toto</div>
-                        {% if connect == false %}
+        <form action="{{ path('bandNameSearch') }}" method="post">
+            <input type="search" placeholder="search" name="bandNameSearch">
+            <input type="submit" value="chercher">
+        </form>>
+            {% for letter in alphabet %}
+                <a href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>
+            {% endfor %}
+            <a href="{{ path('showTranscriptions', {'infos': 'facile'}) }}">facile</a>
+            <a href="{{ path('showTranscriptions', {'infos': 'moyen'}) }}">moyen</a>
+            <a href="{{ path('showTranscriptions', {'infos': 'difficile'}) }}">difficile</a>
+            <section>
+            {% for transcription in transcriptions %}
+                {% if transcription.active == true %}
+                <article>
+                    <span>{{ transcription.bandName }}</span>
+                    <span>{{ transcription.songName }}</span>
+                    <div class="{{ transcription.difficultyLevel.color }}">toto</div>
+                    {% if connect == false %}
                             {% for fav in favori %}
                                 {% if fav.id == transcription.id %}favori{% endif %}
                             {% endfor %}
-                            <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
-                        {% endif %}
-                        <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
-                        <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
-                            <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
-                            <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">activer</a>
-                        {% endif %}
-                    </article>
+                        <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
+                    {% endif %}
+                    <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
+                    <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
+                        <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                        <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">désactiver</a>
+                    {% endif %}
+                </article>
                 {% endif %}
-                {% endfor %}
-            {% endif %}
-        </section>
-        {{ knp_pagination_render(transcriptions) }}
-    {% endblock %}
-</main>
-{% include 'commons/footer.html.twig' %}
+            {% endfor %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <h1>transcriptions inactives</h1>
+                    {% for transcription in transcriptions %}
+                    {% if transcription.active == false %}
+                        <article>
+                            <span>{{ transcription.bandName }}</span>
+                            <span>{{ transcription.songName }}</span>
+                            <div class="{{ transcription.difficultyLevel.color }}">toto</div>
+                            {% if connect == false %}
+                                {% for fav in favori %}
+                                    {% if fav.id == transcription.id %}favori{% endif %}
+                                {% endfor %}
+                                <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
+                            {% endif %}
+                            <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
+                            <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
+                                <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                                <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">activer</a>
+                            {% endif %}
+                        </article>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </section>
+            {{ knp_pagination_render(transcriptions) }}
+        {% endblock %}
+    </main>
+    {% include 'commons/footer.html.twig' %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <script async src="{{ asset('assets/js/scriptAdmin.js') }}"></script>
+    {% endif %}
+    <script async src="{{ asset('assets/js/scriptUser.js') }}"></script>
 </body>
 </html>

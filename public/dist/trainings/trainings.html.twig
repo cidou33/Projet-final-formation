@@ -10,9 +10,9 @@
     <title>Les Cours</title>
 </head>
 <body>
-{% block body %}
     {% include 'commons/header.html.twig' %}
     <main>
+        {% block body %}
         <h1>Les Cours</h1>
         <p>blaaaaaaaaaaaaa</p>
         <section>
@@ -58,8 +58,12 @@
             {% endfor %}
             {% endif %}
         </section>
+        {% endblock %}
     </main>
     {% include 'commons/footer.html.twig' %}
-{% endblock %}
+{% if is_granted('ROLE_ADMIN') %}
+<script async src="{{ asset('assets/js/scriptAdmin.js') }}"></script>
+{% endif %}
+<script async src="{{ asset('assets/js/scriptUser.js') }}"></script>
 </body>
 </html>

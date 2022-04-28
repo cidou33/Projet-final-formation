@@ -10,15 +10,19 @@
     <title>Formulaire de contact</title>
 </head>
 <body>
-{% block body %}
     {% include 'commons/header.html.twig' %}
     <main>
+        {% block body %}
         <h1>Formulaire de contact</h1>
         <form action="{{ path('updateUser') }}" method="POST" name="categoryBtn" enctype="multipart/form-data">
 
         </form>
+        {% endblock %}
     </main>
     {% include 'commons/footer.html.twig' %}
-{% endblock %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <script async src="{{ asset('assets/js/scriptAdmin.js') }}"></script>
+    {% endif %}
+    <script async src="{{ asset('assets/js/scriptUser.js') }}"></script>
 </body>
 </html>

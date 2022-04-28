@@ -1,10 +1,20 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Register{% endblock %}
-
-{% block body %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="descrption" content="">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
+    <title>Page d'inscription</title>
+</head>
+<body>
     {% include 'commons/header.html.twig' %}
-    <h1>Register</h1>
+    <main>
+        {% block body %}
+    <h1>Formulaire d'inscription</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.username) }}
@@ -14,4 +24,11 @@
         {{ form_row(registrationForm.agreeTerms) }}
     {{ form_end(registrationForm) }}
     {% include 'commons/footer.html.twig' %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <script async src="{{ asset('assets/js/scriptAdmin.js') }}"></script>
+    {% endif %}
+    <script async src="{{ asset('assets/js/scriptUser.js') }}"></script>
 {% endblock %}
+    </main>
+</body>
+</html>

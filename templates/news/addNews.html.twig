@@ -18,6 +18,10 @@
             {{ form(newsForm) }}
         {% endblock %}
     </main>
+    {% include 'commons/footer.html.twig' %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <script async src="{{ asset('assets/js/scriptAdmin.js') }}"></script>
+    {% endif %}
+    <script async src="{{ asset('assets/js/scriptUser.js') }}"></script>
 </body>
-{% include 'commons/footer.html.twig' %}
 </html>

@@ -1,47 +1,48 @@
 <header class="header">
     <section class="flex justBetween headerSection alignCenter">
-    <a href="{{ path('homePage') }}"><img src="{{ asset('assets/data/img/uploadDirectory/logo-batteur-7b9c466d8ccd5108ab59603c1e3915de.png') }}" alt="logo de batteur en ombre chinoise"></a>
-    <nav class="navUser flex flexColumn statut-hide">
-        <a class="" href="{{ path('homePage') }}">Acceuil</a>
+        <a href="{{ path('homePage') }}"><img class="logoDrummer" src="{{ asset('assets/data/img/uploadDirectory/logo-batteur-7b9c466d8ccd5108ab59603c1e3915de.png') }}" alt="logo de batteur en ombre chinoise"></a>
+        <nav class="navUser flex flexColumn statut-hide hide-js">
+            <div hidden class="hide-js"></div>
+            <a class="" href="{{ path('homePage') }}">Acceuil</a>
 
-        <a href="{% if connect == false %}
-                      {{ path('showTranscriptions', {'infos':user.id}) }}
-                  {% else %}
-                      {{ path('showTranscriptions', {'infos':'camesoul'}) }}
-                  {% endif %}
-        ">Transcriptions</a>
-        <a href="{{ path('showTrainings') }}">Cours</a>
-        <a href="{{ path('showNews') }}">News</a>
-        {% if connect == true %}
-            <a href="{{ path('app_login') }}">se connecter</a>
-        {% else%}
-            <a href="{{ path('app_logout') }}">se deconnecter</a>
-        {% endif %}
-        {% if connect == false %}
-            {%  if user.imgProfil != null %}
-            <div class="flex flexColumn">
-                <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
-                <a href="{{ path('updateUser') }}">mon profil</a>
-            </div>
-            {% else %}
-            <div class="flex flexColumn">
-                <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
-                <a href="{{ path('updateUser') }}">mon profil</a>
-            </div>
+            <a href="{% if connect == false %}
+                          {{ path('showTranscriptions', {'infos':user.id}) }}
+                      {% else %}
+                          {{ path('showTranscriptions', {'infos':'camesoul'}) }}
+                      {% endif %}
+            ">Transcriptions</a>
+            <a href="{{ path('showTrainings') }}">Cours</a>
+            <a href="{{ path('showNews') }}">News</a>
+            {% if connect == true %}
+                <a href="{{ path('app_login') }}">se connecter</a>
+            {% else%}
+                <a href="{{ path('app_logout') }}">se deconnecter</a>
             {% endif %}
-        {% else %}
-            <div class="flex flexColumn">
-                <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
-                <a href="{{ path('app_register') }}">S'inscrire</a>
-            </div>
-        {% endif %}
-    </nav>
-    <div class="crossUser">
-        <button class="closeUserBurger statut-hide">Fermer</button>
-        <div class="backWhite stick stickTopUser"></div>
-        <div class="backWhite stick stickMiddleUser"></div>
-        <div class="backWhite stick stickBottomUser"></div>
-    </div>
+            {% if connect == false %}
+                {%  if user.imgProfil != null %}
+                <div class="flex flexColumn">
+                    <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
+                    <a href="{{ path('updateUser') }}">mon profil</a>
+                </div>
+                {% else %}
+                <div class="flex flexColumn">
+                    <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                    <a href="{{ path('updateUser') }}">mon profil</a>
+                </div>
+                {% endif %}
+            {% else %}
+                <div class="flex flexColumn">
+                    <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                    <a href="{{ path('app_register') }}">S'inscrire</a>
+                </div>
+            {% endif %}
+        </nav>
+        <div class="crossUser">
+            <button class="closeUserBurger statut-hide">Fermer</button>
+            <div class="backWhite stick stickTopUser"></div>
+            <div class="backWhite stick stickMiddleUser"></div>
+            <div class="backWhite stick stickBottomUser"></div>
+        </div>
     </section>
     {% if is_granted('ROLE_ADMIN') %}
     <nav class="navAdmin">

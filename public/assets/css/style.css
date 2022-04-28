@@ -1,5 +1,9 @@
-img {
-  width: 100px;
+:root {
+  --gradientBg: linear-gradient(0deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
+}
+
+body {
+  background-color: rgba(62, 80, 138, 0.831372549);
 }
 
 .green {
@@ -18,6 +22,9 @@ img {
 .headerSection {
   margin: 0 5%;
 }
+.headerSection .logoDrummer {
+  width: 100px;
+}
 
 .crossUser .stick {
   width: 40px;
@@ -27,8 +34,9 @@ img {
 }
 
 .header {
-  background-color: #3D4C7D;
-  position: fixed;
+  background: var(--gradientBg);
+  /*position: fixed;*/
+  z-index: 3;
   width: 100%;
   /*-------NAV USER-------*/
   /*---------NAV ADMIN---------*/
@@ -38,7 +46,7 @@ img {
 }
 .header .headerSection .navUser {
   position: absolute;
-  background-color: #3D4C7D;
+  background: var(--gradientBg);
   bottom: -270px;
   right: -19px;
 }
@@ -46,8 +54,7 @@ img {
   color: white;
   border: 1px solid white;
   padding: 8px 17px;
-  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: var(--gradientBg);
 }
 .header .headerSection .closeUserBurger {
   padding: 2px 6px;
@@ -68,8 +75,7 @@ img {
   color: white;
   border: 1px solid white;
   padding: 8px 17px;
-  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: var(--gradientBg);
 }
 .header .navAdmin {
   display: -webkit-box;
@@ -123,22 +129,100 @@ img {
   border-bottom: 1px solid white;
   padding: 5px 0;
   text-align: center;
-  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-}
-.header .navAdmin .listNavAdmin li:hover {
-  background-color: yellow;
+  background: var(--gradientBg);
 }
 .header .navAdmin .listNavAdmin li a:hover {
   color: black;
   font-weight: bold;
 }
 
+/*--------main------*/
+.mainHomePage {
+  padding-top: 64px;
+  background-color: rgba(62, 80, 138, 0.831372549);
+}
+
+.adminMainHomePage {
+  padding-top: 115px;
+  background-color: rgba(62, 80, 138, 0.831372549);
+}
+
+/*----main homepage----*/
+.bgTitleHomePage {
+  background-image: url("../data/img/media/cymbales.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  text-align: center;
+}
+
+.titleHomePage {
+  color: white;
+  font-weight: bold;
+  font-size: 23px;
+  font-style: italic;
+  width: 282px;
+  margin: 0 auto;
+  -webkit-text-stroke: 1px rgba(1, 1, 16, 0.52);
+  padding: 25px;
+  line-height: 30px;
+}
+
+.secondaryTitleContainer {
+  padding: 30px;
+}
+
+.secondaryTitle {
+  font-size: 16px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.separationLine {
+  height: 2px;
+  background-color: white;
+  width: 120px;
+  margin: 0 auto;
+}
+
+.articleHomePage {
+  width: 100%;
+  max-height: 225px;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px 0 0 0;
+  position: relative;
+  margin-bottom: 20px;
+}
+.articleHomePage .pictureArticleHomepage {
+  width: 90%;
+  box-shadow: 0px 0px 18px 0px white;
+  opacity: 60%;
+}
+.articleHomePage .articleTextContainer {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  width: 240px;
+  -webkit-transform: translate(50%, -50%);
+      -ms-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+}
+.articleHomePage .articleTextContainer .articleHomePageText {
+  margin: 20px 0;
+}
+.articleHomePage .articleTextContainer .articlehomePageButton {
+  border: 3px solid white;
+  padding: 2px 5px;
+  border-radius: 15px;
+  background-color: rgba(18, 4, 4, 0.5411764706);
+}
+
 /*-------footer-----*/
 .footer {
-  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-  position: fixed;
+  background: var(--gradientBg);
   bottom: 0px;
   width: 100%;
 }
@@ -155,17 +239,14 @@ img {
   width: 100%;
 }
 .footer nav a {
-  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: var(--gradientBg);
   border: 1px solid white;
-  width: 100%;
   text-align: center;
   color: white;
   padding: 8px;
 }
 .footer nav span {
-  background: -webkit-linear-gradient(bottom, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
-  background: linear-gradient(0deg, rgb(164, 176, 218) 0%, rgb(61, 76, 125) 91%);
+  background: var(--gradientBg);
   border: 1px solid white;
   text-align: center;
   color: white;

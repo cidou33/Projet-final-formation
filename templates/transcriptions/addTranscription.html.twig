@@ -10,12 +10,16 @@
     <title>Nouvelle transcription</title>
 </head>
 <body>
-{% include 'commons/header.html.twig' %}
-<main>
-    {% block body %}
-        {{ form(transcriptionForm) }}
-    {% endblock %}
-</main>
-{% include 'commons/footer.html.twig' %}
+    {% include 'commons/header.html.twig' %}
+    <main>
+        {% block body %}
+            {{ form(transcriptionForm) }}
+        {% endblock %}
+    </main>
+    {% include 'commons/footer.html.twig' %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <script async src="{{ asset('assets/js/scriptAdmin.js') }}"></script>
+    {% endif %}
+    <script async src="{{ asset('assets/js/scriptUser.js') }}"></script>
 </body>
 </html>
