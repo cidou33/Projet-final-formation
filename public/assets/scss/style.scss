@@ -231,12 +231,13 @@ body{
     }
 }
 
-/*-----main transcriptions-----*/
+/*-----main transcriptions----*/
 .bodytranscriptions{
     h2{
         text-align: center;
     }
     .mainTranscriptions{
+        height: 140px;
         width: 90%;
         margin-left: 10%;
         .sectionSearch{
@@ -405,6 +406,66 @@ body{
     }
 }
 
+/*------main trainings------*/
+
+.mainTrainings{
+    .bgTitleTrainings{
+        height: 140px;
+        background-image: url("../data/img/media/black-white-cymbales.jpg");
+        @include bgTitle;
+        .titleTrainings{
+            @include infoTitle;
+        }
+    }
+    .sectionTrainings{
+        .secondaryTitleContainer{
+            p{
+                text-align: center;
+            }
+        }
+    }
+    h2{
+        padding-top: 40px;
+        text-align: center;
+    }
+    article{
+        padding: 0 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .userTrainingLink{
+            text-align: center;
+            .trainingTitle{
+                margin-top: 40px;
+                gap: 15px;
+                display: flex;
+                padding-bottom: 5px;
+            }
+            .imgTrainingContainer{
+                max-height: 30px;
+                max-width: 30px;
+                overflow: hidden;
+                border-radius: 50%;
+                img{
+                    width: 50px;
+                }
+            }
+
+        }
+        .buttonTraining{
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: #32327c;
+            color: #DDDDDD;
+            margin-top: 15px;
+            padding: 2px 8px;
+        }
+        p{
+            text-align: justify;
+            color: #DDDDDD;
+        }
+    }
+}
 
 /*-------footer-----*/
 
