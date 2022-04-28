@@ -9,64 +9,112 @@
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
     <title>Les transcriptions</title>
 </head>
-<body>
+<body class="bodytranscriptions">
     {% include 'commons/header.html.twig' %}
-    <main>
+    <main class="{% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}
-
-        <form action="{{ path('bandNameSearch') }}" method="post">
-            <input type="search" placeholder="search" name="bandNameSearch">
-            <input type="submit" value="chercher">
-        </form>>
-            {% for letter in alphabet %}
-                <a href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>
-            {% endfor %}
-            <a href="{{ path('showTranscriptions', {'infos': 'facile'}) }}">facile</a>
-            <a href="{{ path('showTranscriptions', {'infos': 'moyen'}) }}">moyen</a>
-            <a href="{{ path('showTranscriptions', {'infos': 'difficile'}) }}">difficile</a>
-            <section>
+            <section class="sectionSearch">
+                <div class="bgTitleTranscriptions">
+                    <h1 class="titleTranscriptions">LES TRANSCRIPTIONS</h1>
+                </div>
+                <form class="searchForm" action="{{ path('bandNameSearch') }}" method="post">
+                    <input class="cellForm" type="search" placeholder="tapez un groupe" name="bandNameSearch">
+                    <input class="searchButton" type="submit" value="chercher">
+                </form>>
+                <div class="letterSearch">
+                    {% for letter in alphabet %}
+                        <a class="textWhite" href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>
+                    {% endfor %}
+                </div>
+                <div class="difficultyLinkContainer">
+                    <a class="textWhite difficultyLink" href="{{ path('showTranscriptions', {'infos': 'facile'}) }}">
+                        <div class="green difficultyToken"></div>
+                        <span>facile</span>
+                    </a>
+                    <a class="textWhite difficultyLink" href="{{ path('showTranscriptions', {'infos': 'moyen'}) }}">
+                        <div class="orange difficultyToken"></div>
+                        <span>moyen</span>
+                    </a>
+                    <a class="textWhite difficultyLink" href="{{ path('showTranscriptions', {'infos': 'difficile'}) }}">
+                        <div class="red difficultyToken"></div>
+                        <span>difficile</span>
+                    </a>
+                </div>
+            </section>
+            <section class="listTranscriptions">
+                <div class="menuTranscription">
+                    <span class="textWhite">Groupe/Titre</span>
+                    <span class="textWhite">Favori</span>
+                    <span class="textWhite">Fichier/Vidéo</span>
+                </div>
             {% for transcription in transcriptions %}
                 {% if transcription.active == true %}
                 <article>
-                    <span>{{ transcription.bandName }}</span>
-                    <span>{{ transcription.songName }}</span>
-                    <div class="{{ transcription.difficultyLevel.color }}">toto</div>
-                    {% if connect == false %}
-                            {% for fav in favori %}
-                                {% if fav.id == transcription.id %}favori{% endif %}
-                            {% endfor %}
-                        <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
-                    {% endif %}
-                    <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
-                    <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
+                    <div class="transcriptionContainer">
+                        <div class="infoTranscription">
+                            <span class="textWhite">{{ transcription.bandName }}</span>
+                            <span class="textWhite">{{ transcription.songName }}</span>
+                            <div class="difficultyToken {{ transcription.difficultyLevel.color }}"></div>
+                        </div>
+                        {% if connect == false %}
+                            <div class="favoriContainer">
+                                {% for fav in favori %}
+                                    {% if fav.id == transcription.id %}<img class="logoFavori" src="{{ asset('assets/data/img/media/star.png') }}" alt="">{% endif %}
+                                {% endfor %}
+                                <a class="textWhite" href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/ supprimer</a>
+                            </div>
+                        {% endif %}
+                        <div class="buttonTranscription">
+                            <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
+                            <a class="textWhite" href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">
+                                <img class="logoYoutube" src="{{ asset('assets/data/img/media/logo_youtube.png') }}" alt="logo youtube en couleur">
+                                <span>Voir</span>
+                            </a>
+                        </div>
+                    </div>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
-                        <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
-                        <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">désactiver</a>
+                        <div class="adminLinkTranscription">
+                            <a class="textBlack" href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
+                            <a class="textBlack" href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                            <a class="textBlack" href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">désactiver</a>
+                        </div>
                     {% endif %}
                 </article>
                 {% endif %}
             {% endfor %}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <h1>transcriptions inactives</h1>
+                    <h2>transcriptions inactives</h2>
                     {% for transcription in transcriptions %}
                     {% if transcription.active == false %}
                         <article>
-                            <span>{{ transcription.bandName }}</span>
-                            <span>{{ transcription.songName }}</span>
-                            <div class="{{ transcription.difficultyLevel.color }}">toto</div>
-                            {% if connect == false %}
-                                {% for fav in favori %}
-                                    {% if fav.id == transcription.id %}favori{% endif %}
-                                {% endfor %}
-                                <a href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/supprimer</a>
-                            {% endif %}
-                            <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
-                            <a href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">transcription et video</a>
+                            <div class="transcriptionContainer">
+                                <div class="infoTranscription">
+                                    <span class="textWhite">{{ transcription.bandName }}</span>
+                                    <span class="textWhite">{{ transcription.songName }}</span>
+                                    <div class="difficultyToken {{ transcription.difficultyLevel.color }}"></div>
+                                </div>
+                                {% if connect == false %}
+                                    <div class="favoriContainer">
+                                        {% for fav in favori %}
+                                            {% if fav.id == transcription.id %}<img class="logoFavori" src="{{ asset('assets/data/img/media/star.png') }}" alt="">{% endif %}
+                                        {% endfor %}
+                                        <a class="textWhite" href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/ supprimer</a>
+                                    </div>
+                                {% endif %}
+                                <div class="buttonTranscription">
+                                    <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ transcription.pdfFile) }}" download="{{ transcription.pdfFile }}">Telecharger</a>
+                                    <a class="textWhite" href="{{ path('showTranscriptionAndVideo', {'id':transcription.id}) }}">
+                                        <img class="logoYoutube" src="{{ asset('assets/data/img/media/logo_youtube.png') }}" alt="logo youtube en couleur">
+                                        <span>Voir</span>
+                                    </a>
+                                </div>
+                            </div>
                             {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
-                                <a href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
-                                <a href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">activer</a>
+                                <div class="adminLinkTranscription">
+                                    <a class="textBlack" href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
+                                    <a class="textBlack" href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
+                                    <a class="textBlack" href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">activer</a>
+                                </div>
                             {% endif %}
                         </article>
                     {% endif %}

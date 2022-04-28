@@ -38,7 +38,7 @@
                         <p class="textTraining statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
                         <button class="buttonTrainingClose statut-hide">FERMER</button>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div>
+                        <div class="adminLinkNews">
                             <a class="textWhite" href="{{ path('deleteTraining', {'id':training.id}) }}">supprimer</a>
                             <a class="textWhite" href="{{ path('modifyStatusTraining', {'id':training.id}) }}">désactiver</a>
                             <a class="textWhite" href="{{ path('updateTraining', {'id':training.id}) }}">modifier</a>
@@ -59,8 +59,8 @@
                                 </div>
                                 <h3 class="textWhite">{{ training.title }}</h3>
                             </div>
-                            <a class="textWhite" href="">lire</a>
-                            <a class="textWhite" href="">télécharger</a>
+                            <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">lire</a>
+                            <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">télécharger</a>
                         </div>
                         <button class="buttonTraining">DETAILS</button>
                         <p class="textTraining statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>

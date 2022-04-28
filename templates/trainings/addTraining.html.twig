@@ -12,7 +12,7 @@
 </head>
 <body>
     {% include 'commons/header.html.twig' %}
-    <main>
+    <main class="mainAddTraining {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}
             {{ form(trainingForm) }}
 

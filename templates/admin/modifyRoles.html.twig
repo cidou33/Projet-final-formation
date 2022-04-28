@@ -12,7 +12,7 @@
 </head>
 <body>
     {% include 'commons/header.html.twig' %}
-    <main>
+    <main class="mainRoles {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         <table>
             <th>supprimer ou modifier un utilisateur</th>
             <tbody>

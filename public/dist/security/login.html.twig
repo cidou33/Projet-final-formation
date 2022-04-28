@@ -12,7 +12,7 @@
 </head>
 <body>
 {% include 'commons/header.html.twig' %}
-<main>
+<main class="mainLogin {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
     {% block body %}
         <h1>Formulaire de connexion</h1>
         <form method="post">

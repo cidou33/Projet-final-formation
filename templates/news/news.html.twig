@@ -11,28 +11,37 @@
 </head>
 <body>
     {% include 'commons/header.html.twig' %}
-    <main>
+    <main class="mainNews {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %}">
         {% block body %}
-        <h1>Les News</h1>
-        <p>blaaaaaaaaaaaaa</p>
-        <section>
+            <div class="bgTitleNews">
+                <h1 class="titleNews textWhite">LES NEWS</h1>
+            </div>
+            <section class="sectionNews">
+                <div class="secondaryTitleContainer">
+                    <h2 class="secondaryTitle textWhite">Liste des articles</h2>
+                    <p class="textWhite descNews">Içi vous trouverez des informations diverses à propos de l'évènementiel (concert, cours, découverte), me concernant ou concernant bien d'autres groupes ou écoles de Bordeaux et sa région.</p>
+                </div>
             {% for new in news %}
                 {%  if new.active == true %}
                 <article>
                     <div>
-                        <h2>{{ new.title }}</h2>
-                        <span>Publié le {{ new.createDate|date('d-m-Y') }}</span>
-                        <img src="{{ asset('assets/data/img/uploadNews/' ~ new.imgNews) }}" alt="{{ new.imgAlt }}">
+                        <h3 class="textWhite">{{ new.title }}</h3>
+                        <span class="textWhite">Publié le {{ new.createDate|date('d-m-Y') }}</span>
+                        <div class="imgNewsContainer">
+                            <img src="{{ asset('assets/data/img/uploadNews/' ~ new.imgNews) }}" alt="{{ new.imgAlt }}">
+                        </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
-                </article>
+                    <button class="buttonNews">DETAILS</button>
+                    <p class="textNews statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                    <button class="buttonNewsClose statut-hide">FERMER</button>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>
-                            <a href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
-                            <a href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
-                            <a href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
+                            <a class="textWhite" href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
+                            <a class="textWhite" href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
+                            <a class="textWhite" href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
                         </div>
                     {% endif%}
+                </article>
                 {% endif %}
             {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}
@@ -41,20 +50,23 @@
                     {%  if new.active == false %}
                         <article>
                             <div>
-                                <h2>{{ new.title }}</h2>
-                                <span>Publié le {{ new.createDate|date('d-m-Y') }}</span>
-                                <img src="{{ asset('assets/data/img/uploadNews/' ~ new.imgNews) }}" alt="{{ new.imgAlt }}">
+                                <h3 class="textWhite">{{ new.title }}</h3>
+                                <span class="textWhite">Publié le {{ new.createDate|date('d-m-Y') }}</span>
+                                <div class="imgNewsContainer">
+                                    <img src="{{ asset('assets/data/img/uploadNews/' ~ new.imgNews) }}" alt="{{ new.imgAlt }}">
+                                </div>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                            <button class="buttonNews">DETAILS</button>
+                            <p class="textNews statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                            <button class="buttonNewsClose statut-hide">FERMER</button>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div>
+                                    <a class="textWhite" href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
+                                    <a class="textWhite" href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
+                                    <a class="textWhite" href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
+                                </div>
+                            {% endif%}
                         </article>
-
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <div>
-                                <a href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
-                                <a href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
-                                <a href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
-                            </div>
-                        {% endif%}
                     {% endif %}
                 {% endfor %}
             {% endif %}

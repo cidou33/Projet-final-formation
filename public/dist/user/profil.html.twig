@@ -11,28 +11,43 @@
 </head>
 <body>
     {% include 'commons/header.html.twig' %}
-    <main>
+    <main class="mainProfil {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}
-        <h1>Mon profil</h1>
-        <form action="{{ path('updateUser') }}" method="POST" name="categoryBtn" enctype="multipart/form-data">
-            <label for="username">Nouveau pseudo</label>
-            <input type="text" name="username" value="{{ user.username }}">
-            <label for="avatar">nouvel avatar</label>
-            <input type="file" name="avatar[]">
-            <input type="submit" class="btn" name="btn"></input>
-            {% for favori in user.favoris %}
-                <article>
-                    <span>{{ favori.bandName }}</span>
-                    <span>{{ favori.songName }}</span>
-                    <div class="{{ favori.difficultyLevel.color }}"></div>
-                    {% if connect == false %}
-                        <a href="{{ path('modifyFavori',{'id':favori.id}) }}">Ajouter</a>
-                    {% endif %}
-                    <a href="{{ asset('assets/data/pdf/uploadTrainings/' ~ favori.pdfFile) }}" target="_blank">telecharger</a>
-                    <a href="{{ path('showTranscriptionAndVideo', {'id':favori.id}) }}">transcription et video</a>
-                </article>
-            {% endfor %}
-        </form>
+        <section>
+            <div class="bgTitleProfil">
+                <h1 class="textWhite titleProfil">MON PROFIL</h1>
+            </div>
+            <form action="{{ path('updateUser') }}" method="POST" name="categoryBtn" enctype="multipart/form-data">
+                <label for="username">Nouveau pseudo</label>
+                <input class="inputUsername" type="text" name="username" value="{{ user.username }}">
+                <label for="avatar">nouvel avatar</label>
+                <input type="file" name="avatar[]">
+                <input class="inputButton" type="submit" class="btn" name="btn"></input>
+            </form>
+                {% for favori in user.favoris %}
+                    <article>
+                        <div class="transcriptionContainer">
+                            <div class="infoTranscription">
+                                <span class="textWhite">{{ favori.bandName }}</span>
+                                <span class="textWhite">{{ favori.songName }}</span>
+                                <div class="difficultyToken {{ favori.difficultyLevel.color }}"></div>
+                            </div>
+                            {% if connect == false %}
+                                <div class="favoriContainer">
+                                    <a class="textWhite" href="{{ path('modifyFavori',{'id':favori.id}) }}">ajouter/ supprimer</a>
+                                </div>
+                            {% endif %}
+                            <div class="buttonTranscription">
+                                <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ favori.pdfFile) }}" download="{{ favori.pdfFile }}">Telecharger</a>
+                                <a class="textWhite" href="{{ path('showTranscriptionAndVideo', {'id':favori.id}) }}">
+                                    <img class="logoYoutube" src="{{ asset('assets/data/img/media/logo_youtube.png') }}" alt="logo youtube en couleur">
+                                    <span>Voir</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+        </section>
         {% endblock %}
     </main>
     {% include 'commons/footer.html.twig' %}

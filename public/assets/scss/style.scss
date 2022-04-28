@@ -237,7 +237,6 @@ body{
         text-align: center;
     }
     .mainTranscriptions{
-        height: 140px;
         width: 90%;
         margin-left: 10%;
         .sectionSearch{
@@ -452,7 +451,7 @@ body{
             }
 
         }
-        .buttonTraining{
+        .buttonTraining {
             border: 2px solid white;
             border-radius: 10px;
             background-color: #32327c;
@@ -466,6 +465,143 @@ body{
         }
     }
 }
+/*------main news-----*/
+
+.mainNews{
+    .bgTitleNews {
+        height: 140px;
+        background-image: url("../data/img/media/batteur_live.jpg");
+        @include bgTitle;
+
+        .titleNews {
+            @include infoTitle;
+        }
+    }
+    .sectionNews{
+        padding: 0 10%;
+        article{
+            margin-bottom: 30px;
+            .imgNewsContainer{
+                max-height: 150px;
+                overflow: hidden;
+                img{
+                    width: 200px;
+                }
+            }
+            span{
+                font-size: 12px;
+            }
+            .buttonNews {
+                border: 2px solid white;
+                border-radius: 10px;
+                background-color: #32327c;
+                color: #DDDDDD;
+                margin-top: 15px;
+                padding: 2px 8px;
+            }
+            p{
+                text-align: justify;
+                color: #DDDDDD;
+            }
+        }
+    }
+}
+
+/*----main profil----*/
+
+.mainProfil{
+    .bgTitleProfil{
+        background-image: url("../data/img/media/drum_red_back.jpg");
+        height: 140px;
+        @include bgTitle;
+        .titleProfil{
+            @include infoTitle;
+        }
+    }
+    form{
+        margin: 30px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .inputButton{
+            width: 100px;
+            margin: 30px;
+        }
+        .inputUsername{
+            width: 250px;
+            margin: 30px;
+        }
+    }
+    article{
+        border: 2px solid white;
+    }
+    article:nth-child(2n){
+        background-color: #8692d3;
+    }
+    article:nth-child(2n-1){
+        background-color: #696666;
+    }
+    .transcriptionContainer{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 5px;
+        align-items: center;
+        .infoTranscription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+            gap: 5px;
+            span{
+                text-transform: capitalize;
+                font-size: 12px;
+            }
+            .difficultyToken{
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+            }
+        }
+        .favoriContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            a{
+                font-size: 12px;
+                border-radius: 9px;
+                background-color: #32327c;
+                border: 2px solid white;
+                padding: 3px 4px;
+                text-align: center;
+            }
+            .logoFavori{
+                width: 15px;
+            }
+        }
+        .buttonTranscription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            width: 80px;
+            .logoYoutube{
+                width: 20px;
+            }
+            a{
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    }
+}
+
+/*------main video-----*/
+
+
+
 
 /*-------footer-----*/
 
