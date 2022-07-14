@@ -18,10 +18,10 @@
                 <h1 class="textWhite titleProfil">MON PROFIL</h1>
             </div>
             <form action="{{ path('updateUser') }}" method="POST" name="categoryBtn" enctype="multipart/form-data">
-                <label for="username">Nouveau pseudo</label>
+                <label for="username">Nouveau pseudo :</label>
                 <input class="inputUsername" type="text" name="username" value="{{ user.username }}">
-                <label for="avatar">nouvel avatar</label>
-                <input type="file" name="avatar[]">
+                <label for="avatar">Nouvel avatar :</label>
+                <input class="inputUsername" type="file" name="avatar[]">
                 <input class="inputButton" type="submit" class="btn" name="btn"></input>
             </form>
                 {% for favori in user.favoris %}
@@ -34,7 +34,7 @@
                             </div>
                             {% if connect == false %}
                                 <div class="favoriContainer">
-                                    <a class="textWhite" href="{{ path('modifyFavori',{'id':favori.id}) }}">ajouter/ supprimer</a>
+                                    <a class="textWhite" href="{{ path('modifyFavori',{'id':favori.id}) }}">supprimer</a>
                                 </div>
                             {% endif %}
                             <div class="buttonTranscription">

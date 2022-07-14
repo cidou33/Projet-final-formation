@@ -17,30 +17,32 @@ class NewsType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre',
+                'label' => 'Titre :',
                 'attr' => [
                     'placeholder' => 'Écrivez un titre'
                 ]
             ])
             ->add('Content', TextareaType::class, [
-                'label' => 'Description',
+                'label' => 'Texte de la news :',
                 'attr' => [
-                    'placeholder' => 'Écrivez votre article'
+                    'placeholder' => 'Écrivez votre article',
+                    'cols' => '28',
+                    'rows' => '5'
+                ]
+            ])
+            ->add('imgAlt', TextType::class, [
+                'label' => 'Description :',
+                'attr' => [
+                    'placeholder' => 'Décrivez votre image'
                 ]
             ])
             //->add('createDate')
             //->add('updateDate')
             //->add('active')
             ->add('imgNews', FileType::class, [
-                'label' => 'Choisissez une image',
+                'label' => 'Choisissez une image :',
                 'data_class' => null,
                 'required' => false
-            ])
-            ->add('imgAlt', TextType::class, [
-                'label' => 'Description',
-                'attr' => [
-                    'placeholder' => 'Décrivez votre image'
-                ]
             ])
             //->add('liked')
             ->add('Valider', SubmitType::class)

@@ -18,37 +18,37 @@ class TranscriptionsType extends AbstractType
     {
         $builder
             ->add('bandName', TextType::class, [
-                'label' => 'Groupe',
+                'label' => 'Groupe :',
                 'attr' => [
-                    'placeholder' => 'Écrivez le nom du groupe'
+                    'placeholder' => 'Nom du groupe'
                 ]
             ])
             ->add('songName', TextType::class, [
-                'label' => 'Chanson',
+                'label' => 'Chanson :',
                 'attr' => [
-                    'placeholder' => 'Écrivez le titre de la chanson'
+                    'placeholder' => 'Titre de la chanson'
                     ]
                 ])
+            ->add('mediaLink', TextType::class, [
+                'label' => 'Lien youtube :',
+                'attr' => [
+                    'placeholder' => 'Écrivez le lien vers la vidéo'
+                ]
+            ])
+            ->add('difficultyLevel', EntityType::class, [
+                'label' => 'Choisissez la difficulté :',
+                'choice_label' => "name",
+                'class' => Difficulty::class
+            ])
             ->add('pdfFile', FileType::class, [
-                'label' => 'Choisissez un fichier pdf',
+                'label' => 'Choisissez un fichier pdf :',
                 'data_class' => null,
                 'required' => false
-            ])
-            ->add('mediaLink', TextType::class, [
-                'label' => 'Lien youtube',
-                'attr' => [
-                    'placeholder' => 'Écrivez le lien vers la vidéo youtube'
-                ]
             ])
             //->add('active')
             //->add('createDate')
             //->add('updateDate')
             //->add('numbDownload')
-            ->add('difficultyLevel', EntityType::class, [
-                'label' => 'Choisissez la difficulté',
-                'choice_label' => "name",
-                'class' => Difficulty::class
-            ])
             ->add('Valider', SubmitType::class)
         ;
     }

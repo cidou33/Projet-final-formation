@@ -14,7 +14,7 @@
     {% include 'commons/header.html.twig' %}
     <main class="mainAddNews {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}
-
+            <h1>Ajouter une news</h1>
             {{ form(newsForm) }}
         {% endblock %}
     </main>

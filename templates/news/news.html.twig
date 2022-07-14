@@ -18,27 +18,27 @@
             </div>
             <section class="sectionNews">
                 <div class="secondaryTitleContainer">
-                    <h2 class="secondaryTitle textWhite">Liste des articles</h2>
+                    <h2 class="secondaryTitle textBlack">Liste des articles</h2>
                     <p class="textWhite descNews">Içi vous trouverez des informations diverses à propos de l'évènementiel (concert, cours, découverte), me concernant ou concernant bien d'autres groupes ou écoles de Bordeaux et sa région.</p>
                 </div>
             {% for new in news %}
                 {%  if new.active == true %}
                 <article>
                     <div>
-                        <h3 class="textWhite">{{ new.title }}</h3>
+                        <h3 class="textBlack">• {{ new.title }}</h3>
                         <span class="textWhite">Publié le {{ new.createDate|date('d-m-Y') }}</span>
                         <div class="imgNewsContainer">
                             <img src="{{ asset('assets/data/img/uploadNews/' ~ new.imgNews) }}" alt="{{ new.imgAlt }}">
                         </div>
                     </div>
                     <button class="buttonNews">DETAILS</button>
-                    <p class="textNews statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                    <p class="textNews statut-hide">{{ new.Content}}</p>
                     <button class="buttonNewsClose statut-hide">FERMER</button>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>
-                            <a class="textWhite" href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
-                            <a class="textWhite" href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
-                            <a class="textWhite" href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
+                            <a class="textWhite green" href="{{ path('modifyStatusNews', {'id':new.id}) }}">Désactiver</a>
+                            <a class="textWhite orange" href="{{ path('updateNews', {'id':new.id}) }}">Modifier</a>
+                            <a class="textWhite red" href="{{ path('deleteNews', {'id':new.id}) }}">Supprimer</a>
                         </div>
                     {% endif%}
                 </article>
@@ -50,20 +50,20 @@
                     {%  if new.active == false %}
                         <article>
                             <div>
-                                <h3 class="textWhite">{{ new.title }}</h3>
+                                <h3 class="textBlack">• {{ new.title }}</h3>
                                 <span class="textWhite">Publié le {{ new.createDate|date('d-m-Y') }}</span>
                                 <div class="imgNewsContainer">
                                     <img src="{{ asset('assets/data/img/uploadNews/' ~ new.imgNews) }}" alt="{{ new.imgAlt }}">
                                 </div>
                             </div>
                             <button class="buttonNews">DETAILS</button>
-                            <p class="textNews statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                            <p class="textNews statut-hide">{{ new.Content}}</p>
                             <button class="buttonNewsClose statut-hide">FERMER</button>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <div>
-                                    <a class="textWhite" href="{{ path('deleteNews', {'id':new.id}) }}">supprimer</a>
-                                    <a class="textWhite" href="{{ path('modifyStatusNews', {'id':new.id}) }}">activer</a>
-                                    <a class="textWhite" href="{{ path('updateNews', {'id':new.id}) }}">modifier</a>
+                                    <a class="textWhite green" href="{{ path('modifyStatusNews', {'id':new.id}) }}">Activer</a>
+                                    <a class="textWhite orange" href="{{ path('updateNews', {'id':new.id}) }}">Modifier</a>
+                                    <a class="textWhite red" href="{{ path('deleteNews', {'id':new.id}) }}">Supprimer</a>
                                 </div>
                             {% endif%}
                         </article>

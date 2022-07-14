@@ -28,7 +28,7 @@
                     <div class="articleTextContainer">
                         <h3 class="textWhite">Des transcriptions</h3>
                         <p class="textWhite articleHomePageText">Rock, pop, jazz, funk…
-                            Retrouvez diverses transcriptions de vos morceaux de batteries préférés, accompagnés de leur vidéos référentes et avec la possibilité de les télécharger.</p>
+                            Retrouvez diverses transcriptions de vos morceaux de batteries préférés, accompagnés de leur vidéos et avec la possibilité de les télécharger.</p>
                         <a class="articlehomePageButton textWhite" href="{% if connect == false %}
                           {{ path('showTranscriptions', {'infos':user.id}) }}
                       {% else %}
@@ -52,7 +52,7 @@
                     <img class="pictureArticleHomepage" src="{{ asset('assets/data/img/media/batteur_live.jpg') }}" alt="photo d'un concert en intérieur avec du public">
                     <div class="articleTextContainer">
                         <h3 class="textWhite articleHomePageTitle">Des News</h3>
-                        <p class="textWhite articleHomePageText">Restez informés des dernières nouvelles concernant mes concerts, les nouvelles vidéos retranscrites et pleins d'autres choses passionnantes pour les batteurs.</p>
+                        <p class="textWhite articleHomePageText">Restez informé des dernières nouvelles concernant mes concerts, les nouvelles vidéos retranscrites et pleins d'autres choses passionnantes pour les batteurs.</p>
                         <a class="articlehomePageButton textWhite" href="{{ path('showNews') }}">VOIR PLUS</a>
                     </div>
                 </article>
@@ -61,7 +61,7 @@
                     <img class="pictureArticleHomepage" src="{{ asset('assets/data/img/media/live_batteur_2.jpg') }}" alt="photo d'un concert en intérieur avec du public">
                     <div class="articleTextContainer">
                         <h3 class="textWhite articleHomePageTitle">Du contenu personnalisé</h3>
-                        <p class="textWhite articleHomePageText">Créez un compte et mettez vos morceaux préférés en favoris. Recevez un mail quand du nouveau contenu est mis en ligne.</p>
+                        <p class="textWhite articleHomePageText">Créez un compte et mettez vos morceaux préférés en favoris pour y accéder dans votre section profil.</p>
                         <a class="articlehomePageButton textWhite" href="{{ path('app_register') }}">S'INSCRIRE</a>
                     </div>
                 </article>

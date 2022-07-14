@@ -20,7 +20,7 @@
                 <form class="searchForm" action="{{ path('bandNameSearch') }}" method="post">
                     <input class="cellForm" type="search" placeholder="tapez un groupe" name="bandNameSearch">
                     <input class="searchButton" type="submit" value="chercher">
-                </form>>
+                </form>
                 <div class="letterSearch">
                     {% for letter in alphabet %}
                         <a class="textWhite" href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>

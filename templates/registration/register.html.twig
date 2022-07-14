@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
     <title>Page d'inscription</title>
 </head>
-<body>
+<body class="registerBody">
     {% include 'commons/header.html.twig' %}
     <main class="mainRegister {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}

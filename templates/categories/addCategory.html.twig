@@ -14,18 +14,20 @@
 {% include 'commons/header.html.twig' %}
 <main class="mainCategory {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}
+            <h1>Ajouter une catégorie</h1>
             {{ form(categoryForm) }}
             <h2>Liste des catégories existantes</h2>
-            <tbody>
+            <ul>
             {% for category in categories %}
-                {% if category.name %}<tr><td>{{ category.name }}</td></tr>
-                    <a href="{{ path('deleteCategory', {'id':category.id}) }}">supprimer</a>
-                    <a href="{{ path('updateCategory', {'id':category.id}) }}">modifier</a>
+                {% if category.name %}
+                    <li>
+                        <span class="textWhite">{{ category.name }} : </span>
+                        <a href="{{ path('updateCategory', {'id':category.id}) }}" class="orange textWhite">modifier</a>
+                        <a href="{{ path('deleteCategory', {'id':category.id}) }}" class="red textWhite">supprimer</a>
+                    </li>
                 {% endif %}
             {% endfor %}
-            </tbody>
-
-            <a href="{{ path('deleteUser') }}">effacer user</a>
+            </ul>
         {% endblock %}
     </main>
 {% include 'commons/footer.html.twig' %}

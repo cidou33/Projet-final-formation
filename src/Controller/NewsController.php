@@ -109,8 +109,6 @@ class NewsController extends AbstractController
                     'connect' => $connect
                 ]);
             }
-            //$imgBrut = $articleForm->get('imgNews')->getData();
-            //$img = $imgHelper->img($imgBrut);
             $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $slugger->slug($originalFilename);
             $newFilename = $safeFilename . '-' . md5(uniqid()) . '.' . $img->guessExtension();

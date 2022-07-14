@@ -13,6 +13,7 @@
     {% include 'commons/header.html.twig' %}
     <main class="mainAddTranscription {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}
+            <h1>Ajouter une transcription</h1>
             {{ form(transcriptionForm) }}
         {% endblock %}
     </main>

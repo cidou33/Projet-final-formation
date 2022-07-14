@@ -1,7 +1,7 @@
 <header class="header">
     <section class="flex justBetween headerSection alignCenter">
         <a href="{{ path('homePage') }}"><img class="logoDrummer" src="{{ asset('assets/data/img/uploadDirectory/logo-batteur-7b9c466d8ccd5108ab59603c1e3915de.png') }}" alt="logo de batteur en ombre chinoise"></a>
-        <nav class="navUser flex flexColumn statut-hide hide-js">
+        <nav class="flex flexColumn statut-hide hide-js {% if is_granted('ROLE_ADMIN') %} navAdminPosition {% else %} navUser {% endif %}">
             <div hidden class="hide-js"></div>
             <a class="" href="{{ path('homePage') }}">Acceuil</a>
 

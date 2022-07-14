@@ -14,21 +14,21 @@
     {% include 'commons/header.html.twig' %}
     <main class="mainRoles {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         <table>
-            <th>supprimer ou modifier un utilisateur</th>
+            <h1>Supprimer ou modifier un utilisateur</h1>
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.username }}</td>
+                    <td class="textWhite userModify">{{ user.username }}</td>
                     <td>
                         <form action="{{ path('adminModifyRoleUser') }}" method="post">
                             <input type="text" value="{{ user.id }}" hidden name="userId">
-                            <input type="submit" value="{% if user.roles == ['ROLE_ADMIN'] %}Passer utilistateur{% else %}Passer admin{% endif %}">
+                            <input type="submit" {% if user.roles == ['ROLE_ADMIN'] %}value="Passer utilistateur" class="green" {% else %}value="Passer admin" class="orange"{% endif %}>
                         </form>
                     </td>
                     <td>
                         <form action="{{ path('adminDeleteUser') }}" method="post">
                             <input type="text" value="{{ user.id }}" hidden name="userId">
-                            <input type="submit" value="supprimer">
+                            <input class="red textWhite" type="submit" value="supprimer">
                         </form>
                     </td>
                 </tr>

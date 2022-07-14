@@ -54,4 +54,5 @@ gulp.task('babel', () =>{
         .pipe(babel({presets: ['@babel/preset-env'],}))
         .pipe(gulp.dest('./public/dist/js/'))
 });
-gulp.task('build',gulp.series('nettoyer',gulp.parallel('copy-html',gulp.series('sass','postcss:prefix','postcss:min'),'imagemin', 'babel')));
+gulp.task('build',gulp.series('nettoyer',gulp.parallel
+('copy-html',gulp.series('sass','postcss:prefix','postcss:min'),'imagemin', 'babel')));

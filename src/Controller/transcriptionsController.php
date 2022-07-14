@@ -213,6 +213,11 @@ class transcriptionsController extends AbstractController
         $transcription = $transcriptionsRepository->findOneBy(['id' => $id]);
         $user = $this->getUser();
         $connect = $user == null;
+        if($transcription == null){
+            return $this->redirectToRoute('showTranscriptions', [
+                'infos' => 'camesoul'
+            ]);
+        }
         return $this->render('transcriptions/transcriptionAndVideo.html.twig', [
             'transcription' => $transcription,
             'user' => $user,

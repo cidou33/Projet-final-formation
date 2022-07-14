@@ -16,13 +16,13 @@ class CategoriesType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label'=> 'Nom de la catégorie',
+                'label'=> 'Nom de la catégorie :',
                 'attr' => [
                     'placeholder' => 'Écrivez un nom'
                 ]
             ])
             ->add('img_category', FileType::class, [
-                'label' => 'Choisissez une image',
+                'label' => 'Choisissez une image :',
                 'data_class' => null,
                 'required' => false
             ])

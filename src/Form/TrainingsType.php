@@ -29,24 +29,24 @@ class TrainingsType extends AbstractType
                 'label' => 'Description : ',
                 'attr' => [
                     'placeholder' => 'Écrivez une description',
-                    'cols' => '50',
+                    'cols' => '30',
                     'rows' => '5'
                 ]
             ])
             //->add('createDate')
             //->add('updateDate')
             //->add('active')
+            ->add('category', EntityType::class, [
+                'label' => 'Choisissez une catégorie : ',
+                'choice_label' => 'name',
+                'class' => Categories::class
+            ])
             ->add('pdfFile', FileType::class, [
                 'label' => 'Choisissez un fichier pdf : ',
                 'data_class' => null,
                 'required' => false
             ])
             //->add('numbDownload')
-            ->add('category', EntityType::class, [
-                'label' => 'Choisissez une catégorie : ',
-                'choice_label' => 'name',
-                'class' => Categories::class
-            ])
             //->add('liked', CheckboxType::class)
             ->add('Valider', SubmitType::class)
         ;

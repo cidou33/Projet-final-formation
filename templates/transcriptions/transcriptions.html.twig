@@ -20,7 +20,7 @@
                 <form class="searchForm" action="{{ path('bandNameSearch') }}" method="post">
                     <input class="cellForm" type="search" placeholder="tapez un groupe" name="bandNameSearch">
                     <input class="searchButton" type="submit" value="chercher">
-                </form>>
+                </form>
                 <div class="letterSearch">
                     {% for letter in alphabet %}
                         <a class="textWhite" href="{{ path('showTranscriptions', {'infos':letter}) }}">{{ letter }}</a>
@@ -52,16 +52,16 @@
                 <article>
                     <div class="transcriptionContainer">
                         <div class="infoTranscription">
-                            <span class="textWhite">{{ transcription.bandName }}</span>
-                            <span class="textWhite">{{ transcription.songName }}</span>
+                            <span class="textWhite nameBand">{{ transcription.bandName }}</span>
+                            <span class="textWhite titleSong">{{ transcription.songName }}</span>
                             <div class="difficultyToken {{ transcription.difficultyLevel.color }}"></div>
                         </div>
                         {% if connect == false %}
                             <div class="favoriContainer">
                                 {% for fav in favori %}
-                                    {% if fav.id == transcription.id %}<img class="logoFavori" src="{{ asset('assets/data/img/media/star.png') }}" alt="">{% endif %}
+                                    {% if fav.id == transcription.id %}<img class="logoFavori" src="{{ asset('assets/data/img/media/star.png') }}" alt="Etoile jaune">{% endif %}
                                 {% endfor %}
-                                <a class="textWhite" href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/ supprimer</a>
+                                <a class="textWhite" href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter / supprimer</a>
                             </div>
                         {% endif %}
                         <div class="buttonTranscription">
@@ -74,31 +74,32 @@
                     </div>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="adminLinkTranscription">
-                            <a class="textBlack" href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
-                            <a class="textBlack" href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
-                            <a class="textBlack" href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">désactiver</a>
+                            <a class="textBlack green" href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">Désactiver</a>
+                            <a class="textBlack orange" href="{{ path('updateTranscription', {'id':transcription.id}) }}">Modifier</a>
+                            <a class="textBlack red" href="{{ path('deleteTranscription', {'id':transcription.id}) }}">Supprimer</a>
                         </div>
                     {% endif %}
                 </article>
                 {% endif %}
             {% endfor %}
+                {{ knp_pagination_render(transcriptions) }}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <h2>transcriptions inactives</h2>
+                    <h2>Transcriptions inactives</h2>
                     {% for transcription in transcriptions %}
                     {% if transcription.active == false %}
                         <article>
                             <div class="transcriptionContainer">
                                 <div class="infoTranscription">
-                                    <span class="textWhite">{{ transcription.bandName }}</span>
-                                    <span class="textWhite">{{ transcription.songName }}</span>
+                                    <span class="textWhite nameBand">{{ transcription.bandName }}</span>
+                                    <span class="textWhite titleSong">{{ transcription.songName }}</span>
                                     <div class="difficultyToken {{ transcription.difficultyLevel.color }}"></div>
                                 </div>
                                 {% if connect == false %}
                                     <div class="favoriContainer">
                                         {% for fav in favori %}
-                                            {% if fav.id == transcription.id %}<img class="logoFavori" src="{{ asset('assets/data/img/media/star.png') }}" alt="">{% endif %}
+                                            {% if fav.id == transcription.id %}<img class="logoFavori" src="{{ asset('assets/data/img/media/star.png') }}" alt="Etoile jaune">{% endif %}
                                         {% endfor %}
-                                        <a class="textWhite" href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter/ supprimer</a>
+                                        <a class="textWhite" href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter / supprimer</a>
                                     </div>
                                 {% endif %}
                                 <div class="buttonTranscription">
@@ -111,9 +112,9 @@
                             </div>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <div class="adminLinkTranscription">
-                                    <a class="textBlack" href="{{ path('updateTranscription', {'id':transcription.id}) }}">modifier</a>
-                                    <a class="textBlack" href="{{ path('deleteTranscription', {'id':transcription.id}) }}">supprimer</a>
-                                    <a class="textBlack" href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">activer</a>
+                                    <a class="textBlack green" href="{{ path('modifyStatusTranscription', {'id':transcription.id}) }}">Activer</a>
+                                    <a class="textBlack orange" href="{{ path('updateTranscription', {'id':transcription.id}) }}">Modifier</a>
+                                    <a class="textBlack red" href="{{ path('deleteTranscription', {'id':transcription.id}) }}">Supprimer</a>
                                 </div>
                             {% endif %}
                         </article>
@@ -121,7 +122,6 @@
                     {% endfor %}
                 {% endif %}
             </section>
-            {{ knp_pagination_render(transcriptions) }}
         {% endblock %}
     </main>
     {% include 'commons/footer.html.twig' %}

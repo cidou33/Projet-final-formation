@@ -90,11 +90,18 @@ class TranscriptionsRepository extends ServiceEntityRepository
     }
 
     public function findMySelectionByDifficulty($infos){
+        //utilisation de queryBuilder afin d'initialiser une requête DQL
         $qb = $this->createQueryBuilder('transcriptions');
+        //calibrage de la requête
         $qb
+            //selection des informations stockée en BDD dans la table transcriptions
             ->select('transcriptions')
+            //selection des informations stockée en BDD dans le champs difficulty.level
+            //qui est une clé étrangère se référant à la table difficulty
             ->leftJoin('transcriptions.difficultyLevel', 'difficulty')
+            //selection des informations stockée en BDD dans la table difficulty
             ->addSelect('difficulty')
+            //
             ->where('difficulty.name LIKE :difficulty')
             ->setParameter('difficulty', $infos);
         $query = $qb
@@ -105,28 +112,31 @@ class TranscriptionsRepository extends ServiceEntityRepository
     }
 
     public function bandNameSearch($bandNameSearch){
-        // alias est égal au nom de notre entité
+        //utilisation de queryBuilder afin d'initialiser une requête DQL
         $qb = $this->createQueryBuilder('transcriptions');
+        //calibrage de la requête
         $qb
-            //selcetionne la table (entité)
+            //selection des informations stockées en BDD dans la table transcriptions
             ->select('transcriptions')
-            //Je lui joins la table type, je donne l'entité de ma table
-            //->leftJoin('task.type', 'type')
-            //selectionne la table (entité)
-            //->addSelect('type')
+            //selection des informations stockée en BDD dans le champs difficulty.level
+            //qui est une clé étrangère se référant à la table difficulty
             ->leftJoin('transcriptions.difficultyLevel', 'difficulty')
+            //selection des informations stockée en BDD dans la table difficulty
             ->addSelect('difficulty')
+            //précision sur les éléments a cibler pour la récupération
+            //içi nous ciblons les informations situées dans la table transcription
+            //où le champs bandName correspondra à la chaine de caractère affiliée a la clé bandeName
             ->where('transcriptions.bandName LIKE :bandName')
-                // mettre en clé le nom donné au-dessus
-                //entourer le $title de '%' permet de dire qu'on cherche tous les mots qui possèdent le mot de $title
-                ->setParameter('bandName', $bandNameSearch . '%');
+            //paramètrage de la clé bandName: içi elle prendra comme valeur ce qui est stocké dans
+            //la variable $bandNameSearch (paramètre de la fonction) qui correspond à l'entrée en input
+            //par l'utilisateur
+            ->setParameter('bandName', '%'.$bandNameSearch . '%');
+        //préparation de la requête et stockage dans une variable en définissant un ordre de récupération
         $query = $qb
-            //ranger par ordre de date décroissant
             ->orderBy('transcriptions.bandName', 'ASC')
             ->getQuery();
-        //je récupère le résultat dans ma variable $tasks
+        //récupération des informations sous forme de tableau et renvoie de celui ci en réponse de la fonction
         $res = $query->getArrayResult();
-        //je retourne ma variable
         return $res;
     }
 }

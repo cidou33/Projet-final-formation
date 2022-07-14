@@ -36,6 +36,25 @@
     padding: 25px;
     line-height: 30px;
 }
+@mixin validateButton{
+    width: 230px;
+    border-radius: 15px;
+    height: 30px;
+    font-size: 15px;
+    padding-left: 10px;
+    margin-right: 15px;
+}
+@mixin buttonAdmin{
+    padding: 4px;
+    width: 100px;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: 16px;
+    background: var(--gradientBg);
+    border-color: midnightblue;
+    color: #ded8d8;
+    margin: 15px auto;
+}
 body{
     background-color: #3e508ad4;
 }
@@ -76,11 +95,19 @@ body{
 /*-------NAV USER-------*/
     .headerSection{
         position: relative;
-
-        .navUser{
+        .navAdminPosition{
             position: absolute;
             background: var(--gradientBg);
             bottom: -270px;
+            right: -19px;
+            a{
+                @include linkNav;
+            }
+        }
+        .navUser{
+            position: absolute;
+            background: var(--gradientBg);
+            bottom: -218px;
             right: -19px;
             a{
                 @include linkNav;
@@ -183,8 +210,6 @@ body{
 .titleHomePage{
     @include infoTitle;
 }
-.sectionHomePage{
-}
 .secondaryTitleContainer{
     padding: 30px;
 }
@@ -239,10 +264,11 @@ body{
     .mainTranscriptions{
         width: 90%;
         margin-left: 10%;
+        min-height: 84vh;
         .sectionSearch{
             text-align: center;
             .searchForm{
-                margin-top: 15px;
+                padding:25px 0;
                 input{
                     border-radius: 10px;
                 }
@@ -269,7 +295,10 @@ body{
                 padding: 11px 11px;
                 gap: 3px;
                 left: 0%;
-                top: 10%;
+                top: 64px;
+                height: 92%;
+                justify-content: space-evenly;
+                z-index: 5;
                 a:nth-child(2n){
                     background-color: #32327c;
                 }
@@ -295,13 +324,16 @@ body{
                         border: 2px solid white;
                         padding: 1px 6px;
                         border-radius: 12px;
-                        background-color: #32327c;;
+                        background-color: #32327c;
                     }
                 }
             }
         }
         .listTranscriptions{
             padding: 30px 10px;
+            h2{
+                padding: 20px;
+            }
             .menuTranscription{
                 display: flex;
                 justify-content: space-around;
@@ -332,6 +364,8 @@ body{
                     span{
                         text-transform: capitalize;
                         font-size: 12px;
+                        overflow-wrap: break-word;
+                        max-width: 90px;
                     }
                     .difficultyToken{
                         width: 10px;
@@ -377,7 +411,7 @@ body{
         .pagination{
             margin: 0 auto;
             width: fit-content;
-            padding-bottom: 15px;
+            padding: 15px;
             span{
                 color: orangered;
             }
@@ -408,6 +442,7 @@ body{
 /*------main trainings------*/
 
 .mainTrainings{
+    padding-bottom: 10%;
     .bgTitleTrainings{
         height: 140px;
         background-image: url("../data/img/media/black-white-cymbales.jpg");
@@ -418,6 +453,9 @@ body{
     }
     .sectionTrainings{
         .secondaryTitleContainer{
+            .secondaryTitle{
+                font-size: 23px;
+            }
             p{
                 text-align: center;
             }
@@ -432,13 +470,33 @@ body{
         display: flex;
         flex-direction: column;
         align-items: center;
+        .adminLinkTraining{
+            padding-top: 10px;
+            a{
+                padding: 2px 5px;
+                border-radius: 15px;
+            }
+        }
         .userTrainingLink{
             text-align: center;
+            a:nth-child(3){
+                margin-left: 8px;
+                line-height: 30px;
+            }
+            .buttonDL{
+                border-radius: 12px;
+                background-color: rgb(118 131 176 / 72%);
+                padding: 2px 4px;
+            }
             .trainingTitle{
                 margin-top: 40px;
                 gap: 15px;
                 display: flex;
                 padding-bottom: 5px;
+                h3{
+                    line-height: 150%;
+                    text-transform: capitalize;
+                }
             }
             .imgTrainingContainer{
                 max-height: 30px;
@@ -449,9 +507,16 @@ body{
                     width: 50px;
                 }
             }
-
         }
         .buttonTraining {
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: #32327c;
+            color: #DDDDDD;
+            margin-top: 15px;
+            padding: 2px 8px;
+        }
+        .buttonTrainingClose{
             border: 2px solid white;
             border-radius: 10px;
             background-color: #32327c;
@@ -462,6 +527,12 @@ body{
         p{
             text-align: justify;
             color: #DDDDDD;
+        }
+        .separationLine{
+            height: 2px;
+            background-color: white;
+            width: 120px;
+            margin: 40px auto 0;
         }
     }
 }
@@ -478,9 +549,21 @@ body{
         }
     }
     .sectionNews{
-        padding: 0 10%;
+        padding: 0 10% 10%;
+        .secondaryTitle{
+            font-size: 23px;
+        }
+        .descNews{
+            text-align: justify;
+        }
         article{
             margin-bottom: 30px;
+            h3{
+                text-transform: capitalize;
+            }
+            span{
+                line-height: 30px;
+            }
             .imgNewsContainer{
                 max-height: 150px;
                 overflow: hidden;
@@ -496,12 +579,25 @@ body{
                 border-radius: 10px;
                 background-color: #32327c;
                 color: #DDDDDD;
-                margin-top: 15px;
+                margin: 10px 0;
+                padding: 2px 8px;
+
+            }
+            .buttonNewsClose{
+                border: 2px solid white;
+                border-radius: 10px;
+                background-color: #32327c;
+                color: #DDDDDD;
+                margin: 10px 0;
                 padding: 2px 8px;
             }
             p{
                 text-align: justify;
                 color: #DDDDDD;
+            }
+            a{
+                padding: 2px 4px;
+                border-radius: 12px;
             }
         }
     }
@@ -524,12 +620,13 @@ body{
         flex-direction: column;
         align-items: center;
         .inputButton{
-            width: 100px;
-            margin: 30px;
+            @include buttonAdmin;
         }
         .inputUsername{
             width: 250px;
-            margin: 30px;
+            padding: 0 5px;
+            margin: 10px 0 20px;
+            border-radius: 15px;
         }
     }
     article{
@@ -601,6 +698,126 @@ body{
 /*------main video-----*/
 
 
+.pdfContainer{
+    height: 500px;
+    width: 375px;
+}
+
+.videoContainer {
+    height: 300px;
+    width: 375px;
+}
+
+/*------main login-----*/
+.connectionBody{
+    height: 100vh;
+    .mainLogin{
+        height: 85vh;
+        .connectionTitle{
+            font-size: 28px;
+            margin: auto;
+            width: fit-content;
+            padding: 30px 0;
+        }
+        .connectionForm{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .connectionText{
+                font-size: 22px;
+                padding: 20px 0;
+            }
+            label{
+                color: white;
+                padding: 15px 0;
+            }
+            input{
+                width: 270px;
+                border-radius: 15px;
+                height: 30px;
+                font-size: 15px;
+                padding-left: 10px;
+            }
+            button{
+                padding: 4px;
+                margin-top: 15px;
+                width: 100px;
+                border-radius: 14px;
+                font-weight: bold;
+                font-size: 16px;
+                background: var(--gradientBg);
+                border-color: midnightblue;
+                color: #ded8d8;
+            }
+        }
+    }
+}
+
+/*------main register-----*/
+.registerBody{
+    max-height: 100vh;
+    .mainRegister {
+        h1 {
+            font-size: 28px;
+            margin: auto;
+            width: fit-content;
+            padding: 30px 0;
+        }
+        form{
+            height: 64vh;
+            div{
+                margin: 15px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                label{
+                    color: white;
+                    padding: 15px 0 15px 15px;
+                }
+                input{
+                    @include validateButton;
+                }
+                #registration_form_imgProfil{
+                    display: flex;
+                    flex-direction: column;
+                }
+                #registration_form_agreeTerms{
+                    width: fit-content;
+                    margin-right: 20%;
+                }
+                button{
+                    @include buttonAdmin;
+                }
+            }
+            div:nth-child(4){
+                flex-direction: column;
+                label{
+                    width: 100%;
+                }
+                input{
+                    width: 100%;
+                    padding-left: 15px;
+                    max-width: 100vw;
+                }
+            }
+        }
+    }
+}
+
+/*------main CGU-----*/
+
+.mainCGU{
+    padding-top: 64px;
+    h1{
+        text-align: center;
+        margin-bottom: 30px;
+        padding-top: 30px;
+    }
+    article{
+        margin: 30px 5%;
+    }
+}
 
 
 /*-------footer-----*/
@@ -619,6 +836,246 @@ body{
 
         span {
             @include footerLink;
+        }
+    }
+}
+
+
+
+/*--------ADMIN PART-------*/
+
+/*-----main modifyRoles----*/
+
+.mainRoles{
+    min-height: 84vh;
+    h1{
+        width: 100%;
+        font-size: 25px;
+        text-align: center;
+        padding-top: 20px;
+    }
+    table{
+        padding-top: 50px;
+        margin: 0 1%;
+        .userModify{
+            overflow-wrap: break-word;
+            max-width: 160px;
+            padding: 10px 15px 10px 10px;
+        }
+        input{
+            border-radius: 15px;
+            padding: 2px 4px;
+        }
+    }
+}
+
+/*-------main addTranscription------*/
+
+.mainAddTranscription{
+    min-height: 84vh;
+    h1{
+        padding-top: 15px;
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    form{
+        #transcriptions{
+            display: flex;
+            flex-direction: column;
+            div{
+                margin: 5px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                label{
+                    color: white;
+                    padding: 15px 0 15px 15px;
+                }
+                input{
+                    @include validateButton;
+                }
+                button{
+                    @include buttonAdmin
+                }
+                select{
+                    margin-right: 20%;
+                    padding: 3px 5px;
+                }
+            }
+            div:nth-child(5){
+                flex-direction: column;
+                label{
+                    width: 100%;
+                }
+                input{
+                    width: 100%;
+                    padding-left: 15px;
+                    max-width: 100vw;
+                }
+            }
+        }
+    }
+}
+
+/*-----main addCategory-----*/
+
+.mainCategory{
+    min-height: 84vh;
+    h1{
+        font-size: 28px;
+        text-align: center;
+    }
+    form{
+        #categories{
+            display: flex;
+            flex-direction: column;
+            div{
+                margin: 2px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                label{
+                    color: white;
+                    padding: 15px 0 15px 15px;
+                }
+                input{
+                    @include validateButton;
+                }
+                button{
+                    @include buttonAdmin
+                }
+            }
+            div:nth-child(2){
+                flex-direction: column;
+                label{
+                    width: 100%;
+                }
+                input{
+                    width: 100%;
+                    padding-left: 15px;
+                    max-width: 100vw;
+                }
+            }
+        }
+    }
+    h2{
+        font-size: 20px;
+        text-align: center;
+        margin: 30px 0;
+    }
+    ul{
+        li{
+            margin-left: 5%;
+            margin-bottom: 10px;
+           a{
+               padding: 1px 5px;
+               border-radius: 15px;
+           }
+        }
+    }
+}
+
+/*-----main addTraining-----*/
+
+.mainAddTraining{
+    min-height: 84vh;
+    h1{
+        font-size: 28px;
+        text-align: center;
+    }
+    form{
+        #trainings{
+            display: flex;
+            flex-direction: column;
+            div{
+                margin: 2px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                label{
+                    color: white;
+                    padding: 15px 0 15px 15px;
+                }
+                input{
+                    @include validateButton;
+                }
+                button{
+                    @include buttonAdmin
+                }
+                select{
+                    margin-right: 20%;
+                    padding: 3px 5px;
+                }
+                textarea{
+                    border-radius: 10px;
+                    padding-left: 5px;
+                    margin-right: 15px;
+                }
+            }
+            div:nth-child(4){
+                flex-direction: column;
+                label{
+                    width: 100%;
+                }
+                input{
+                    width: 100%;
+                    padding-left: 15px;
+                    max-width: 100vw;
+                }
+            }
+        }
+    }
+}
+
+/*-----main addNews-----*/
+
+.mainAddNews{
+    min-height: 84vh;
+    h1{
+        font-size: 28px;
+        text-align: center;
+    }
+    form{
+        #news{
+            display: flex;
+            flex-direction: column;
+            div{
+                margin: 2px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                label{
+                    color: white;
+                    padding: 15px 0 15px 15px;
+                }
+                input{
+                    @include validateButton;
+                }
+                button{
+                    @include buttonAdmin
+                }
+                select{
+                    margin-right: 20%;
+                    padding: 3px 5px;
+                }
+                textarea{
+                    border-radius: 10px;
+                    padding-left: 5px;
+                    margin-right: 15px;
+                }
+            }
+            div:nth-child(4){
+                flex-direction: column;
+                label{
+                    width: 100%;
+                }
+                input{
+                    width: 100%;
+                    padding-left: 15px;
+                    max-width: 100vw;
+                }
+            }
         }
     }
 }
