@@ -18,7 +18,9 @@
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td class="textWhite userModify">{{ user.username }}</td>
+                    <td class="textWhite userModify changeHideTwo">{{ user.username }}</td>
+                    <td class="textWhite userModify">{{ user.email }}</td>
+                    <td class="textWhite userModify changeHideTwo">{{ user.roles[0] }}</td>
                     <td>
                         <form action="{{ path('adminModifyRoleUser') }}" method="post">
                             <input type="text" value="{{ user.id }}" hidden name="userId">

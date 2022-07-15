@@ -15,7 +15,10 @@
         {% block body %}
         <section>
             <div class="bgTitleProfil">
-                <h1 class="textWhite titleProfil">MON PROFIL</h1>
+                <h1 class="textWhite titleProfil">profil de {{ user.username }}</h1>
+                <div class="containerAvatarProfil">
+                    <img class="imgAvatarProfil" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="une image de profil pour le compte">
+                </div>
             </div>
             <form action="{{ path('updateUser') }}" method="POST" name="categoryBtn" enctype="multipart/form-data">
                 <label for="username">Nouveau pseudo :</label>
@@ -47,6 +50,9 @@
                         </div>
                     </article>
                 {% endfor %}
+            <div class="deleteContainer">
+                <a class="textWhite red deleteAccountButton" href="{{ path('deleteUser') }}">SUPPRIMER SON COMPTE</a>
+            </div>
         </section>
         {% endblock %}
     </main>

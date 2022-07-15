@@ -36,6 +36,7 @@
                         </div>
                         <button class="buttonTraining">DETAILS</button>
                         <p class="textTraining statut-hide">{{ training.Content }}</p>
+                        <p class="changeHide">{{ training.Content }}</p>
                         <button class="buttonTrainingClose statut-hide">FERMER</button>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="adminLinkTraining">
@@ -65,6 +66,7 @@
                         </div>
                         <button class="buttonTraining">DETAILS</button>
                         <p class="textTraining statut-hide">{{ training.Content }}</p>
+                        <p class="changeHide">{{ training.Content }}</p>
                         <button class="buttonTrainingClose statut-hide">FERMER</button>
                         {% if is_granted('ROLE_ADMIN') %}
                             <div class="adminLinkTraining">

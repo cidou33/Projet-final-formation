@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UserController extends AbstractController
@@ -55,7 +56,7 @@ class UserController extends AbstractController
             SluggerInterface $slugger,
             TranscriptionsRepository $transcriptionsRepository
     ): Response {
-        $donnees = $transcriptionsRepository->findAll();
+        $donnees = $transcriptionsRepository->findBy([], array('bandName' => 'ASC'));
         $transcriptions = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
@@ -101,11 +102,13 @@ class UserController extends AbstractController
     }
 
     #[Route('effacer-son-compte', name: 'deleteUser', methods: ['GET', 'POST'])]
-    public function deleteUser(UsersRepository $usersRepository,){
+    public function deleteUser(UsersRepository $usersRepository, Request $request, TokenStorageInterface $tokenStorage){
         $userId = $this->getUser()->getId();
         $userDeleted = $usersRepository->findOneBy(['id'=> $userId]);
         $usersRepository->remove($userDeleted);
-        return $this->redirectToRoute('homePage');
+        $request->getSession()->invalidate();
+        $tokenStorage->setToken();
+        return $this->redirectToRoute('app_login');
     }
 
 

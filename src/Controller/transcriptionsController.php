@@ -78,7 +78,7 @@ class transcriptionsController extends AbstractController
         $transcriptions = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            4
+            10
         );
         $connect = $this->getUser() == null;
         $user = $this->getUser();
@@ -112,7 +112,7 @@ class transcriptionsController extends AbstractController
         $transcriptions = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            4
+            10
         );
         if ($user != null) {
             $favoris = $user->getFavoris();

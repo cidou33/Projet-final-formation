@@ -18,7 +18,7 @@
             </div>
         <section class="sectionTrainings">
             <div class="secondaryTitleContainer">
-                <h2 class="secondaryTitle textWhite">Liste des cours</h2>
+                <h2 class="secondaryTitle textBlack">Liste des cours</h2>
                 <p class="textWhite descTraining">Içi vous trouverez des exercices de bases pour vous entrainer, vous exercer, ou pour réviser les pratiques incontournables pour être un bon batteur.</p>
             </div>
             {% for training in trainings %}
@@ -29,26 +29,28 @@
                                 <div class="imgTrainingContainer">
                                     <img src="{{ asset('assets/data/img/uploadCategories/' ~ training.category.img_category) }}" alt="logo de catégorie">
                                 </div>
-                                <h3 class="textWhite">{{ training.title }}</h3>
+                                <h3 class="textBlack">• {{ training.title }}</h3>
                             </div>
-                            <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}" download="{{ training.pdfFile }}">Telecharger</a>
-                            <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">lire</a>
+                            <a class="textWhite buttonDL" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}" download="{{ training.pdfFile }}">Télécharger</a>
+                            <a class="textWhite buttonDL" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">Lire</a>
                         </div>
                         <button class="buttonTraining">DETAILS</button>
-                        <p class="textTraining statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                        <p class="textTraining statut-hide">{{ training.Content }}</p>
+                        <p class="changeHide">{{ training.Content }}</p>
                         <button class="buttonTrainingClose statut-hide">FERMER</button>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div class="adminLinkNews">
-                            <a class="textWhite" href="{{ path('deleteTraining', {'id':training.id}) }}">supprimer</a>
-                            <a class="textWhite" href="{{ path('modifyStatusTraining', {'id':training.id}) }}">désactiver</a>
-                            <a class="textWhite" href="{{ path('updateTraining', {'id':training.id}) }}">modifier</a>
+                        <div class="adminLinkTraining">
+                            <a class="textWhite green" href="{{ path('modifyStatusTraining', {'id':training.id}) }}">Désactiver</a>
+                            <a class="textWhite orange" href="{{ path('updateTraining', {'id':training.id}) }}">Modifier</a>
+                            <a class="textWhite red" href="{{ path('deleteTraining', {'id':training.id}) }}">Supprimer</a>
                         </div>
                     {% endif%}
+                        <div class="separationLine"></div>
                     </article>
                 {% endif %}
             {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}
-                <h2>cours inactifs</h2>
+                <h2 class="textBlack">Cours inactifs</h2>
             {% for training in trainings %}
                 {%  if training.active == false %}
                     <article>
@@ -57,21 +59,23 @@
                                 <div class="imgTrainingContainer">
                                     <img src="{{ asset('assets/data/img/uploadCategories/' ~ training.category.img_category) }}" alt="logo de catégorie">
                                 </div>
-                                <h3 class="textWhite">{{ training.title }}</h3>
+                                <h3 class="textBlack">• {{ training.title }}</h3>
                             </div>
-                            <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">lire</a>
-                            <a class="textWhite" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">télécharger</a>
+                            <a class="textWhite buttonDL" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">Lire</a>
+                            <a class="textWhite buttonDL" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}" download="{{ training.pdfFile }}">Télécharger</a>
                         </div>
                         <button class="buttonTraining">DETAILS</button>
-                        <p class="textTraining statut-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolorum impedit modi molestiae nam quae quidem quis veniam? At dolorum ducimus eius illo molestiae nesciunt omnis pariatur quidem saepe voluptate.Deleniti enim nihil possimus quas quo. Commodi consequuntur culpa delectus fugiat id ipsam laborum, nihil placeat qui tempora unde voluptates. Blanditiis cumque nemo nisi quia quos reiciendis reprehenderit, sint! Maiores.</p>
+                        <p class="textTraining statut-hide">{{ training.Content }}</p>
+                        <p class="changeHide">{{ training.Content }}</p>
                         <button class="buttonTrainingClose statut-hide">FERMER</button>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <div>
-                                <a class="textWhite" href="{{ path('deleteTraining', {'id':training.id}) }}">supprimer</a>
-                                <a class="textWhite" href="{{ path('modifyStatusTraining', {'id':training.id}) }}">activer</a>
-                                <a class="textWhite" href="{{ path('updateTraining', {'id':training.id}) }}">modifier</a>
+                            <div class="adminLinkTraining">
+                                <a class="textWhite green" href="{{ path('modifyStatusTraining', {'id':training.id}) }}">Activer</a>
+                                <a class="textWhite orange" href="{{ path('updateTraining', {'id':training.id}) }}">Modifier</a>
+                                <a class="textWhite red" href="{{ path('deleteTraining', {'id':training.id}) }}">Supprimer</a>
                             </div>
                         {% endif%}
+                        <div class="separationLine"></div>
                     </article>
                 {% endif %}
             {% endfor %}

@@ -12,7 +12,7 @@
 </head>
 <body>
     {% include 'commons/header.html.twig' %}
-    <main class="{% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %}">
+    <main class="mainHomePageDesk {% if is_granted('ROLE_ADMIN') %} adminMainHomePage {% else %} mainHomePage {% endif %}">
         {% block body %}
             <div class="bgTitleHomePage">
                 <h1 class="titleHomePage">JEROME CARRIERE
@@ -21,11 +21,11 @@
             <section class="sectionHomePage">
                 <div class="secondaryTitleContainer">
                     <h2 class="secondaryTitle textWhite">QUE TROUVER SUR MON SITE ?</h2>
-                    <div class="separationLine"></div>
+                    <div class="separationLine changeHide"></div>
                 </div>
                 <article class="articleHomePage">
-                    <img class="pictureArticleHomepage" src="{{ asset('assets/data/img/media/drum_red_back.jpg') }}" alt="photo de cymbales en ombre chinoise avec un éclairage rouge">
-                    <div class="articleTextContainer">
+                    <img class="pictureArticleHomepage imgLeft" src="{{ asset('assets/data/img/media/drum_red_back.jpg') }}" alt="photo de cymbales en ombre chinoise avec un éclairage rouge">
+                    <div class="articleTextContainer right">
                         <h3 class="textWhite">Des transcriptions</h3>
                         <p class="textWhite articleHomePageText">Rock, pop, jazz, funk…
                             Retrouvez diverses transcriptions de vos morceaux de batteries préférés, accompagnés de leur vidéos et avec la possibilité de les télécharger.</p>
@@ -36,10 +36,10 @@
                       {% endif %}">VOIR PLUS</a>
                     </div>
                 </article>
-                <div class="separationLine"></div>
+                <div class="separationLine changeHide"></div>
                 <article class="articleHomePage">
-                    <img class="pictureArticleHomepage" src="{{ asset('assets/data/img/media/black_white_cymbales.jpg') }}" alt="photo de cymbales en noir et blanc">
-                    <div class="articleTextContainer">
+                    <img class="pictureArticleHomepage imgRight" src="{{ asset('assets/data/img/media/black_white_cymbales.jpg') }}" alt="photo de cymbales en noir et blanc">
+                    <div class="articleTextContainer left">
                         <h3 class="textWhite articleHomePageTitle">Des cours</h3>
                         <p class="textWhite articleHomePageText">Accédez à des cours de différents niveaux:
                             novice, débutant, confirmé.
@@ -47,19 +47,19 @@
                         <a class="articlehomePageButton textWhite" href="{{ path('showTrainings') }}">VOIR PLUS</a>
                     </div>
                 </article>
-                <div class="separationLine"></div>
+                <div class="separationLine changeHide"></div>
                 <article class="articleHomePage">
-                    <img class="pictureArticleHomepage" src="{{ asset('assets/data/img/media/batteur_live.jpg') }}" alt="photo d'un concert en intérieur avec du public">
-                    <div class="articleTextContainer">
+                    <img class="pictureArticleHomepage imgLeft" src="{{ asset('assets/data/img/media/batteur_live.jpg') }}" alt="photo d'un concert en intérieur avec du public">
+                    <div class="articleTextContainer right">
                         <h3 class="textWhite articleHomePageTitle">Des News</h3>
                         <p class="textWhite articleHomePageText">Restez informé des dernières nouvelles concernant mes concerts, les nouvelles vidéos retranscrites et pleins d'autres choses passionnantes pour les batteurs.</p>
                         <a class="articlehomePageButton textWhite" href="{{ path('showNews') }}">VOIR PLUS</a>
                     </div>
                 </article>
-                <div class="separationLine"></div>
+                <div class="separationLine changeHide"></div>
                 <article class="articleHomePage">
-                    <img class="pictureArticleHomepage" src="{{ asset('assets/data/img/media/live_batteur_2.jpg') }}" alt="photo d'un concert en intérieur avec du public">
-                    <div class="articleTextContainer">
+                    <img class="pictureArticleHomepage imgRight" src="{{ asset('assets/data/img/media/live_batteur_2.jpg') }}" alt="photo d'un concert en intérieur avec du public">
+                    <div class="articleTextContainer left">
                         <h3 class="textWhite articleHomePageTitle">Du contenu personnalisé</h3>
                         <p class="textWhite articleHomePageText">Créez un compte et mettez vos morceaux préférés en favoris pour y accéder dans votre section profil.</p>
                         <a class="articlehomePageButton textWhite" href="{{ path('app_register') }}">S'INSCRIRE</a>

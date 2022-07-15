@@ -69,7 +69,12 @@ body{
 .red{
     background-color: red;
 }
-
+.changeHide{
+    display: none;
+}
+.changeHideTwo{
+    display: none;
+}
 
 /*-----header---------*/
 .headerSection{
@@ -262,11 +267,14 @@ body{
         text-align: center;
     }
     .mainTranscriptions{
-        width: 90%;
-        margin-left: 10%;
+        width: 92%;
+        margin-left: 8%;
         min-height: 84vh;
         .sectionSearch{
             text-align: center;
+            .searchHelp{
+                font-size: 10px;
+            }
             .searchForm{
                 padding:25px 0;
                 input{
@@ -609,9 +617,31 @@ body{
     .bgTitleProfil{
         background-image: url("../data/img/media/drum_red_back.jpg");
         height: 140px;
+        display: flex;
         @include bgTitle;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         .titleProfil{
-            @include infoTitle;
+            color: white;
+            font-weight: bold;
+            font-size: 23px;
+            font-style: italic;
+            width: 282px;
+            -webkit-text-stroke: 1px rgba(1, 1, 16, 0.52);
+            padding: 10px 0;
+            line-height: 30px;
+            text-transform: uppercase;
+        }
+        .containerAvatarProfil{
+            border-radius: 50%;
+            max-height: 60px;
+            max-width: 60px;
+            overflow: hidden;
+            border: 3px white solid;
+            .imgAvatarProfil{
+                width: 100px;
+                transform: translate(-22px, -7px)           }
         }
     }
     form{
@@ -691,6 +721,18 @@ body{
                 align-items: center;
                 gap: 5px;
             }
+        }
+    }
+    .deleteContainer{
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .deleteAccountButton{
+            text-align: center;
+            margin: 40px;
+            border-radius: 15px;
+            padding: 5px 6px;
         }
     }
 }
@@ -1077,5 +1119,230 @@ body{
                 }
             }
         }
+    }
+}
+
+@media screen and (min-width: 425px) {
+
+    /*-----transcriptions mediaScreen-----*/
+
+    .letterSearch{
+        width: 8%;
+        padding: 11px 2%;
+    }
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription{
+        width: 33%;
+    }
+    .favoriContainer{
+        width: 33%;
+    }
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .buttonTranscription{
+        width: 33%;
+    }
+
+    /*-----news mediaScreen-----*/
+
+    .changeHide{
+        margin-top: 40px;
+        display: block;
+    }
+    .buttonTraining{
+        display: none;
+    }
+    .mainTrainings .sectionTrainings .secondaryTitleContainer .secondaryTitle{
+        font-size: 30px;
+    }
+    .mainTrainings article .userTrainingLink .trainingTitle h3{
+        font-size: 25px;
+        line-height: 230%;
+    }
+    .mainTrainings article .userTrainingLink .imgTrainingContainer {
+        max-height: 60px;
+        max-width: 60px;
+    }
+    .mainTrainings article .userTrainingLink .imgTrainingContainer img{
+        width: 100px;
+    }
+
+    /*-----trainings mediaScreen-----*/
+
+    .buttonNews{
+        display: none;
+    }
+    .mainNews .sectionNews article{
+        display: flex;
+    }
+    .textNewsDesk{
+        padding: 20px 20px 20px 100px;
+        text-align: justify;
+        text-transform: capitalize;
+    }
+
+    /*-----Register mediaScreen-----*/
+
+    .registerBody .mainRegister form div{
+        margin: 15px 100px;
+        font-size: 20px;
+    }
+    .registerBody .mainRegister form div #registration_form_agreeTerms{
+        margin-right: 39%;
+    }
+    .registerBody .mainRegister form{
+        height: 70vh;
+    }
+
+    /*-----Login mediaScreen-----*/
+
+    .connectionBody .mainLogin .connectionForm button{
+        margin-top: 40px;
+    }
+
+    /*-----Profil mediaScreen-----*/
+
+    .mainProfil form{
+        font-size: 20px;
+    }
+
+    /*-----main addNews mediaScreen-----*/
+
+    .mainAddNews{
+        form{
+            margin: 50px 10% 0;
+            font-size: 20px;
+        }
+    }
+
+    /*-----main addTraining mediaScreen-----*/
+
+    .mainAddTraining{
+        form{
+            margin: 50px 10% 0;
+            font-size: 20px;
+        }
+    }
+
+    /*-----main addCategory mediaScreen-----*/
+
+    .mainCategory{
+        form{
+            margin: 50px 10% 0;
+            font-size: 20px;
+        }
+        ul{
+            padding: 0 10% 40px;
+            li{
+                display: flex;
+                align-items: center;
+                gap: 25px;
+                .containerAvatarCategory{
+                    border-radius: 50%;
+                    max-height: 30px;
+                    max-width: 30px;
+                    overflow: hidden;
+                    border: 1px white solid;
+                    .imgAvatarCategory{
+                        width: 60px;
+                    }
+                }
+                span{
+                    width: 100px;
+                }
+            }
+        }
+    }
+
+    /*-----main addTranscription mediaScreen-----*/
+
+    .mainAddTranscription{
+        form{
+            margin: 50px 10% 0;
+            font-size: 20px;
+        }
+    }
+
+    /*----main ModifyRoles mediaScreen-------*/
+    .mainRoles{
+        form{
+            margin: 0 10px;
+        }
+        .changeHideTwo{
+            display: block;
+        }
+    }
+}
+@media screen and(min-width: 769px){
+
+    /*---homePage---*/
+
+    .mainHomePageDesk{
+        padding-bottom: 2%;
+    }
+    .articleHomePage{
+        margin-bottom: 80px;
+    }
+    .articleHomePage .imgLeft {
+        width: 30%;
+        transform: translate(-60%, 1%);
+    }
+    .articleHomePage .imgRight {
+        width: 30%;
+        transform: translate(60%, 1%);
+    }
+    .articleHomePage  .left{
+        top: 14%;
+        right: 65%;
+        width: 240px;
+        transform: translate(0, 0);
+    }
+    .articleHomePage  .right{
+        top: 14%;
+        right: 18%;
+        width: 240px;
+        transform: translate(0, 0);
+    }
+    .sectionHomePage .changeHide{
+        display: none;
+    }
+
+    /*---transcriptions----*/
+
+    .bodytranscriptions .mainTranscriptions .sectionSearch .letterSearch{
+        position: inherit;
+        flex-direction: inherit;
+        background:inherit;
+        margin: 20px auto;
+        width: 90%;
+    }
+    .bodytranscriptions .mainTranscriptions{
+        margin-left: 0;
+        width: 100%;
+    }
+    .bodytranscriptions .mainTranscriptions .listTranscriptions {
+        padding: 30px 100px;
+    }
+    .mainTranscriptions{
+        font-size: 18px;
+    }
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span{
+        font-size: 15px;
+    }
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .buttonTranscription a{
+        font-size: 15px;
+    }
+    .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm .cellForm{
+        width: 250px;
+    }
+    .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm input{
+        padding: 5px;
+        border-radius: 15px;
+    }
+    .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm .searchButton {
+        padding: 4px 10px;
+        background: var(--gradientBg);
+        color: white;
+        text-transform: capitalize;
+    }
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span{
+        max-width: 450px;
     }
 }

@@ -21,14 +21,14 @@
             {% endif %}
 
             {% if app.user %}
-                <div class="mb-3">
+                <div class="mb-3 textOrange">
                     Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% endif %}
 
-            <p class="connectionText mb-3 font-weight-normal">Veuillez vous connecter</p>
+            <p class="connectionText mb-3 font-weight-normal textRed">Veuillez vous connecter</p>
             <label for="inputEmail">Email :</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <input type="email" value="" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
             <label for="inputPassword">Mot de passe :</label>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 

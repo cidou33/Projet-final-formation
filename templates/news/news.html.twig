@@ -33,6 +33,7 @@
                     </div>
                     <button class="buttonNews">DETAILS</button>
                     <p class="textNews statut-hide">{{ new.Content}}</p>
+                    <p class="textNewsDesk changeHide">{{ new.Content}}</p>
                     <button class="buttonNewsClose statut-hide">FERMER</button>
                     {% if is_granted('ROLE_ADMIN') %}
                         <div>
@@ -58,6 +59,7 @@
                             </div>
                             <button class="buttonNews">DETAILS</button>
                             <p class="textNews statut-hide">{{ new.Content}}</p>
+                            <p class="textNewsDesk changeHide">{{ new.Content}}</p>
                             <button class="buttonNewsClose statut-hide">FERMER</button>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <div>

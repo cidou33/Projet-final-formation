@@ -21,6 +21,9 @@
             {% for category in categories %}
                 {% if category.name %}
                     <li>
+                        <div class="containerAvatarCategory">
+                            <img class="imgAvatarCategory" src="{{ asset('assets/data/img/uploadCategories/' ~ category.imgCategory) }}" alt="logo de catégorie">
+                        </div>
                         <span class="textWhite">{{ category.name }} : </span>
                         <a href="{{ path('updateCategory', {'id':category.id}) }}" class="orange textWhite">modifier</a>
                         <a href="{{ path('deleteCategory', {'id':category.id}) }}" class="red textWhite">supprimer</a>

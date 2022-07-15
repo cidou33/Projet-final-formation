@@ -42,11 +42,17 @@ a{
 .textBlack{
   color: black;
 }
+.textWhite{
+  color:white;
+}
 .backBlack{
   background-color:black;
 }
-.textWhite{
-  color:white;
+.textOrange{
+  color:darkorange;
+}
+.textRed{
+  color:darkred;
 }
 .backWhite{
   background-color:white;
@@ -56,4 +62,49 @@ a{
 }
 .textCenter{
   text-align: center;
+}
+.navDesk{
+  display: none;
+}
+@media screen and(min-width: 769px){
+  .header{
+    .headerSection{
+      .navDesk{
+        display: flex;
+        width: 90%;
+        a{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 17%;
+          padding: 21px 0;
+          font-size: 20px;
+          }
+        .statut-hide{
+          display: block;
+        }
+      }
+      .crossUser{
+        display: none;
+      }
+      .navAdminPosition, {
+        position: initial;
+        flex-direction: row;
+        div{
+          img{
+            width: 100px;
+          }
+        }
+      }
+      .navUser{
+        position: initial;
+        flex-direction: row;
+        div{
+          img{
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
 }

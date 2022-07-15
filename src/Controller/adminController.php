@@ -15,7 +15,7 @@ class adminController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $this->getUser();
         $connect = $this->getUser() == null;
-            $users = $usersRepository->findAll();
+            $users = $usersRepository->findBy([], array('email' => 'ASC'));
             return $this->render('admin/modifyRoles.html.twig', [
                 'users' => $users,
                 'user' => $user,

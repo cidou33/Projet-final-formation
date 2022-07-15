@@ -14,8 +14,8 @@
     {% include 'commons/header.html.twig' %}
     <main class="mainAddTraining {% if is_granted('ROLE_ADMIN') %}adminMainHomePage{% else %}mainHomePage{% endif %} mainTranscriptions">
         {% block body %}
+            <h1>Ajouter un cours</h1>
             {{ form(trainingForm) }}
-
         {% endblock %}
     </main>
     {% include 'commons/footer.html.twig' %}
