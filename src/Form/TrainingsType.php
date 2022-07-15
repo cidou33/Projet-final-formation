@@ -22,7 +22,8 @@ class TrainingsType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre : ',
                 'attr' => [
-                    'placeholder' => 'Écrivez un titre'
+                    'placeholder' => 'Écrivez un titre',
+                    'maxlength' => '255'
                 ]
             ])
             ->add('Content', TextareaType::class, [
@@ -30,7 +31,8 @@ class TrainingsType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Écrivez une description',
                     'cols' => '30',
-                    'rows' => '5'
+                    'rows' => '5',
+                    'maxlength' => '255'
                 ]
             ])
             //->add('createDate')
@@ -44,7 +46,7 @@ class TrainingsType extends AbstractType
             ->add('pdfFile', FileType::class, [
                 'label' => 'Choisissez un fichier pdf : ',
                 'data_class' => null,
-                'required' => false
+                'required' => true
             ])
             //->add('numbDownload')
             //->add('liked', CheckboxType::class)

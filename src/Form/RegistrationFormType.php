@@ -30,7 +30,8 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email : '
+                'label' => 'Email : ',
+                'maxlength' => '255'
             ])
             ->add('imgProfil', FileType::class, [
                 'label' => 'Choisissez une image de profil : ',

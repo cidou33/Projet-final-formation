@@ -1,5 +1,6 @@
 :root {
   --gradientBg: linear-gradient(0deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
+  --invertGradientBg: linear-gradient(176deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
 }
 
 body {
@@ -164,6 +165,11 @@ body {
 
 .adminMainHomePage {
   padding-top: 115px;
+  background-color: rgba(62, 80, 138, 0.831372549);
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: rgba(62, 80, 138, 0.831372549);
 }
 
@@ -583,6 +589,7 @@ body {
   border-radius: 12px;
   background-color: rgba(118, 131, 176, 0.72);
   padding: 2px 4px;
+  border: 1px solid white;
 }
 .mainTrainings article .userTrainingLink .trainingTitle {
   margin-top: 40px;
@@ -754,9 +761,9 @@ body {
 }
 .mainProfil .bgTitleProfil .containerAvatarProfil .imgAvatarProfil {
   width: 100px;
-  -webkit-transform: translate(-22px, -7px);
-      -ms-transform: translate(-22px, -7px);
-          transform: translate(-22px, -7px);
+  -webkit-transform: translate(-22px, -22px);
+      -ms-transform: translate(-22px, -22px);
+          transform: translate(-22px, -22px);
 }
 .mainProfil form {
   margin: 30px 0;
@@ -923,14 +930,27 @@ body {
 }
 
 /*------main video-----*/
+.mainVideo {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: column-reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .pdfContainer {
-  height: 500px;
-  width: 375px;
+  height: 460px;
+  width: 100%;
 }
 
 .videoContainer {
-  height: 300px;
-  width: 375px;
+  height: 98px;
+  width: 50%;
+  margin: 0 auto;
 }
 
 /*------main login-----*/
@@ -1020,6 +1040,9 @@ body {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.registerBody .mainRegister form div ul li {
+  color: red;
 }
 .registerBody .mainRegister form div label {
   color: white;
@@ -1578,6 +1601,10 @@ body {
     font-size: 20px;
   }
 
+  .mainTrainings article p {
+    padding-top: 40px;
+  }
+
   /*-----main addCategory mediaScreen-----*/
   .mainCategory form {
     margin: 50px 10% 0;
@@ -1624,9 +1651,37 @@ body {
   .mainRoles .changeHideTwo {
     display: block;
   }
+
+  /*------main video-----*/
+  .pdfContainer {
+    height: 460px;
+    width: 100%;
+  }
+
+  .videoContainer {
+    width: 100%;
+    height: 166px;
+    padding: 0 31%;
+    margin: 0 auto -1%;
+  }
 }
 @media screen and (min-width: 769px) {
   /*---homePage---*/
+  .titleHomePage {
+    font-size: 42px;
+    width: 600px;
+    line-height: 60px;
+  }
+
+  .secondaryTitleContainer h2 {
+    font-size: 31px;
+    margin: 25px auto;
+  }
+
+  .articleTextContainer h3 {
+    font-size: 25px;
+  }
+
   .mainHomePageDesk {
     padding-bottom: 2%;
   }
@@ -1667,11 +1722,46 @@ body {
             transform: translate(0, 0);
   }
 
+  .articleHomePage .articleTextContainer .articlehomePageButton:hover {
+    border: 3px solid rgba(18, 4, 4, 0.5411764706);
+    padding: 2px 5px;
+    border-radius: 15px;
+    background-color: white;
+    color: rgba(18, 4, 4, 0.5411764706);
+  }
+
   .sectionHomePage .changeHide {
     display: none;
   }
 
   /*---transcriptions----*/
+  .bodytranscriptions .mainTranscriptions .sectionSearch .bgTitleTranscriptions .titleTranscriptions {
+    font-size: 42px;
+    width: 600px;
+    line-height: 60px;
+    padding: 70px;
+  }
+
+  .bodytranscriptions .mainTranscriptions .sectionSearch .letterSearch a {
+    text-transform: uppercase;
+    width: 100%;
+  }
+  .bodytranscriptions .mainTranscriptions .sectionSearch .letterSearch a:hover {
+    color: #11f311;
+  }
+
+  .bodytranscriptions .mainTranscriptions .sectionSearch .difficultyLinkContainer .difficultyLink span:hover {
+    border: 2px solid rgba(18, 4, 4, 0.5411764706);
+    background-color: white;
+    color: rgba(18, 4, 4, 0.5411764706);
+  }
+
+  .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .favoriContainer a:hover {
+    border: 2px solid rgba(18, 4, 4, 0.5411764706);
+    background-color: white;
+    color: black;
+  }
+
   .bodytranscriptions .mainTranscriptions .sectionSearch .letterSearch {
     position: inherit;
     -webkit-box-orient: inherit;
@@ -1700,9 +1790,15 @@ body {
   .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span {
     font-size: 15px;
   }
+  .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span:hover {
+    font-size: 20px;
+  }
 
   .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .buttonTranscription a {
     font-size: 15px;
+  }
+  .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .buttonTranscription a:hover {
+    font-size: 20px;
   }
 
   .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm .cellForm {
@@ -1720,8 +1816,282 @@ body {
     color: white;
     text-transform: capitalize;
   }
+  .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm .searchButton:hover {
+    background: var(--invertGradientBg);
+  }
 
   .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span {
     max-width: 450px;
+  }
+
+  /*-----trainings-----*/
+  .mainTrainings .bgTitleTrainings {
+    height: 100%;
+  }
+  .mainTrainings .bgTitleTrainings .titleTrainings {
+    font-size: 42px;
+    width: 600px;
+    line-height: 60px;
+    padding: 70px;
+  }
+
+  .mainTrainings .sectionTrainings .secondaryTitleContainer .secondaryTitle {
+    font-size: 35px;
+  }
+
+  .mainTrainings .sectionTrainings .secondaryTitleContainer p {
+    font-size: 22px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .mainTrainings article .userTrainingLink .buttonDL {
+    border: 1px solid white;
+    border-radius: 12px;
+    background-color: rgba(118, 131, 176, 0.72);
+    padding: 2px 4px;
+  }
+  .mainTrainings article .userTrainingLink .buttonDL:hover {
+    border: 1px solid rgb(47, 82, 192);
+    background-color: white;
+    color: rgb(47, 82, 192);
+  }
+
+  .mainTrainings article p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /*-----news----*/
+  .mainNews .bgTitleNews {
+    height: 100%;
+  }
+  .mainNews .bgTitleNews .titleNews {
+    font-size: 42px;
+    width: 600px;
+    line-height: 60px;
+    padding: 70px;
+  }
+
+  .mainNews .sectionNews .secondaryTitle {
+    font-size: 35px;
+  }
+
+  .mainNews .sectionNews .descNews {
+    font-size: 22px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .mainNews .sectionNews article {
+    padding: 40px 200px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+
+  .mainNews .sectionNews article h3 {
+    font-size: 25px;
+  }
+
+  .mainNews .sectionNews article p {
+    font-size: 22px;
+  }
+
+  /*-----profil------*/
+  .mainProfil {
+    min-height: 88vh;
+  }
+  .mainProfil form {
+    font-size: 28px;
+  }
+  .mainProfil form .inputUsername {
+    width: 300px;
+    height: 30px;
+    text-align: center;
+  }
+  .mainProfil form .inputButton {
+    padding: 4px 10px;
+    background: var(--gradientBg);
+    color: white;
+    text-transform: capitalize;
+  }
+  .mainProfil form .inputButton:hover {
+    background: var(--invertGradientBg);
+  }
+
+  .mainProfil .bgTitleProfil {
+    height: 100%;
+  }
+  .mainProfil .bgTitleProfil .titleProfil {
+    font-size: 42px;
+    width: 600px;
+    line-height: 60px;
+    padding: 70px;
+  }
+
+  .mainProfil .deleteContainer {
+    padding: 40px;
+  }
+
+  .mainProfil article {
+    margin: 0 200px;
+  }
+
+  .mainProfil .transcriptionContainer .infoTranscription {
+    width: 33%;
+  }
+
+  .mainProfil .transcriptionContainer .buttonTranscription {
+    width: 33%;
+  }
+
+  .mainProfil .transcriptionContainer .favoriContainer a:hover {
+    border: 2px solid rgba(18, 4, 4, 0.5411764706);
+    background-color: white;
+    color: black;
+  }
+
+  .mainProfil article .transcriptionContainer .infoTranscription span {
+    font-size: 15px;
+  }
+  .mainProfil article .transcriptionContainer .infoTranscription span:hover {
+    font-size: 20px;
+  }
+
+  .mainProfil article .transcriptionContainer .buttonTranscription a {
+    font-size: 15px;
+  }
+  .mainProfil article .transcriptionContainer .buttonTranscription a:hover {
+    font-size: 20px;
+  }
+
+  /*------login-----*/
+  .connectionBody .mainLogin {
+    min-height: 88vh;
+  }
+
+  /*---modifyRole----*/
+  .mainRoles {
+    min-height: 88vh;
+  }
+
+  /*---addTranscription----*/
+  .mainAddTranscription {
+    min-height: 88vh;
+  }
+
+  .mainAddTranscription form {
+    margin: 50px 25% 0;
+  }
+
+  /*----addCategory----*/
+  .mainCategory form {
+    margin: 50px 25% 0;
+  }
+
+  /*----addTraining-----*/
+  .mainAddTraining {
+    min-height: 88vh;
+  }
+
+  .mainAddTraining form {
+    margin: 50px 25% 0;
+  }
+
+  /*----addNews-----*/
+  .mainAddNews {
+    min-height: 88vh;
+  }
+
+  .mainAddNews form {
+    margin: 50px 25% 0;
+  }
+
+  .adminButtonNews {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .adminButtonNews a {
+    margin: 15px;
+    width: 80px;
+    text-align: center;
+  }
+
+  /*------main video-----*/
+  .mainVideo {
+    -webkit-box-orient: inherit;
+    -webkit-box-direction: inherit;
+    -webkit-flex-direction: inherit;
+        -ms-flex-direction: inherit;
+            flex-direction: inherit;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .pdfContainer {
+    width: 74%;
+    margin-bottom: 14%;
+    height: 600px;
+  }
+
+  .videoContainer {
+    height: 480px;
+    margin-bottom: 22%;
+    padding: 0;
+  }
+
+  /*------footer------*/
+  .footer nav {
+    -webkit-box-orient: initial;
+    -webkit-box-direction: initial;
+    -webkit-flex-direction: initial;
+        -ms-flex-direction: initial;
+            flex-direction: initial;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .footer nav a, .footer nav span {
+    width: inherit;
+    padding: 30px 0;
+    font-size: 22px;
+  }
+  .footer nav a:hover, .footer nav span:hover {
+    background: var(--invertGradientBg);
+  }
+
+  /*------header-----*/
+  .header .navUser a:hover, .header .navAdminPosition a:hover, .header .navAdmin a:hover, .header .navDesk a:hover {
+    background: var(--invertGradientBg);
+  }
+
+  .header .headerSection .navUser a {
+    border-bottom: none;
+    border-top: none;
+    border-width: 1px;
+    -webkit-border-image: -webkit-linear-gradient(top, white, rgba(0, 0, 0, 0)) 1 100%;
+            border-image: linear-gradient(to bottom, white, rgba(0, 0, 0, 0)) 1 100%;
   }
 }

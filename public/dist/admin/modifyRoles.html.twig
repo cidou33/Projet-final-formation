@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Page de modification et de suppression des utilisateurs du site" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
 
@@ -30,7 +31,7 @@
                     <td>
                         <form action="{{ path('adminDeleteUser') }}" method="post">
                             <input type="text" value="{{ user.id }}" hidden name="userId">
-                            <input class="red textWhite" type="submit" value="supprimer">
+                            <input class="red textWhite" type="submit" value="supprimer" onclick="return confirm('Etes vous certain de vouloir supprimer ce compte?');">
                         </form>
                     </td>
                 </tr>

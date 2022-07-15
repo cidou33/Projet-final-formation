@@ -19,7 +19,8 @@ class NewsType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre :',
                 'attr' => [
-                    'placeholder' => 'Écrivez un titre'
+                    'placeholder' => 'Écrivez un titre',
+                    'maxlength' => '255'
                 ]
             ])
             ->add('Content', TextareaType::class, [
@@ -27,13 +28,15 @@ class NewsType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Écrivez votre article',
                     'cols' => '28',
-                    'rows' => '5'
+                    'rows' => '5',
+                    'maxlength' => '255'
                 ]
             ])
             ->add('imgAlt', TextType::class, [
                 'label' => 'Description :',
                 'attr' => [
-                    'placeholder' => 'Décrivez votre image'
+                    'placeholder' => 'Décrivez votre image',
+                    'maxlength' => '255'
                 ]
             ])
             //->add('createDate')
@@ -42,7 +45,7 @@ class NewsType extends AbstractType
             ->add('imgNews', FileType::class, [
                 'label' => 'Choisissez une image :',
                 'data_class' => null,
-                'required' => false
+                'required' => true
             ])
             //->add('liked')
             ->add('Valider', SubmitType::class)

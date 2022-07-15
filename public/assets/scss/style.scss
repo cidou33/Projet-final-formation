@@ -1,6 +1,6 @@
 :root{
     --gradientBg: linear-gradient(0deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
-
+    --invertGradientBg: linear-gradient(176deg, rgba(164,176,218,1) 0%, rgba(61,76,125,1) 91%);
 }
 
 @mixin linkNav{
@@ -204,6 +204,8 @@ body{
 .adminMainHomePage{
     padding-top: 115px;
     background-color: #3e508ad4;
+    align-items: center;
+    background-color: rgba(62, 80, 138, 0.831372549);
 }
 
 /*----main homepage----*/
@@ -495,6 +497,7 @@ body{
                 border-radius: 12px;
                 background-color: rgb(118 131 176 / 72%);
                 padding: 2px 4px;
+                border: 1px solid white;
             }
             .trainingTitle{
                 margin-top: 40px;
@@ -641,7 +644,7 @@ body{
             border: 3px white solid;
             .imgAvatarProfil{
                 width: 100px;
-                transform: translate(-22px, -7px)           }
+                transform: translate(-22px, -22px);         }
         }
     }
     form{
@@ -738,16 +741,20 @@ body{
 }
 
 /*------main video-----*/
+.mainVideo{
+    flex-direction: column-reverse;
+    display: flex;
+}
 
-
-.pdfContainer{
-    height: 500px;
-    width: 375px;
+.pdfContainer {
+    height: 460px;
+    width: 100%;
 }
 
 .videoContainer {
-    height: 300px;
-    width: 375px;
+    height: 98px;
+    width: 50%;
+    margin: 0 auto;
 }
 
 /*------main login-----*/
@@ -813,6 +820,11 @@ body{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                ul{
+                    li{
+                        color: red;
+                    }
+                }
                 label{
                     color: white;
                     padding: 15px 0 15px 15px;
@@ -1120,6 +1132,8 @@ body{
             }
         }
     }
+
+
 }
 
 @media screen and (min-width: 425px) {
@@ -1220,6 +1234,9 @@ body{
             font-size: 20px;
         }
     }
+    .mainTrainings article p{
+        padding-top: 40px;
+    }
 
     /*-----main addCategory mediaScreen-----*/
 
@@ -1269,15 +1286,45 @@ body{
             display: block;
         }
     }
+
+    /*------main video-----*/
+
+    .pdfContainer {
+        height: 460px;
+        width: 100%;
+    }
+
+    .videoContainer {
+        width: 100%;
+        height: 166px;
+        padding: 0 31%;
+        margin: 0 auto -1%;
+    }
 }
-@media screen and(min-width: 769px){
+@media screen and(min-width: 769px) {
 
     /*---homePage---*/
 
-    .mainHomePageDesk{
+    .titleHomePage {
+        font-size: 42px;
+        width: 600px;
+        line-height: 60px;
+    }
+    .secondaryTitleContainer {
+        h2 {
+            font-size: 31px;
+            margin: 25px auto;
+        }
+    }
+    .articleTextContainer {
+        h3 {
+            font-size: 25px;
+        }
+    }
+    .mainHomePageDesk {
         padding-bottom: 2%;
     }
-    .articleHomePage{
+    .articleHomePage {
         margin-bottom: 80px;
     }
     .articleHomePage .imgLeft {
@@ -1288,51 +1335,96 @@ body{
         width: 30%;
         transform: translate(60%, 1%);
     }
-    .articleHomePage  .left{
+    .articleHomePage .left {
         top: 14%;
         right: 65%;
         width: 240px;
         transform: translate(0, 0);
     }
-    .articleHomePage  .right{
+    .articleHomePage .right {
         top: 14%;
         right: 18%;
         width: 240px;
         transform: translate(0, 0);
     }
-    .sectionHomePage .changeHide{
+    .articleHomePage .articleTextContainer .articlehomePageButton {
+        &:hover {
+            border: 3px solid rgba(18, 4, 4, 0.5411764706);
+            padding: 2px 5px;
+            border-radius: 15px;
+            background-color: white;
+            color: rgba(18, 4, 4, 0.5411764706);
+        }
+    }
+    .sectionHomePage .changeHide {
         display: none;
     }
 
     /*---transcriptions----*/
 
-    .bodytranscriptions .mainTranscriptions .sectionSearch .letterSearch{
+    .bodytranscriptions .mainTranscriptions .sectionSearch .bgTitleTranscriptions .titleTranscriptions {
+        font-size: 42px;
+        width: 600px;
+        line-height: 60px;
+        padding: 70px;
+    }
+    .bodytranscriptions .mainTranscriptions .sectionSearch .letterSearch a {
+        text-transform: uppercase;
+        width: 100%;
+
+        &:hover {
+            color: #11f311;
+        }
+    }
+    .bodytranscriptions .mainTranscriptions .sectionSearch .difficultyLinkContainer .difficultyLink span {
+        &:hover {
+            border: 2px solid rgba(18, 4, 4, 0.5411764706);
+            background-color: white;
+            color: rgba(18, 4, 4, 0.5411764706);
+        }
+    }
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .favoriContainer a {
+        &:hover {
+            border: 2px solid rgba(18, 4, 4, 0.5411764706);
+            background-color: white;
+            color: black;
+        }
+    }
+    .bodytranscriptions .mainTranscriptions .sectionSearch .letterSearch {
         position: inherit;
         flex-direction: inherit;
-        background:inherit;
+        background: inherit;
         margin: 20px auto;
         width: 90%;
     }
-    .bodytranscriptions .mainTranscriptions{
+    .bodytranscriptions .mainTranscriptions {
         margin-left: 0;
         width: 100%;
     }
     .bodytranscriptions .mainTranscriptions .listTranscriptions {
         padding: 30px 100px;
     }
-    .mainTranscriptions{
+    .mainTranscriptions {
         font-size: 18px;
     }
-    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span{
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span {
         font-size: 15px;
+
+        &:hover {
+            font-size: 20px;
+        }
     }
-    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .buttonTranscription a{
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .buttonTranscription a {
         font-size: 15px;
+
+        &:hover {
+            font-size: 20px;
+        }
     }
-    .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm .cellForm{
+    .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm .cellForm {
         width: 250px;
     }
-    .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm input{
+    .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm input {
         padding: 5px;
         border-radius: 15px;
     }
@@ -1341,8 +1433,259 @@ body{
         background: var(--gradientBg);
         color: white;
         text-transform: capitalize;
+
+        &:hover {
+            background: var(--invertGradientBg);
+        }
     }
-    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span{
+    .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .infoTranscription span {
         max-width: 450px;
+    }
+
+    /*-----trainings-----*/
+
+    .mainTrainings .bgTitleTrainings {
+        height: 100%;
+
+        .titleTrainings {
+            font-size: 42px;
+            width: 600px;
+            line-height: 60px;
+            padding: 70px;
+        }
+    }
+    .mainTrainings .sectionTrainings .secondaryTitleContainer .secondaryTitle {
+        font-size: 35px;
+    }
+    .mainTrainings .sectionTrainings .secondaryTitleContainer p {
+        font-size: 22px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .mainTrainings article .userTrainingLink .buttonDL {
+        border: 1px solid white;
+        border-radius: 12px;
+        background-color: rgba(118, 131, 176, 0.72);
+        padding: 2px 4px;
+
+        &:hover {
+            border: 1px solid rgb(47, 82, 192);
+            background-color: white;
+            color: rgb(47, 82, 192);
+        }
+    }
+    .mainTrainings article p {
+        font-size: 18px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /*-----news----*/
+
+    .mainNews .bgTitleNews {
+        height: 100%;
+
+        .titleNews {
+            font-size: 42px;
+            width: 600px;
+            line-height: 60px;
+            padding: 70px;
+        }
+    }
+    .mainNews .sectionNews .secondaryTitle {
+        font-size: 35px;
+    }
+    .mainNews .sectionNews .descNews {
+        font-size: 22px;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .mainNews .sectionNews article {
+        padding: 40px 200px;
+        justify-content: space-between;
+    }
+    .mainNews .sectionNews article h3 {
+        font-size: 25px;
+    }
+    .mainNews .sectionNews article p {
+        font-size: 22px;
+    }
+
+    /*-----profil------*/
+
+    .mainProfil {
+        min-height: 88vh;
+
+        form {
+            font-size: 28px;
+
+            .inputUsername {
+                width: 300px;
+                height: 30px;
+                text-align: center;
+            }
+
+            .inputButton {
+                padding: 4px 10px;
+                background: var(--gradientBg);
+                color: white;
+                text-transform: capitalize;
+
+                &:hover {
+                    background: var(--invertGradientBg);
+                }
+            }
+        }
+    }
+    .mainProfil .bgTitleProfil {
+        height: 100%;
+
+        .titleProfil {
+            font-size: 42px;
+            width: 600px;
+            line-height: 60px;
+            padding: 70px;
+        }
+    }
+    .mainProfil .deleteContainer {
+        padding: 40px;
+    }
+    .mainProfil article {
+        margin: 0 200px;
+    }
+    .mainProfil .transcriptionContainer .infoTranscription{
+        width: 33%;
+    }
+    .mainProfil .transcriptionContainer .buttonTranscription{
+        width: 33%;
+    }
+    .mainProfil .transcriptionContainer .favoriContainer a{
+        &:hover {
+            border: 2px solid rgba(18, 4, 4, 0.5411764706);
+            background-color: white;
+            color: black;
+        }
+    }
+    .mainProfil article .transcriptionContainer .infoTranscription span{
+        font-size: 15px;
+        &:hover{
+            font-size: 20px;
+        }
+    }
+    .mainProfil article .transcriptionContainer .buttonTranscription a {
+        font-size: 15px;
+
+        &:hover {
+            font-size: 20px;
+        }
+    }
+
+    /*------login-----*/
+
+    .connectionBody .mainLogin {
+        min-height: 88vh;
+    }
+
+    /*---modifyRole----*/
+
+    .mainRoles{
+        min-height: 88vh;
+    }
+
+    /*---addTranscription----*/
+
+    .mainAddTranscription{
+        min-height: 88vh;
+    }
+    .mainAddTranscription form {
+        margin: 50px 25% 0;
+    }
+
+    /*----addCategory----*/
+
+    .mainCategory form {
+        margin: 50px 25% 0;
+    }
+
+    /*----addTraining-----*/
+
+    .mainAddTraining {
+        min-height: 88vh;
+    }
+    .mainAddTraining form {
+        margin: 50px 25% 0;
+    }
+
+    /*----addNews-----*/
+
+    .mainAddNews {
+        min-height: 88vh;
+    }
+    .mainAddNews form {
+        margin: 50px 25% 0;
+    }
+    .adminButtonNews{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        a{
+            margin: 15px;
+            width: 80px;
+            text-align: center;
+        }
+    }
+
+    /*------main video-----*/
+
+    .mainVideo{
+        flex-direction: inherit;
+        display: flex;
+    }
+
+    .pdfContainer{
+        width: 74%;
+        margin-bottom: 14%;
+        height: 600px;
+    }
+
+    .videoContainer {
+        height: 480px;
+        margin-bottom: 22%;
+        padding: 0;
+    }
+
+    /*------footer------*/
+
+    .footer nav{
+        flex-direction: initial;
+        justify-content: center;
+        a, span{
+            width: inherit;
+            padding: 30px 0;
+            font-size: 22px;
+            &:hover{
+                background: var(--invertGradientBg);
+            }
+        }
+    }
+
+    /*------header-----*/
+
+    .header{
+        .navUser, .navAdminPosition, .navAdmin, .navDesk{
+            a{
+                &:hover{
+                    background: var(--invertGradientBg);
+                }
+            }
+        }
+    }
+    .header .headerSection .navUser a{
+        border-bottom: none;
+        border-top: none;
+        border-width: 1px;
+        border-image: linear-gradient(to bottom, white, rgba(0, 0, 0, 0)) 1 100%;
     }
 }

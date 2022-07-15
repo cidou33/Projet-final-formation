@@ -18,13 +18,14 @@ class CategoriesType extends AbstractType
             ->add('name', TextType::class, [
                 'label'=> 'Nom de la catégorie :',
                 'attr' => [
-                    'placeholder' => 'Écrivez un nom'
+                    'placeholder' => 'Écrivez un nom',
+                    'maxlength' => '255'
                 ]
             ])
             ->add('img_category', FileType::class, [
                 'label' => 'Choisissez une image :',
                 'data_class' => null,
-                'required' => false
+                'required' => true
             ])
             ->add('Valider', SubmitType::class)
         ;

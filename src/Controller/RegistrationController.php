@@ -42,6 +42,9 @@ class RegistrationController extends AbstractController
                 $img->move($this->getParameter('uploadDirectory'), $newFilename);
                 $user->setImgProfil($newFilename);
             }
+            else{
+                $user->setImgProfil('avatar.png');
+            }
             $user->setPassword(
             $userPasswordHasher->hashPassword(
                     $user,

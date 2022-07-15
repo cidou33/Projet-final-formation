@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Page listant les différents articles dont les sujets concernent les concerts, informations sur les cours, événements spéciaux ou tout autre chose dans le domaine de la musique et de la batterie" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
     <title>Les News</title>
@@ -36,7 +37,7 @@
                     <p class="textNewsDesk changeHide">{{ new.Content}}</p>
                     <button class="buttonNewsClose statut-hide">FERMER</button>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <div>
+                        <div class="adminButtonNews">
                             <a class="textWhite green" href="{{ path('modifyStatusNews', {'id':new.id}) }}">Désactiver</a>
                             <a class="textWhite orange" href="{{ path('updateNews', {'id':new.id}) }}">Modifier</a>
                             <a class="textWhite red" href="{{ path('deleteNews', {'id':new.id}) }}">Supprimer</a>

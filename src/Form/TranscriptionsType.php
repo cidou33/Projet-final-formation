@@ -20,19 +20,22 @@ class TranscriptionsType extends AbstractType
             ->add('bandName', TextType::class, [
                 'label' => 'Groupe :',
                 'attr' => [
-                    'placeholder' => 'Nom du groupe'
+                    'placeholder' => 'Nom du groupe',
+                    'maxlength' => '255'
                 ]
             ])
             ->add('songName', TextType::class, [
                 'label' => 'Chanson :',
                 'attr' => [
-                    'placeholder' => 'Titre de la chanson'
+                    'placeholder' => 'Titre de la chanson',
+                    'maxlength' => '255'
                     ]
                 ])
             ->add('mediaLink', TextType::class, [
                 'label' => 'Lien youtube :',
                 'attr' => [
-                    'placeholder' => 'Écrivez le lien vers la vidéo'
+                    'placeholder' => 'Écrivez le lien vers la vidéo',
+                    'maxlength' => '255'
                 ]
             ])
             ->add('difficultyLevel', EntityType::class, [
@@ -43,7 +46,7 @@ class TranscriptionsType extends AbstractType
             ->add('pdfFile', FileType::class, [
                 'label' => 'Choisissez un fichier pdf :',
                 'data_class' => null,
-                'required' => false
+                'required' => true
             ])
             //->add('active')
             //->add('createDate')

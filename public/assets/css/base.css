@@ -156,8 +156,18 @@ a {
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .header .headerSection .navAdminPosition div img {
-    width: 100px;
+  .header .headerSection .navAdminPosition .headerAvatarContainer {
+    max-width: 60px;
+    max-height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto 15px;
+  }
+  .header .headerSection .navAdminPosition .headerAvatarContainer .headerAvatar {
+    width: 80px;
+    -webkit-transform: translate(-9px, -9px);
+        -ms-transform: translate(-9px, -9px);
+            transform: translate(-9px, -9px);
   }
   .header .headerSection .navUser {
     position: initial;
@@ -167,7 +177,18 @@ a {
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .header .headerSection .navUser div img {
+  .header .headerSection .navUser .headerAvatarContainer {
+    max-width: 60px;
+    max-height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto 15px;
+  }
+  .header .headerSection .navUser .headerAvatarContainer .headerAvatar {
     width: 100px;
+    min-height: 80px;
+    -webkit-transform: translate(-19%, -19%);
+        -ms-transform: translate(-19%, -19%);
+            transform: translate(-19%, -19%);
   }
 }

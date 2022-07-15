@@ -102,13 +102,13 @@ class UserController extends AbstractController
     }
 
     #[Route('effacer-son-compte', name: 'deleteUser', methods: ['GET', 'POST'])]
-    public function deleteUser(UsersRepository $usersRepository, Request $request, TokenStorageInterface $tokenStorage){
+    public function deleteUser(UsersRepository $usersRepository){
         $userId = $this->getUser()->getId();
         $userDeleted = $usersRepository->findOneBy(['id'=> $userId]);
+        $this->container->get('security.token_storage')->setToken(null);
         $usersRepository->remove($userDeleted);
-        $request->getSession()->invalidate();
-        $tokenStorage->setToken();
-        return $this->redirectToRoute('app_login');
+        $this->addFlash('success', 'Votre compte utilisateur a bien été supprimé !');
+        return $this->redirectToRoute('homePage');
     }
 
 

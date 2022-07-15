@@ -90,18 +90,31 @@ a{
       .navAdminPosition, {
         position: initial;
         flex-direction: row;
-        div{
-          img{
-            width: 100px;
+        .headerAvatarContainer{
+          max-width: 60px;
+          max-height: 60px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin: auto 15px;
+          .headerAvatar{
+            width: 80px;
+            transform: translate(-9px, -9px);
           }
         }
       }
       .navUser{
         position: initial;
         flex-direction: row;
-        div{
-          img{
+        .headerAvatarContainer{
+          max-width: 60px;
+          max-height: 60px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin: auto 15px;
+          .headerAvatar{
             width: 100px;
+            min-height: 80px;
+            transform: translate(-19%, -19%);
           }
         }
       }

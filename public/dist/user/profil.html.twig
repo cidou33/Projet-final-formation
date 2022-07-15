@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Page de profil avec possibilité de modifier celui-ci et accès aux transcriptions mise en favori" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
     <title>Mon profil</title>
@@ -16,9 +17,6 @@
         <section>
             <div class="bgTitleProfil">
                 <h1 class="textWhite titleProfil">profil de {{ user.username }}</h1>
-                <div class="containerAvatarProfil">
-                    <img class="imgAvatarProfil" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="une image de profil pour le compte">
-                </div>
             </div>
             <form action="{{ path('updateUser') }}" method="POST" name="categoryBtn" enctype="multipart/form-data">
                 <label for="username">Nouveau pseudo :</label>
@@ -37,7 +35,7 @@
                             </div>
                             {% if connect == false %}
                                 <div class="favoriContainer">
-                                    <a class="textWhite" href="{{ path('modifyFavori',{'id':favori.id}) }}">supprimer</a>
+                                    <a class="textWhite" href="{{ path('modifyFavori',{'id':favori.id}) }}">Supprimer le favori</a>
                                 </div>
                             {% endif %}
                             <div class="buttonTranscription">
@@ -51,7 +49,7 @@
                     </article>
                 {% endfor %}
             <div class="deleteContainer">
-                <a class="textWhite red deleteAccountButton" href="{{ path('deleteUser') }}">SUPPRIMER SON COMPTE</a>
+                <a class="textWhite red deleteAccountButton" href="{{ path('deleteUser') }}" onclick="return confirm('Etes vous certain de vouloir supprimer vote compte?');">SUPPRIMER SON COMPTE</a>
             </div>
         </section>
         {% endblock %}

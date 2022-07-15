@@ -36,6 +36,21 @@
                     <a href="{{ path('app_register') }}">S'inscrire</a>
                 </div>
             {% endif %}
+            {% if connect == false %}
+                {%  if user.imgProfil != null %}
+                    <div class="headerAvatarContainer changeHideTwo">
+                        <img class="headerAvatar" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
+                    </div>
+                {% else %}
+                    <div class="headerAvatarContainer changeHideTwo">
+                        <img class="headerAvatar" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="headerAvatarContainer changeHideTwo">
+                    <img class="headerAvatar" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                </div>
+            {% endif %}
         </nav>
         <nav class="flex navDesk {% if is_granted('ROLE_ADMIN') %} navAdminPosition {% else %} navUser {% endif %}">
             <a class="" href="{{ path('homePage') }}">Acceuil</a>
@@ -53,22 +68,24 @@
                 <a href="{{ path('app_logout') }}">se deconnecter</a>
             {% endif %}
             {% if connect == false %}
+                <a href="{{ path('updateUser') }}">mon profil</a>
+            {% else %}
+                <a href="{{ path('app_register') }}">S'inscrire</a>
+            {% endif %}
+            {% if connect == false %}
                 {%  if user.imgProfil != null %}
-                   <!-- <div class="flex flexColumn">
-                        <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">-->
-                        <a href="{{ path('updateUser') }}">mon profil</a>
-                   <!-- </div>-->
+                    <div class="headerAvatarContainer">
+                        <img class="headerAvatar" src="{{ asset('assets/data/img/uploadDirectory/' ~ user.imgProfil) }}" alt="photo de profil">
+                    </div>
                 {% else %}
-                   <!-- <div class="flex flexColumn toto">
-                        <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
-                        <a  class="linkProfil" href="{{ path('updateUser') }}">mon profil</a>
-                    </div>-->
+                    <div class="headerAvatarContainer">
+                        <img class="headerAvatar" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                    </div>
                 {% endif %}
             {% else %}
-               <!-- <div class="flex flexColumn">
-                    <img class="statut-hide" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">-->
-                    <a href="{{ path('app_register') }}">S'inscrire</a>
-               <!-- </div>-->
+                <div class="headerAvatarContainer">
+                    <img class="headerAvatar" src="{{ asset('assets/data/img/uploadDirectory/avatar.png') }}" alt="photo de profil">
+                </div>
             {% endif %}
         </nav>
         <div class="crossUser">
