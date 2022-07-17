@@ -63,6 +63,7 @@
                                 {% for fav in favori %}
                                     {% if fav.id == transcription.id %}<img class="logoFavori" src="{{ asset('assets/data/img/media/star.png') }}" alt="Etoile jaune">{% endif %}
                                 {% endfor %}
+
                                 <a class="textWhite" href="{{ path('modifyFavori',{'id':transcription.id}) }}">ajouter / supprimer</a>
                             </div>
                         {% endif %}
@@ -94,8 +95,8 @@
                                 <div class="infoTranscription">
                                     <span class="textWhite nameBand">{{ transcription.bandName }}</span>
                                     <span class="textWhite titleSong">{{ transcription.songName }}</span>
-                                    <div class="difficultyToken {{ transcription.difficultyLevel.color }}"></div>
                                 </div>
+                                <div class="difficultyToken {{ transcription.difficultyLevel.color }}"></div>
                                 {% if connect == false %}
                                     <div class="favoriContainer">
                                         {% for fav in favori %}
