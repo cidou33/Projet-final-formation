@@ -25,7 +25,7 @@
                     <td>
                         <form action="{{ path('adminModifyRoleUser') }}" method="post">
                             <input type="text" value="{{ user.id }}" hidden name="userId">
-                            <input type="submit" {% if user.roles == ['ROLE_ADMIN'] %}value="Passer utilistateur" class="green" {% else %}value="Passer admin" class="orange"{% endif %}>
+                            <input type="submit" {% if user.roles == ['ROLE_ADMIN'] %}value="Passer user" class="green" {% else %}value="Passer admin" class="orange"{% endif %}>
                         </form>
                     </td>
                     <td>

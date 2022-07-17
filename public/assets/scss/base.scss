@@ -52,7 +52,7 @@ a{
   color:darkorange;
 }
 .textRed{
-  color:darkred;
+  color: #f50505;
 }
 .backWhite{
   background-color:white;
@@ -65,6 +65,17 @@ a{
 }
 .navDesk{
   display: none;
+}
+.headerAvatarContainer{
+  max-width: 60px;
+  max-height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: auto 15px;
+  .headerAvatar{
+    width: 100px;
+    transform: translate(-19%, -19%);
+  }
 }
 @media screen and(min-width: 769px){
   .header{
@@ -90,34 +101,23 @@ a{
       .navAdminPosition, {
         position: initial;
         flex-direction: row;
-        .headerAvatarContainer{
-          max-width: 60px;
-          max-height: 60px;
-          border-radius: 50%;
-          overflow: hidden;
-          margin: auto 15px;
-          .headerAvatar{
-            width: 80px;
-            transform: translate(-9px, -9px);
-          }
+        }
+      .headerAvatarContainer{
+        max-width: 60px;
+        max-height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: auto 15px;
+        .headerAvatar{
+          width: 80px;
+          transform: translate(-9px, -9px);
         }
       }
       .navUser{
         position: initial;
         flex-direction: row;
-        .headerAvatarContainer{
-          max-width: 60px;
-          max-height: 60px;
-          border-radius: 50%;
-          overflow: hidden;
-          margin: auto 15px;
-          .headerAvatar{
-            width: 100px;
-            min-height: 80px;
-            transform: translate(-19%, -19%);
-          }
-        }
       }
+
     }
   }
 }

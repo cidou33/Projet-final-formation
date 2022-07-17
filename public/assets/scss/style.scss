@@ -37,7 +37,7 @@
     line-height: 30px;
 }
 @mixin validateButton{
-    width: 230px;
+    width: 200px;
     border-radius: 15px;
     height: 30px;
     font-size: 15px;
@@ -84,11 +84,15 @@ body{
     }
 }
 .crossUser{
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .stick{
         width: 40px;
         height: 6px;
         border-radius: 2px;
-        margin: 6px 0;
+        margin: 3px 0;
     }
 }
 
@@ -275,7 +279,7 @@ body{
         .sectionSearch{
             text-align: center;
             .searchHelp{
-                font-size: 10px;
+                font-size: 13px;
             }
             .searchForm{
                 padding:25px 0;
@@ -757,6 +761,35 @@ body{
     margin: 0 auto;
 }
 
+
+/*-----main category-----*/
+
+ul {
+    padding-bottom:  40px;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+
+        .containerAvatarCategory {
+            border-radius: 50%;
+            max-height: 30px;
+            max-width: 30px;
+            overflow: hidden;
+            border: 1px white solid;
+
+            .imgAvatarCategory {
+                width: 60px;
+            }
+        }
+
+        span {
+            width: 100px;
+        }
+    }
+}
+
 /*------main login-----*/
 .connectionBody{
     height: 100vh;
@@ -814,7 +847,7 @@ body{
             padding: 30px 0;
         }
         form{
-            height: 64vh;
+            min-height: 64vh;
             div{
                 margin: 15px 0;
                 display: flex;
@@ -1020,8 +1053,7 @@ body{
     }
     ul{
         li{
-            margin-left: 5%;
-            margin-bottom: 10px;
+            margin: 0 2% 10px;
            a{
                padding: 1px 5px;
                border-radius: 15px;
@@ -1411,15 +1443,14 @@ body{
         font-size: 15px;
 
         &:hover {
-            font-size: 20px;
+            color:black;
         }
     }
     .bodytranscriptions .mainTranscriptions .listTranscriptions .transcriptionContainer .buttonTranscription a {
         font-size: 15px;
 
         &:hover {
-            font-size: 20px;
-        }
+            color:black;        }
     }
     .bodytranscriptions .mainTranscriptions .sectionSearch .searchForm .cellForm {
         width: 250px;
@@ -1637,7 +1668,16 @@ body{
         }
     }
 
-    /*------main video-----*/
+    /*-----main register-----*/
+
+    .mainRegister {
+        min-height: 88vh;
+    }
+    .mainRegister form {
+        margin: 50px 25% 0;
+    }
+
+    /*-----main video-----*/
 
     .mainVideo{
         flex-direction: inherit;
