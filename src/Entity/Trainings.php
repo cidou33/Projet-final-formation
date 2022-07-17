@@ -37,7 +37,7 @@ class Trainings
     private $numbDownload;
 
     #[ORM\ManyToOne(targetEntity: Categories::class)]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: true, onDelete: "SET NULL")]
     private $category;
 
     #[ORM\ManyToMany(targetEntity: Users::class)]

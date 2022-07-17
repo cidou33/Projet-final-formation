@@ -73,12 +73,12 @@ class transcriptionsController extends AbstractController
             $donnees = $transcriptionsRepository->findMySelectionByDifficulty($infos);
         }
         else{
-            $donnees= $transcriptionsRepository->findAll();
+            $donnees= $transcriptionsRepository->findBy([], array('bandName' => 'ASC'));
         }
         $transcriptions = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            10
+            5
         );
         $connect = $this->getUser() == null;
         $user = $this->getUser();
@@ -112,7 +112,7 @@ class transcriptionsController extends AbstractController
         $transcriptions = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
-            10
+            5
         );
         if ($user != null) {
             $favoris = $user->getFavoris();

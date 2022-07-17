@@ -45,7 +45,7 @@ class NewsType extends AbstractType
             ->add('imgNews', FileType::class, [
                 'label' => 'Choisissez une image :',
                 'data_class' => null,
-                'required' => true
+                'required' => false
             ])
             //->add('liked')
             ->add('Valider', SubmitType::class)

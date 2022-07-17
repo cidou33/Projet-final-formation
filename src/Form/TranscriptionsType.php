@@ -46,7 +46,7 @@ class TranscriptionsType extends AbstractType
             ->add('pdfFile', FileType::class, [
                 'label' => 'Choisissez un fichier pdf :',
                 'data_class' => null,
-                'required' => true
+                'required' => false
             ])
             //->add('active')
             //->add('createDate')

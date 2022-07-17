@@ -1661,13 +1661,21 @@ body{
     .footer nav{
         flex-direction: initial;
         justify-content: center;
-        a, span{
+        a{
             width: inherit;
             padding: 30px 0;
             font-size: 22px;
             &:hover{
                 background: var(--invertGradientBg);
             }
+        }
+        span{
+            width: inherit;
+            padding: 10px 0;
+            font-size: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 
