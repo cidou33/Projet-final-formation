@@ -101,7 +101,8 @@ body{
     position: fixed;
     z-index: 3;
     width: 100%;
-/*-------NAV USER-------*/
+
+/*------NAV USER-------*/
     .headerSection{
         position: relative;
         .navAdminPosition{
@@ -552,6 +553,14 @@ body{
     }
 }
 /*------main news-----*/
+
+.adminButtonNews {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 
 .mainNews{
     .bgTitleNews {
@@ -1207,7 +1216,7 @@ ul {
         max-width: 60px;
     }
     .mainTrainings article .userTrainingLink .imgTrainingContainer img{
-        width: 100px;
+        width: 65px;
     }
 
     /*-----trainings mediaScreen-----*/
@@ -1290,7 +1299,7 @@ ul {
                     overflow: hidden;
                     border: 1px white solid;
                     .imgAvatarCategory{
-                        width: 60px;
+                        width: 35px;
                     }
                 }
                 span{
@@ -1361,11 +1370,11 @@ ul {
     }
     .articleHomePage .imgLeft {
         width: 30%;
-        transform: translate(-60%, 1%);
+        transform: translate(-60%, -33%);
     }
     .articleHomePage .imgRight {
         width: 30%;
-        transform: translate(60%, 1%);
+        transform: translate(60%, -33%);
     }
     .articleHomePage .left {
         top: 14%;
@@ -1533,7 +1542,7 @@ ul {
         text-align: center;
     }
     .mainNews .sectionNews article {
-        padding: 40px 200px;
+        padding: 40px 30px;
         justify-content: space-between;
     }
     .mainNews .sectionNews article h3 {

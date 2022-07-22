@@ -63,7 +63,7 @@
                             <p class="textNewsDesk changeHide">{{ new.Content}}</p>
                             <button class="buttonNewsClose statut-hide">FERMER</button>
                             {% if is_granted('ROLE_ADMIN') %}
-                                <div>
+                                <div class="adminButtonNews">
                                     <a class="textWhite green" href="{{ path('modifyStatusNews', {'id':new.id}) }}">Activer</a>
                                     <a class="textWhite orange" href="{{ path('updateNews', {'id':new.id}) }}">Modifier</a>
                                     <a class="textWhite red" href="{{ path('deleteNews', {'id':new.id}) }}">Supprimer</a>

@@ -29,7 +29,7 @@ class NewsType extends AbstractType
                     'placeholder' => 'Écrivez votre article',
                     'cols' => '28',
                     'rows' => '5',
-                    'maxlength' => '255'
+                    'maxlength' => '600'
                 ]
             ])
             ->add('imgAlt', TextType::class, [

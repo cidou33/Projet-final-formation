@@ -82,7 +82,7 @@ class TrainingsRepository extends ServiceEntityRepository
             ->leftJoin('trainings.category', 'category')
             ->addSelect('category');
         $query = $qb
-            ->orderBy('trainings.createDate', 'ASC')
+            ->orderBy('category.name', 'ASC')
             ->getQuery();
         $trainings = $query->getArrayResult();
         return $trainings;

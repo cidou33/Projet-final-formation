@@ -32,7 +32,7 @@ class TrainingsType extends AbstractType
                     'placeholder' => 'Écrivez une description',
                     'cols' => '30',
                     'rows' => '5',
-                    'maxlength' => '255'
+                    'maxlength' => '600'
                 ]
             ])
             //->add('createDate')

@@ -63,7 +63,7 @@ body {
   position: fixed;
   z-index: 3;
   width: 100%;
-  /*-------NAV USER-------*/
+  /*------NAV USER-------*/
   /*---------NAV ADMIN---------*/
 }
 .header .headerSection {
@@ -657,6 +657,27 @@ body {
 }
 
 /*------main news-----*/
+.adminButtonNews {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
 .mainNews .bgTitleNews {
   height: 140px;
   background-image: url("../data/img/media/batteur_live.jpg");
@@ -1588,7 +1609,7 @@ ul li span {
   }
 
   .mainTrainings article .userTrainingLink .imgTrainingContainer img {
-    width: 100px;
+    width: 65px;
   }
 
   /*-----trainings mediaScreen-----*/
@@ -1676,7 +1697,7 @@ ul li span {
     border: 1px white solid;
   }
   .mainCategory ul li .containerAvatarCategory .imgAvatarCategory {
-    width: 60px;
+    width: 35px;
   }
   .mainCategory ul li span {
     width: 100px;
@@ -1736,16 +1757,16 @@ ul li span {
 
   .articleHomePage .imgLeft {
     width: 30%;
-    -webkit-transform: translate(-60%, 1%);
-        -ms-transform: translate(-60%, 1%);
-            transform: translate(-60%, 1%);
+    -webkit-transform: translate(-60%, -33%);
+        -ms-transform: translate(-60%, -33%);
+            transform: translate(-60%, -33%);
   }
 
   .articleHomePage .imgRight {
     width: 30%;
-    -webkit-transform: translate(60%, 1%);
-        -ms-transform: translate(60%, 1%);
-            transform: translate(60%, 1%);
+    -webkit-transform: translate(60%, -33%);
+        -ms-transform: translate(60%, -33%);
+            transform: translate(60%, -33%);
   }
 
   .articleHomePage .left {
@@ -1930,7 +1951,7 @@ ul li span {
   }
 
   .mainNews .sectionNews article {
-    padding: 40px 200px;
+    padding: 40px 30px;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;

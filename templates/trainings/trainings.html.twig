@@ -28,11 +28,19 @@
                         <div class="userTrainingLink">
                             <div class="trainingTitle">
                                 {% if training.category%}
-                                    <div class="imgTrainingContainer">
-                                        <img src="{{ asset('assets/data/img/uploadCategories/' ~ training.category.img_category) }}" alt="logo de catégorie">
-                                    </div>
+                                    {% if training.category.img_category %}
+                                        <div class="imgTrainingContainer">
+                                            <img src="{{ asset('assets/data/img/uploadCategories/' ~ training.category.img_category) }}" alt="logo de catégorie">
+                                        </div>
+                                    {% endif %}
                                 {% endif %}
-                                <h3 class="textBlack">• {{ training.title }}</h3>
+                                <h3 class="textBlack">• {{ training.title }}
+                {% if training.category%}
+                    {% if training.category.name %}
+                        ({{  training.category.name }})
+                    {% endif %}
+                {% endif %}
+                        </h3>
                             </div>
                             <a class="textWhite buttonDL" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}" download="{{ training.pdfFile }}">Télécharger</a>
                             <a class="textWhite buttonDL" target="_blank" href="{{ asset('assets/data/pdf/uploadTrainings/' ~ training.pdfFile) }}">Lire</a>
